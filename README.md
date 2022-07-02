@@ -15,7 +15,7 @@ The code is presented as annotated notebooks, rendered in html files within the 
 
 The data used is stored in csv files stored in the `Data` folder:
 
-- [Stomach contents](https://github.com/ArturoBell/01072022/Data/stomach_w.csv)
-- [Stable isotope ratios](https://github.com/ArturoBell/01072022/Data/glm.csv)
+- [Stomach contents](https://github.com/ArturoBell/01072022/blob/main/Data/stomach_w.csv)
+- [Stable isotope ratios](https://github.com/ArturoBell/01072022/blob/main/Data/glm.csv)
 
 
