@@ -1,0 +1,2623 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-99.9.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>ES: Enríquez-García - 2&nbsp; Hierarchical Bayesian Models to describe differences in isotopic values between and within species</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./ES3_SIBER.html" rel="next">
+<link href="./ES1_ML_counts.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Hierarchical Bayesian Models to describe differences in isotopic values between and within species</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">ES: Enríquez-García</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/ArturoBell/01072022" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Index</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ES1_ML_counts.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">ML approach to classify species based on prey counts</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ES2_BHGLM.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Hierarchical Bayesian Models to describe differences in isotopic values between and within species</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ES3_SIBER.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Amplitudes and comparisons of the isotopic niches</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ES4_nicheROVER.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Isotopic niche overlaps</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#imports" id="toc-imports" class="nav-link active" data-scroll-target="#imports"><span class="toc-section-number">2.1</span>  Imports</a>
+  <ul class="collapse">
+  <li><a href="#miscelaneous-configurations" id="toc-miscelaneous-configurations" class="nav-link" data-scroll-target="#miscelaneous-configurations"><span class="toc-section-number">2.1.1</span>  Miscelaneous configurations</a></li>
+  </ul></li>
+  <li><a href="#exploratory-data-analyses" id="toc-exploratory-data-analyses" class="nav-link" data-scroll-target="#exploratory-data-analyses"><span class="toc-section-number">2.2</span>  Exploratory Data Analyses</a>
+  <ul class="collapse">
+  <li><a href="#data-description" id="toc-data-description" class="nav-link" data-scroll-target="#data-description"><span class="toc-section-number">2.2.1</span>  Data description</a></li>
+  </ul></li>
+  <li><a href="#justification-of-methods" id="toc-justification-of-methods" class="nav-link" data-scroll-target="#justification-of-methods"><span class="toc-section-number">2.3</span>  Justification of methods</a></li>
+  <li><a href="#comparisons-of-means-and-effects-of-predictors" id="toc-comparisons-of-means-and-effects-of-predictors" class="nav-link" data-scroll-target="#comparisons-of-means-and-effects-of-predictors"><span class="toc-section-number">2.4</span>  Comparisons of means and effects of predictors </a><a class="anchor nav-link" id="hierbiv" data-scroll-target="undefined"></a>
+  <ul class="collapse">
+  <li><a href="#diagnostics" id="toc-diagnostics" class="nav-link" data-scroll-target="#diagnostics"><span class="toc-section-number">2.4.1</span>  Diagnostics </a><a class="anchor nav-link" id="diags" data-scroll-target="undefined"></a></li>
+  </ul></li>
+  <li><a href="#a-note-on-the-interpretation-of-results" id="toc-a-note-on-the-interpretation-of-results" class="nav-link" data-scroll-target="#a-note-on-the-interpretation-of-results"><span class="toc-section-number">2.5</span>  A note on the interpretation of results </a><a class="anchor nav-link" id="interp" data-scroll-target="undefined"></a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><span class="toc-section-number">2.6</span>  Results </a><a class="anchor nav-link" id="resdes" data-scroll-target="undefined"></a>
+  <ul class="collapse">
+  <li><a href="#inference" id="toc-inference" class="nav-link" data-scroll-target="#inference"><span class="toc-section-number">2.6.1</span>  Inference </a><a class="anchor nav-link" id="inferences" data-scroll-target="undefined"></a></li>
+  <li><a href="#bivariate-posterior-distribution" id="toc-bivariate-posterior-distribution" class="nav-link" data-scroll-target="#bivariate-posterior-distribution"><span class="toc-section-number">2.6.2</span>  Bivariate Posterior Distribution </a><a class="anchor nav-link" id="PosteriorJoint" data-scroll-target="undefined"></a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ArturoBell/01072022/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Hierarchical Bayesian Models to describe differences in isotopic values between and within species</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="imports" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="imports"><span class="header-section-number">2.1</span> Imports</h2>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pickle</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> theano</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pymc3 <span class="im">as</span> pm</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> arviz <span class="im">as</span> az</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> multiprocessing <span class="im">as</span> mp</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> theano <span class="im">import</span> tensor <span class="im">as</span> tt</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> threadpoolctl <span class="im">import</span> threadpool_limits</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="miscelaneous-configurations" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="miscelaneous-configurations"><span class="header-section-number">2.1.1</span> Miscelaneous configurations</h3>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>env THEANO_FLAGS<span class="op">=</span>device<span class="op">=</span>cpu,floatX<span class="op">=</span>float32</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>env OMP_NUM_THREADS<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#%env MKL_NUM_THREADS=1</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>config InlineBackend.figure_format <span class="op">=</span> <span class="st">'retina'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>env: THEANO_FLAGS=device=cpu,floatX=float32
+env: OMP_NUM_THREADS=1</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'font.family'</span>] <span class="op">=</span> <span class="st">'Serif'</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> plt.rcParams[<span class="st">'axes.prop_cycle'</span>].by_key()[<span class="st">'color'</span>]</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> datetime.now()</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>output_dir <span class="op">=</span> <span class="st">'output/HBGLM'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="exploratory-data-analyses" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="exploratory-data-analyses"><span class="header-section-number">2.2</span> Exploratory Data Analyses</h2>
+<p>Loading the data from the <code>glm.csv</code> file:</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading the data and renaming some columns</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>col_names <span class="op">=</span> {<span class="st">'sexo'</span>: <span class="st">'sex'</span>, <span class="st">'temporada'</span>: <span class="st">'temp'</span>, <span class="st">'estadio'</span>:<span class="st">'est'</span>}</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop unused columns and missing data</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>glm_data <span class="op">=</span> pd.read_csv(<span class="st">'data/glm.csv'</span>).rename(columns <span class="op">=</span> col_names).dropna()</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>glm_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+
+
+<table class="dataframe table table-sm table-striped" data-border="1">
+<thead>
+<tr class="header">
+<th></th>
+<th>sp</th>
+<th>year</th>
+<th>temp</th>
+<th>sex</th>
+<th>est</th>
+<th>d15n</th>
+<th>d13c</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th>0</th>
+<td>H.dipterurus</td>
+<td>2015</td>
+<td>Calida</td>
+<td>M</td>
+<td>Juvenil</td>
+<td>16.301217</td>
+<td>-14.506785</td>
+</tr>
+<tr class="even">
+<th>1</th>
+<td>H.dipterurus</td>
+<td>2015</td>
+<td>Calida</td>
+<td>H</td>
+<td>Juvenil</td>
+<td>16.832374</td>
+<td>-17.810405</td>
+</tr>
+<tr class="odd">
+<th>2</th>
+<td>H.dipterurus</td>
+<td>2015</td>
+<td>Calida</td>
+<td>M</td>
+<td>Adulto</td>
+<td>17.135463</td>
+<td>-15.831434</td>
+</tr>
+<tr class="even">
+<th>3</th>
+<td>H.dipterurus</td>
+<td>2015</td>
+<td>Calida</td>
+<td>H</td>
+<td>Juvenil</td>
+<td>13.123093</td>
+<td>-15.965960</td>
+</tr>
+<tr class="odd">
+<th>4</th>
+<td>H.dipterurus</td>
+<td>2015</td>
+<td>Calida</td>
+<td>M</td>
+<td>Adulto</td>
+<td>17.633117</td>
+<td>-16.719438</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Means and sample size by group</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>glm_data.groupby([<span class="st">'sp'</span>, <span class="st">'year'</span>, <span class="st">'temp'</span>, <span class="st">'sex'</span>, <span class="st">'est'</span>]).agg({<span class="st">'d13c'</span>: <span class="st">'mean'</span>, <span class="st">'d15n'</span>: [<span class="st">'mean'</span>, <span class="st">'count'</span>]})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div>
+
+
+<table class="dataframe table table-sm table-striped" data-border="1">
+<thead>
+<tr class="header">
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th>d13c</th>
+<th colspan="2" data-halign="left">d15n</th>
+</tr>
+<tr class="odd">
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th>mean</th>
+<th>mean</th>
+<th>count</th>
+</tr>
+<tr class="header">
+<th>sp</th>
+<th>year</th>
+<th>temp</th>
+<th>sex</th>
+<th>est</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th rowspan="8" data-valign="top">H.dipterurus</th>
+<th rowspan="8" data-valign="top">2015</th>
+<th rowspan="4" data-valign="top">Calida</th>
+<th rowspan="2" data-valign="top">H</th>
+<th>Adulto</th>
+<td>-13.942144</td>
+<td>16.613670</td>
+<td>9</td>
+</tr>
+<tr class="even">
+<th>Juvenil</th>
+<td>-14.017620</td>
+<td>15.994767</td>
+<td>23</td>
+</tr>
+<tr class="odd">
+<th rowspan="2" data-valign="top">M</th>
+<th>Adulto</th>
+<td>-14.998469</td>
+<td>16.604050</td>
+<td>22</td>
+</tr>
+<tr class="even">
+<th>Juvenil</th>
+<td>-13.373202</td>
+<td>15.680330</td>
+<td>9</td>
+</tr>
+<tr class="odd">
+<th rowspan="4" data-valign="top">Fria</th>
+<th rowspan="2" data-valign="top">H</th>
+<th>Adulto</th>
+<td>-13.064860</td>
+<td>14.864662</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<th>Juvenil</th>
+<td>-12.610936</td>
+<td>13.877340</td>
+<td>9</td>
+</tr>
+<tr class="odd">
+<th rowspan="2" data-valign="top">M</th>
+<th>Adulto</th>
+<td>-11.927432</td>
+<td>16.407116</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<th>Juvenil</th>
+<td>-14.407406</td>
+<td>14.484665</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<th rowspan="6" data-valign="top">N.entemedor</th>
+<th rowspan="6" data-valign="top">2015</th>
+<th rowspan="4" data-valign="top">Calida</th>
+<th rowspan="2" data-valign="top">H</th>
+<th>Adulto</th>
+<td>-12.359643</td>
+<td>18.205161</td>
+<td>30</td>
+</tr>
+<tr class="even">
+<th>Juvenil</th>
+<td>-12.812716</td>
+<td>17.831336</td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<th rowspan="2" data-valign="top">M</th>
+<th>Adulto</th>
+<td>-12.847007</td>
+<td>18.135719</td>
+<td>12</td>
+</tr>
+<tr class="even">
+<th>Juvenil</th>
+<td>-10.295426</td>
+<td>16.573227</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<th rowspan="2" data-valign="top">Fria</th>
+<th rowspan="2" data-valign="top">H</th>
+<th>Adulto</th>
+<td>-12.030624</td>
+<td>17.699466</td>
+<td>13</td>
+</tr>
+<tr class="even">
+<th>Juvenil</th>
+<td>-12.194370</td>
+<td>16.500017</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<th rowspan="11" data-valign="top">R.steindachneri</th>
+<th rowspan="6" data-valign="top">2015</th>
+<th rowspan="4" data-valign="top">Calida</th>
+<th rowspan="2" data-valign="top">H</th>
+<th>Adulto</th>
+<td>-15.779771</td>
+<td>16.400239</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<th>Juvenil</th>
+<td>-13.170622</td>
+<td>14.434994</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<th rowspan="2" data-valign="top">M</th>
+<th>Adulto</th>
+<td>-15.236513</td>
+<td>15.746496</td>
+<td>13</td>
+</tr>
+<tr class="even">
+<th>Juvenil</th>
+<td>-12.943184</td>
+<td>13.869374</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<th rowspan="2" data-valign="top">Fria</th>
+<th rowspan="2" data-valign="top">M</th>
+<th>Adulto</th>
+<td>-14.953427</td>
+<td>14.627732</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<th>Juvenil</th>
+<td>-16.390769</td>
+<td>16.749110</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<th rowspan="5" data-valign="top">2016</th>
+<th rowspan="4" data-valign="top">Calida</th>
+<th rowspan="2" data-valign="top">H</th>
+<th>Adulto</th>
+<td>-15.486790</td>
+<td>16.510650</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<th>Juvenil</th>
+<td>-16.418847</td>
+<td>16.186230</td>
+<td>23</td>
+</tr>
+<tr class="odd">
+<th rowspan="2" data-valign="top">M</th>
+<th>Adulto</th>
+<td>-16.489796</td>
+<td>16.459579</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<th>Juvenil</th>
+<td>-16.166709</td>
+<td>16.014685</td>
+<td>20</td>
+</tr>
+<tr class="odd">
+<th>Fria</th>
+<th>H</th>
+<th>Juvenil</th>
+<td>-15.006439</td>
+<td>14.493645</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<section id="data-description" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="data-description"><span class="header-section-number">2.2.1</span> Data description</h3>
+<p>In <a href="#fig-pairplot">Figure&nbsp;<span>2.1</span></a> we can observe that:</p>
+<ol type="1">
+<li><p>There is an isotopic gradient between the three species in both isotopes: <em>R. steindachneri</em> &lt; <em>H. dipterus</em> &lt; <em>N. entemedor</em>.</p></li>
+<li><p>This gradient is consistent, to different extents, through the covariates, causing deviations from the statistic normality, especially in multivariate terms.</p></li>
+<li><p>Some classes are misrepresented in relation to anothers</p></li>
+</ol>
+<p>It is important to mention that the <code>year</code> variable has two levels only for <em>R. steindachneri</em> and will, hence, be discarded from the analysis.</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Same as before, but without the year variable</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>glm_data.groupby([<span class="st">'sp'</span>, <span class="st">'temp'</span>, <span class="st">'sex'</span>, <span class="st">'est'</span>]).agg({<span class="st">'d13c'</span>: <span class="st">'mean'</span>, <span class="st">'d15n'</span>: [<span class="st">'mean'</span>, <span class="st">'std'</span>, <span class="st">'count'</span>]})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div>
+
+
+<table class="dataframe table table-sm table-striped" data-border="1">
+<thead>
+<tr class="header">
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th>d13c</th>
+<th colspan="3" data-halign="left">d15n</th>
+</tr>
+<tr class="odd">
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th>mean</th>
+<th>mean</th>
+<th>std</th>
+<th>count</th>
+</tr>
+<tr class="header">
+<th>sp</th>
+<th>temp</th>
+<th>sex</th>
+<th>est</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th rowspan="8" data-valign="top">H.dipterurus</th>
+<th rowspan="4" data-valign="top">Calida</th>
+<th rowspan="2" data-valign="top">H</th>
+<th>Adulto</th>
+<td>-13.942144</td>
+<td>16.613670</td>
+<td>1.494203</td>
+<td>9</td>
+</tr>
+<tr class="even">
+<th>Juvenil</th>
+<td>-14.017620</td>
+<td>15.994767</td>
+<td>1.658766</td>
+<td>23</td>
+</tr>
+<tr class="odd">
+<th rowspan="2" data-valign="top">M</th>
+<th>Adulto</th>
+<td>-14.998469</td>
+<td>16.604050</td>
+<td>1.784481</td>
+<td>22</td>
+</tr>
+<tr class="even">
+<th>Juvenil</th>
+<td>-13.373202</td>
+<td>15.680330</td>
+<td>0.976791</td>
+<td>9</td>
+</tr>
+<tr class="odd">
+<th rowspan="4" data-valign="top">Fria</th>
+<th rowspan="2" data-valign="top">H</th>
+<th>Adulto</th>
+<td>-13.064860</td>
+<td>14.864662</td>
+<td>2.659849</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<th>Juvenil</th>
+<td>-12.610936</td>
+<td>13.877340</td>
+<td>1.149967</td>
+<td>9</td>
+</tr>
+<tr class="odd">
+<th rowspan="2" data-valign="top">M</th>
+<th>Adulto</th>
+<td>-11.927432</td>
+<td>16.407116</td>
+<td>0.384593</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<th>Juvenil</th>
+<td>-14.407406</td>
+<td>14.484665</td>
+<td>1.026919</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<th rowspan="6" data-valign="top">N.entemedor</th>
+<th rowspan="4" data-valign="top">Calida</th>
+<th rowspan="2" data-valign="top">H</th>
+<th>Adulto</th>
+<td>-12.359643</td>
+<td>18.205161</td>
+<td>0.620264</td>
+<td>30</td>
+</tr>
+<tr class="even">
+<th>Juvenil</th>
+<td>-12.812716</td>
+<td>17.831336</td>
+<td>1.150832</td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<th rowspan="2" data-valign="top">M</th>
+<th>Adulto</th>
+<td>-12.847007</td>
+<td>18.135719</td>
+<td>0.710318</td>
+<td>12</td>
+</tr>
+<tr class="even">
+<th>Juvenil</th>
+<td>-10.295426</td>
+<td>16.573227</td>
+<td>0.649217</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<th rowspan="2" data-valign="top">Fria</th>
+<th rowspan="2" data-valign="top">H</th>
+<th>Adulto</th>
+<td>-12.030624</td>
+<td>17.699466</td>
+<td>0.585372</td>
+<td>13</td>
+</tr>
+<tr class="even">
+<th>Juvenil</th>
+<td>-12.194370</td>
+<td>16.500017</td>
+<td>0.754364</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<th rowspan="7" data-valign="top">R.steindachneri</th>
+<th rowspan="4" data-valign="top">Calida</th>
+<th rowspan="2" data-valign="top">H</th>
+<th>Adulto</th>
+<td>-15.662578</td>
+<td>16.444403</td>
+<td>0.209680</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<th>Juvenil</th>
+<td>-16.158989</td>
+<td>16.046131</td>
+<td>0.634873</td>
+<td>25</td>
+</tr>
+<tr class="odd">
+<th rowspan="2" data-valign="top">M</th>
+<th>Adulto</th>
+<td>-15.675162</td>
+<td>15.996075</td>
+<td>0.811715</td>
+<td>20</td>
+</tr>
+<tr class="even">
+<th>Juvenil</th>
+<td>-16.013208</td>
+<td>15.912527</td>
+<td>1.013169</td>
+<td>21</td>
+</tr>
+<tr class="odd">
+<th rowspan="3" data-valign="top">Fria</th>
+<th>H</th>
+<th>Juvenil</th>
+<td>-15.006439</td>
+<td>14.493645</td>
+<td>NaN</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<th rowspan="2" data-valign="top">M</th>
+<th>Adulto</th>
+<td>-14.953427</td>
+<td>14.627732</td>
+<td>NaN</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<th>Juvenil</th>
+<td>-16.390769</td>
+<td>16.749110</td>
+<td>NaN</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Variable coding:</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Sex</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>n_sex <span class="op">=</span> <span class="bu">len</span>(glm_data.sex.unique()) <span class="co"># Número de categorías (2, evidentemente)</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>glm_data[<span class="st">'sex'</span>] <span class="op">=</span> pd.Categorical(glm_data[<span class="st">'sex'</span>]).codes <span class="co"># Se transforma a 0 y 1</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>sex_idx <span class="op">=</span> glm_data.sex.values <span class="co"># Se extraen los identificadores</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Season</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>n_temp <span class="op">=</span> <span class="bu">len</span>(glm_data.temp.unique())</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>glm_data[<span class="st">'temp'</span>] <span class="op">=</span> pd.Categorical(glm_data[<span class="st">'temp'</span>]).codes</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>sex_idx <span class="op">=</span> glm_data.temp.values</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Age</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>n_est <span class="op">=</span> <span class="bu">len</span>(glm_data.est.unique())</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>glm_data[<span class="st">'est'</span>] <span class="op">=</span> pd.Categorical(glm_data[<span class="st">'est'</span>]).codes</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>sex_idx <span class="op">=</span> glm_data.est.values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> sns.pairplot(glm_data, hue <span class="op">=</span> <span class="st">'sp'</span>, palette <span class="op">=</span> colors[<span class="dv">0</span>:<span class="dv">3</span>], corner <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="fig-pairplot" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ES2_BHGLM_files/figure-html/fig-pairplot-output-1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.1: Pairplot of isotopic data and covariates</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Species</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>n_sp <span class="op">=</span> <span class="bu">len</span>(glm_data.sp.unique())</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>sp_names <span class="op">=</span> glm_data[<span class="st">'sp'</span>].unique()</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>glm_data[<span class="st">'sp'</span>] <span class="op">=</span> pd.Categorical(glm_data[<span class="st">'sp'</span>]).codes</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>sp_idx <span class="op">=</span> glm_data.sp.values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="justification-of-methods" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="justification-of-methods"><span class="header-section-number">2.3</span> Justification of methods</h2>
+<p>Frequentist null hypothesis testing has been useful in ecological studies; however, it has been suggested that inferences should, instead, be made from models, likelihodd ratios or in probabilistic terms (<em>i.e.</em> Bayesian Inference <span class="citation" data-cites="Gerrodette_2011 Ellison_2004 HobbsHilborn_2006 Armheinetal_2019">(<a href="references.html#ref-Ellison_2004" role="doc-biblioref">Ellison 2004</a>, <a href="references.html#ref-HobbsHilborn_2006" role="doc-biblioref">Hobbs &amp; Hilborn 2006</a>, <a href="references.html#ref-Gerrodette_2011" role="doc-biblioref">Gerrodette 2011</a>, <a href="references.html#ref-Armheinetal_2019" role="doc-biblioref">Armhein et al. 2019</a>)</span>); hence, analyses were based on Bayesian Inference. In general, Bayesian Inference consists on the reallocation of credibility among a space of candidate possibilities, using the Bayes’ Theorem to evaluate the credibility of a parameter given the data and prior knowledge of the parameter <span class="citation" data-cites="Bolstad_2004 Kruschke_2015">(<a href="references.html#ref-Bolstad_2004" role="doc-biblioref">Bolstad 2004</a>, <a href="references.html#ref-Kruschke_2015" role="doc-biblioref">Kruschke 2015</a>)</span>. Details on the implementation of the models and the sampling of the posterior distributions are given in each section; however, each model was run until convergence; <em>i.e.</em>, 0 divergences during the posterior sampling and Gelman-Rubick statistics equal to 1.0 for every parameter. Other graphical diagnostics such as Posterior Predictive Checks and energy plots <span class="citation" data-cites="Betancourt_2017 Gabryetal_2017">(<a href="references.html#ref-Betancourt_2017" role="doc-biblioref">Betancourt 2017</a>, <a href="references.html#ref-Gabryetal_2017" role="doc-biblioref">Gabry et al. 2017</a>)</span> are also presented. Every sample after convergence (posterior) was kept. This approach was taken since thinning the posterior sample is unadvised, unless there are computational restrictions, due to a reduction in the precision of the estimates <span class="citation" data-cites="LinkEaton_2012 Stan_2022">(<a href="references.html#ref-LinkEaton_2012" role="doc-biblioref">Link &amp; Eaton 2012</a>, <a href="references.html#ref-Stan_2022" role="doc-biblioref">Team 2022</a>)</span>. Still, the number of posterior samples for each model was dependent on the number of independent samples (effective sample sizes, ess) being over 2000, both for bulk and tail ess <span class="citation" data-cites="Martin_2018">(affecting the reliability of the median and highest density intervals, respectively, <a href="references.html#ref-Martin_2018" role="doc-biblioref">Martin 2018</a>)</span>.</p>
+</section>
+<section id="comparisons-of-means-and-effects-of-predictors" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="comparisons-of-means-and-effects-of-predictors"><span class="header-section-number">2.4</span> Comparisons of means and effects of predictors <a class="anchor" id="hierbiv"></a></h2>
+<p>The isotopic spaces of the three species were described using a custom hierarchichal bivariate model, in which the effects of the climatic seasons (warm vs.&nbsp;cold), sexes and age categories (juveniles vs.&nbsp;adults) on the isotopic values are nested within each species, meaning that the isotopic space of each species is the result of two linear models (one per isotopic ratio) of the covariates. This model was implemented using the <code>pymc3</code> library <span class="citation" data-cites="Salvatieretal_2016">(v. 3.11.2, <a href="references.html#ref-Salvatieretal_2016" role="doc-biblioref">Salvatier et al. 2016</a>)</span> in Python 3 <span class="citation" data-cites="VanRossumetal_2009">(v. 3.8.2, <a href="references.html#ref-VanRossumetal_2009" role="doc-biblioref">Van Rossum &amp; Drake 2009</a>)</span>, with three chains that were tuned for 25,000 iterations and a posterior sample of 2,000 iterations (draws). The model was specified as follows, where <span class="math inline">\(j\)</span> represents the isotopic ratio, <span class="math inline">\(i\)</span> the species, <span class="math inline">\(a\)</span> the intercept (<em>i.e.</em> the mean isotopic value) and <span class="math inline">\(b\)</span> the slopes of the regression (<em>i.e.</em> the difference between both levels of the covariates):</p>
+<ul>
+<li><strong>Hyper-priors</strong>
+<ul>
+<li><span class="math inline">\(\nu \sim Exponential(\lambda = 1/29)+1\)</span>: global degrees-of-freedom (d.f.). The shifted exponential distribution spreads the credibility both for nearly normal and heavy-tailed distributions <span class="citation" data-cites="Kruschke_2012">(<a href="references.html#ref-Kruschke_2012" role="doc-biblioref">Kruschke 2012</a>)</span>.</li>
+<li><span class="math inline">\(\mu_j \sim StudentT(\mu = mean(data_j), \sigma = sd(data_j)*1000, \nu\)</span>): Global mean of each isotope, centered on the mean of the pooled data for each isotope and a standard deviation 1000 times that of the pooled data, with the previously described d.f.</li>
+<li><span class="math inline">\(\sigma_{j,a} \sim HalfCauchy(\beta = 10)\)</span>: global standard deviation of the intercepts, following a non-commital Half-Cauchy distribution.</li>
+<li><span class="math inline">\(\sigma_{j,b} \sim HalfCauchy(\beta = 10)\)</span>: global standard deviation of the slopes, with the same distribution as that of the intercepts.</li>
+<li><span class="math inline">\(\mu_{j,b} \sim StudentT(\mu = 0, \sigma = 10, \nu)\)</span>: global mean of the slopes, following a non-commital Student-T distribution with the previouslu described d.f.</li>
+</ul></li>
+<li><strong>Parameter priors</strong>
+<ul>
+<li><span class="math inline">\(\nu_i \sim Exponential(\lambda = 1/29) + 1\)</span>: Degrees-of-Freedom for each species, with the same specification that the global d.f.</li>
+<li><span class="math inline">\(Sigma_i \sim LKJCholesky(n = 2, \eta = 1, \sigma = HalfCauchy(\beta = 10))\)</span>: Covariance matrix for both isotopes for each species, following a Cholesky-decomposed LKJ prior with equi-probability for every matrix, and each standard deviation following a non-commital Half-Cauchy distribution. Used instead of the Wishart distribution due to its higher efficiency to compute when paired with a Cholesky decomposition <span class="citation" data-cites="Lewandowskietal_2009">(<a href="references.html#ref-Lewandowskietal_2009" role="doc-biblioref">Lewandowski et al. 2009</a>)</span>.</li>
+<li><span class="math inline">\(\mu_{j,i} \sim StudentT(\mu = \mu_j, \sigma_{j,a}, \nu_i)\)</span>: Intercepts of the linear model for each species and isotopic ratio; <em>i.e.</em>, the mean of each isotopic ration with a standard daviation <span class="math inline">\(\sigma_{j,a}\)</span> and d.f. <span class="math inline">\(nu_i\)</span>.</li>
+<li><span class="math inline">\(\beta_{j,b,i} \sim Laplace(\mu_{j,b,i}, b = \sigma_{j,i})\)</span>: Represents the slope for each isotope and species, following a Laplace distribution, which results in a L1 regularization (<em>i.e.</em> a “Bayesian Lasso” <span class="citation" data-cites="ParkCasella_2012">(<a href="references.html#ref-ParkCasella_2012" role="doc-biblioref">Park &amp; Casella 2012</a>)</span>), with parameters:
+<ul>
+<li><span class="math inline">\(\mu_{j,b,i} \sim StudentT(\mu_{j,b}, \sigma_{j,b}, \nu_i)\)</span>: distribution of means of the intercept for each isotopic ratio, following a Student T distribution with mean 0, standard deviation 10 and d.f. <span class="math inline">\(\nu_i\)</span>.</li>
+<li><span class="math inline">\(\sigma_{n,j,i} \sim HalfCauchy(\beta = 10)\)</span>: scale of the Laplace distribution, following a non-commital Half-Caucy distribution.</li>
+</ul></li>
+</ul></li>
+<li><strong>Likelihood model</strong>
+<ul>
+<li><span class="math inline">\(Y_i \sim MvStudentT(\mu = [y_{1,i}, y_{2,i}], \Sigma_i, \nu)\)</span>: The bivariate distribution of the isotopic values following a Multivariate Student T distribution, with covariance matrix <span class="math inline">\(\Sigma_i\)</span>, d.f. <span class="math inline">\(\nu\)</span> and means under the linear model:
+<ul>
+<li><span class="math inline">\(y_{j,i} = \mu_{j,i} + \beta_{1,j,i}*Sex + \beta_{2,j,i}*Season + \beta_{3,j,i}*Age\)</span></li>
+</ul></li>
+</ul></li>
+</ul>
+<p>This parametrization obeyed the following reasons: i) a bivariate model allows accounting for the covariation between bulk isotopic values, which is relevant since these depend both on the isotopic baseline and the trophic level; hence, having a joint distribution that is not orthogonal; and, ii) the distributions used have heavier tails than a normal distribution, which assigns a higher probability to extreme values and, thus, allows to make robust estimations of the parameters <span class="citation" data-cites="Kruschke_2012">(<a href="references.html#ref-Kruschke_2012" role="doc-biblioref">Kruschke 2012</a>)</span>.</p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> pm.Model() <span class="im">as</span> full_model:</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    obs <span class="op">=</span> glm_data[[<span class="st">'d13c'</span>, <span class="st">'d15n'</span>]].values</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">#----Hyper-priors----</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">## Degrees of freedom.</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Shifted exponential to spread the credibility among heavy-tailed</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># (small d.f.) and light-tailed (d.f) distributions (normal-like)</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    nu <span class="op">=</span> pm.Exponential(<span class="st">'ν'</span>, lam <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">29</span>) <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">## Mean Isotopic values ~ StudentT (Gaussian-like, heavier tails than a normal dist.)</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Centered on the global mean of each isotope to keep the distribution scaled</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Standard deviation: 1000 times the standard deviation of the pooled data</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># D.F.: Previously defined</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    µ<span class="dv">1</span> <span class="op">=</span> pm.StudentT(<span class="st">'δ13C'</span>, mu <span class="op">=</span> glm_data.d13c.mean(),</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>                     sd <span class="op">=</span> glm_data.d13c.std()<span class="op">*</span><span class="dv">1000</span>,</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>                     nu <span class="op">=</span> nu)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    µ<span class="dv">2</span> <span class="op">=</span> pm.StudentT(<span class="st">'δ15N'</span>, mu <span class="op">=</span> glm_data.d15n.mean(),</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>                     sd <span class="op">=</span> glm_data.d15n.std()<span class="op">*</span><span class="dv">1000</span>,</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>                     nu <span class="op">=</span> nu)    </span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    <span class="co">## Parameters</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Standard deviation of the intercepts. Non-commital Half-Cauchy.</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    sigma_a <span class="op">=</span> pm.HalfCauchy(<span class="st">'sd_a'</span>, beta <span class="op">=</span> <span class="dv">10</span>)</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Standard deviation of the slopes. Non-commital Half-Cauchy.</span></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>    sigma_b <span class="op">=</span> pm.HalfCauchy(<span class="st">'sd_b'</span>, beta <span class="op">=</span> <span class="dv">10</span>)</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># D.F. of the Distribution. Same parametrization as before.</span></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>    nu2 <span class="op">=</span> pm.Exponential(<span class="st">'nu_a'</span>, lam <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">29</span>) <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Distribution of means of the slopes. Non-commital Student-T distribution.</span></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>    mu_b <span class="op">=</span> pm.StudentT(<span class="st">'mu_b'</span>, mu <span class="op">=</span> <span class="dv">0</span>, sd <span class="op">=</span> <span class="dv">10</span>, nu <span class="op">=</span> nu)</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>    <span class="co">#----Priors on the parameters----</span></span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>    <span class="co">## Means: Student-T</span></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>    mu1 <span class="op">=</span> pm.StudentT(<span class="st">'µδ13C'</span>,</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>                      mu <span class="op">=</span> µ<span class="dv">1</span>,</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>                      sigma <span class="op">=</span> pm.HalfCauchy(<span class="st">'sδ13C'</span>, beta <span class="op">=</span> <span class="dv">10</span>),</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>                      nu <span class="op">=</span> nu2,</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>                      shape <span class="op">=</span> n_sp)</span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>    mu2 <span class="op">=</span> pm.StudentT(<span class="st">'µδ15N'</span>,</span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>                      mu <span class="op">=</span> µ<span class="dv">2</span>,</span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>                      sigma <span class="op">=</span> pm.HalfCauchy(<span class="st">'sδ15N'</span>, beta <span class="op">=</span> <span class="dv">10</span>),</span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>                      nu <span class="op">=</span> nu2,</span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>                      shape <span class="op">=</span> n_sp)</span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>    <span class="co">## Intercepts: Student-T distribution centered on global mean isotopic values</span></span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a>    a1 <span class="op">=</span> pm.StudentT(<span class="st">'⍺δ13C'</span>, mu <span class="op">=</span> µ<span class="dv">1</span>, sigma <span class="op">=</span> sigma_a, nu <span class="op">=</span> nu2, shape <span class="op">=</span> n_sp)</span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>    a2 <span class="op">=</span> pm.StudentT(<span class="st">'⍺δ15N'</span>, mu <span class="op">=</span> µ<span class="dv">2</span>, sigma <span class="op">=</span> sigma_a, nu <span class="op">=</span> nu2, shape <span class="op">=</span> n_sp)</span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a>    <span class="co">## Slopes: Student T distribution   </span></span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a>    <span class="co">## Slopes: Laplace distribution. </span></span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Equivalent to a Lasso regression; i.e., L1 regularization.</span></span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Affects the sum of absolutes of the residuals. The effect is that small effects -&gt; 0.</span></span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Especially useful when considering the measuring error of the mass spectrometer.</span></span>
+<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Main effects:</span></span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sex:</span></span>
+<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a>    T_b1c <span class="op">=</span> pm.Laplace(<span class="st">'Sex_δ13C'</span>, mu <span class="op">=</span> mu_b, b <span class="op">=</span> sigma_b, shape <span class="op">=</span> n_sp)</span>
+<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a>    T_b1n <span class="op">=</span> pm.Laplace(<span class="st">'Sex_δ15N'</span>, mu <span class="op">=</span> mu_b, b <span class="op">=</span> sigma_b, shape <span class="op">=</span> n_sp)</span>
+<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Season:</span></span>
+<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a>    T_b2c <span class="op">=</span> pm.Laplace(<span class="st">'Temp_δ13C'</span>, mu <span class="op">=</span> mu_b, b <span class="op">=</span> sigma_b, shape <span class="op">=</span> n_sp)</span>
+<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a>    T_b2n <span class="op">=</span> pm.Laplace(<span class="st">'Temp_δ15N'</span>, mu <span class="op">=</span> mu_b, b <span class="op">=</span> sigma_b, shape <span class="op">=</span> n_sp)</span>
+<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Maturity stages:</span></span>
+<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a>    T_b3c <span class="op">=</span> pm.Laplace(<span class="st">'Age_δ13C'</span>, mu <span class="op">=</span> mu_b, b <span class="op">=</span> sigma_b, shape <span class="op">=</span> n_sp)</span>
+<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a>    T_b3n <span class="op">=</span> pm.Laplace(<span class="st">'Age_δ15N'</span>, mu <span class="op">=</span> mu_b, b <span class="op">=</span> sigma_b, shape <span class="op">=</span> n_sp)</span>
+<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a>    <span class="co">## Covariance Matrix</span></span>
+<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a>    <span class="co"># LKJ prior with eta = 1, meaning a uniform distribution of the whole matrix</span></span>
+<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Prior of every sd: Non-commital Half-Cauchy</span></span>
+<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a>    pL <span class="op">=</span> pm.LKJCholeskyCov(<span class="st">'pL'</span>, n <span class="op">=</span> <span class="dv">2</span>, eta <span class="op">=</span> <span class="dv">1</span>, </span>
+<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a>                           sd_dist <span class="op">=</span> pm.HalfCauchy.dist(beta <span class="op">=</span> <span class="dv">10</span>), shape <span class="op">=</span> n_sp)</span>
+<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a>    <span class="co"># The LKJ distribution is decomposed by a Cholesky factor, so we decompose it:</span></span>
+<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a>    L <span class="op">=</span> pm.expand_packed_triangular(<span class="dv">2</span>, pL)</span>
+<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a>    Σ <span class="op">=</span> pm.Deterministic(<span class="st">'Σ'</span>, L.dot(L.T))</span>
+<span id="cb11-79"><a href="#cb11-79" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-80"><a href="#cb11-80" aria-hidden="true" tabindex="-1"></a>    <span class="co">#----Algebraic expression of the model----</span></span>
+<span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Each isotope is a linear model with the effect of the covariates</span></span>
+<span id="cb11-82"><a href="#cb11-82" aria-hidden="true" tabindex="-1"></a>    d13c <span class="op">=</span> a1[sp_idx] <span class="op">+\</span></span>
+<span id="cb11-83"><a href="#cb11-83" aria-hidden="true" tabindex="-1"></a>           T_b1c[sp_idx]<span class="op">*</span>glm_data.sex.values <span class="op">+\</span></span>
+<span id="cb11-84"><a href="#cb11-84" aria-hidden="true" tabindex="-1"></a>           T_b2c[sp_idx]<span class="op">*</span>glm_data.temp.values <span class="op">+\</span></span>
+<span id="cb11-85"><a href="#cb11-85" aria-hidden="true" tabindex="-1"></a>           T_b3c[sp_idx]<span class="op">*</span>glm_data.est.values</span>
+<span id="cb11-86"><a href="#cb11-86" aria-hidden="true" tabindex="-1"></a>    d15n <span class="op">=</span> a2[sp_idx] <span class="op">+\</span></span>
+<span id="cb11-87"><a href="#cb11-87" aria-hidden="true" tabindex="-1"></a>           T_b1n[sp_idx]<span class="op">*</span>glm_data.sex.values <span class="op">+\</span></span>
+<span id="cb11-88"><a href="#cb11-88" aria-hidden="true" tabindex="-1"></a>           T_b2n[sp_idx]<span class="op">*</span>glm_data.temp.values <span class="op">+\</span></span>
+<span id="cb11-89"><a href="#cb11-89" aria-hidden="true" tabindex="-1"></a>           T_b3n[sp_idx]<span class="op">*</span>glm_data.est.values</span>
+<span id="cb11-90"><a href="#cb11-90" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-91"><a href="#cb11-91" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Bivariate tensor for the Likelihood model:</span></span>
+<span id="cb11-92"><a href="#cb11-92" aria-hidden="true" tabindex="-1"></a>    glm <span class="op">=</span> tt.stack([d13c, d15n]).T</span>
+<span id="cb11-93"><a href="#cb11-93" aria-hidden="true" tabindex="-1"></a>    mus <span class="op">=</span> tt.stack([mu1[sp_idx], mu2[sp_idx]]).T</span>
+<span id="cb11-94"><a href="#cb11-94" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-95"><a href="#cb11-95" aria-hidden="true" tabindex="-1"></a>    <span class="co">#----Likelihood model----</span></span>
+<span id="cb11-96"><a href="#cb11-96" aria-hidden="true" tabindex="-1"></a>    <span class="co"># In this step the hierarchical estimates are included;</span></span>
+<span id="cb11-97"><a href="#cb11-97" aria-hidden="true" tabindex="-1"></a>    <span class="co"># hence, it includes their uncertainty.</span></span>
+<span id="cb11-98"><a href="#cb11-98" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> pm.MvStudentT(<span class="st">'mvT_sp'</span>,</span>
+<span id="cb11-99"><a href="#cb11-99" aria-hidden="true" tabindex="-1"></a>                      mu <span class="op">=</span> glm,<span class="co"># Linear model of each isotopes</span></span>
+<span id="cb11-100"><a href="#cb11-100" aria-hidden="true" tabindex="-1"></a>                      cov <span class="op">=</span> Σ, <span class="co"># Covariance Matrix</span></span>
+<span id="cb11-101"><a href="#cb11-101" aria-hidden="true" tabindex="-1"></a>                      nu <span class="op">=</span> nu, <span class="co"># Degrees of freedom</span></span>
+<span id="cb11-102"><a href="#cb11-102" aria-hidden="true" tabindex="-1"></a>                      observed <span class="op">=</span> obs) <span class="co"># Observed data</span></span>
+<span id="cb11-103"><a href="#cb11-103" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-104"><a href="#cb11-104" aria-hidden="true" tabindex="-1"></a>    means <span class="op">=</span> pm.MvStudentT(<span class="st">'µ_sp'</span>,</span>
+<span id="cb11-105"><a href="#cb11-105" aria-hidden="true" tabindex="-1"></a>                          mu <span class="op">=</span> mus,</span>
+<span id="cb11-106"><a href="#cb11-106" aria-hidden="true" tabindex="-1"></a>                          cov <span class="op">=</span> Σ,</span>
+<span id="cb11-107"><a href="#cb11-107" aria-hidden="true" tabindex="-1"></a>                          nu <span class="op">=</span> nu,</span>
+<span id="cb11-108"><a href="#cb11-108" aria-hidden="true" tabindex="-1"></a>                          observed <span class="op">=</span> obs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Graph of the hierarchical model.</p>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pm.model_to_graphviz(full_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<div id="fig-graph" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ES2_BHGLM_files/figure-html/fig-graph-output-1.svg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.2: Directed graph of the hierarchical model.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters of the NUTS.</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>tune <span class="op">=</span> <span class="dv">25000</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>draws <span class="op">=</span> <span class="dv">5000</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Variational Inference to start the sampling process</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>init <span class="op">=</span> <span class="st">'advi+adapt_diag'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Sampling of the posterior:</p>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> full_model:</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">#----Sampling----</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    full_trace <span class="op">=</span> pm.sample(draws <span class="op">=</span> draws, <span class="co"># Posterior samples to keep</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                           tune <span class="op">=</span> tune, <span class="co"># Burn-in iterations</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                           chains <span class="op">=</span> <span class="dv">3</span>, <span class="co"># Number of chains</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>                           cores <span class="op">=</span> <span class="dv">3</span>, <span class="co"># Number of chains run in parallel </span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>                           init <span class="op">=</span> init, <span class="co"># Initiation method,</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>                           return_inferencedata <span class="op">=</span> <span class="va">False</span>, <span class="co"># NOT return an arviz.InferenceData</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>                           random_seed <span class="op">=</span> <span class="dv">0</span>, <span class="co"># For consistency</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>                           progressbar <span class="op">=</span> <span class="va">False</span>) <span class="co"># NOT show a progress bar</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Auto-assigning NUTS sampler...
+Initializing NUTS using advi+adapt_diag...
+Convergence achieved at 18900
+Interrupted at 18,899 [9%]: Average Loss = 1,722.9
+Multiprocess sampling (3 chains in 3 jobs)
+NUTS: [pL, Age_δ15N, Age_δ13C, Temp_δ15N, Temp_δ13C, Sex_δ15N, Sex_δ13C, ⍺δ15N, ⍺δ13C, µδ15N, sδ15N, µδ13C, sδ13C, mu_b, nu_a, sd_b, sd_a, δ15N, δ13C, ν]
+Sampling 3 chains for 25_000 tune and 5_000 draw iterations (75_000 + 15_000 draws total) took 519 seconds.</code></pre>
+</div>
+</div>
+<section id="diagnostics" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="diagnostics"><span class="header-section-number">2.4.1</span> Diagnostics <a class="anchor" id="diags"></a></h3>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>full_mod <span class="op">=</span> az.from_pymc3(trace <span class="op">=</span> full_trace, model <span class="op">=</span> full_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save posterior samples</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#with open(output_dir+'/model/az_model', 'wb') as model_file:</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#    pickle.dump(full_mod, model_file)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load posterior samples</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(output_dir<span class="op">+</span><span class="st">'/model/az_model'</span>, <span class="st">'rb'</span>) <span class="im">as</span> model_file:</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    full_mod <span class="op">=</span> pickle.load(model_file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Summary statistics of the posterior distributions of the parameters. Gelman-Statistic values equal to 1.0 (&lt; 1.01) and Effective Sample Sizes (both Bulk and Tail) over 2000 for every parameter.</p>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>az.summary(full_mod, hdi_prob <span class="op">=</span> <span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<div>
+
+
+<table class="dataframe table table-sm table-striped" data-border="1">
+<thead>
+<tr class="header">
+<th></th>
+<th>mean</th>
+<th>sd</th>
+<th>hdi_2.5%</th>
+<th>hdi_97.5%</th>
+<th>mcse_mean</th>
+<th>mcse_sd</th>
+<th>ess_bulk</th>
+<th>ess_tail</th>
+<th>r_hat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th>δ13C</th>
+<td>-14.270</td>
+<td>0.855</td>
+<td>-15.962</td>
+<td>-12.622</td>
+<td>0.010</td>
+<td>0.007</td>
+<td>8143.0</td>
+<td>5118.0</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<th>δ15N</th>
+<td>16.942</td>
+<td>0.727</td>
+<td>15.431</td>
+<td>18.349</td>
+<td>0.010</td>
+<td>0.007</td>
+<td>6664.0</td>
+<td>4586.0</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<th>µδ13C[0]</th>
+<td>-14.002</td>
+<td>0.190</td>
+<td>-14.390</td>
+<td>-13.641</td>
+<td>0.002</td>
+<td>0.001</td>
+<td>9381.0</td>
+<td>6177.0</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<th>µδ13C[1]</th>
+<td>-12.387</td>
+<td>0.127</td>
+<td>-12.634</td>
+<td>-12.139</td>
+<td>0.001</td>
+<td>0.001</td>
+<td>10104.0</td>
+<td>7274.0</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<th>µδ13C[2]</th>
+<td>-16.121</td>
+<td>0.111</td>
+<td>-16.339</td>
+<td>-15.908</td>
+<td>0.001</td>
+<td>0.001</td>
+<td>8252.0</td>
+<td>7033.0</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<th>µδ15N[0]</th>
+<td>16.166</td>
+<td>0.149</td>
+<td>15.870</td>
+<td>16.461</td>
+<td>0.002</td>
+<td>0.001</td>
+<td>9182.0</td>
+<td>6696.0</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<th>µδ15N[1]</th>
+<td>18.059</td>
+<td>0.099</td>
+<td>17.868</td>
+<td>18.252</td>
+<td>0.001</td>
+<td>0.001</td>
+<td>9701.0</td>
+<td>6328.0</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<th>µδ15N[2]</th>
+<td>16.180</td>
+<td>0.088</td>
+<td>16.001</td>
+<td>16.342</td>
+<td>0.001</td>
+<td>0.001</td>
+<td>7761.0</td>
+<td>6385.0</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<th>⍺δ13C[0]</th>
+<td>-14.715</td>
+<td>0.364</td>
+<td>-15.459</td>
+<td>-14.039</td>
+<td>0.005</td>
+<td>0.004</td>
+<td>4532.0</td>
+<td>6269.0</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<th>⍺δ13C[1]</th>
+<td>-12.387</td>
+<td>0.165</td>
+<td>-12.715</td>
+<td>-12.074</td>
+<td>0.002</td>
+<td>0.002</td>
+<td>5878.0</td>
+<td>5920.0</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<th>⍺δ13C[2]</th>
+<td>-15.826</td>
+<td>0.237</td>
+<td>-16.280</td>
+<td>-15.355</td>
+<td>0.003</td>
+<td>0.002</td>
+<td>5060.0</td>
+<td>5758.0</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<th>⍺δ15N[0]</th>
+<td>16.950</td>
+<td>0.268</td>
+<td>16.422</td>
+<td>17.464</td>
+<td>0.004</td>
+<td>0.003</td>
+<td>4425.0</td>
+<td>6073.0</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<th>⍺δ15N[1]</th>
+<td>18.238</td>
+<td>0.123</td>
+<td>17.997</td>
+<td>18.480</td>
+<td>0.002</td>
+<td>0.001</td>
+<td>5259.0</td>
+<td>6177.0</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<th>⍺δ15N[2]</th>
+<td>16.126</td>
+<td>0.179</td>
+<td>15.767</td>
+<td>16.468</td>
+<td>0.002</td>
+<td>0.002</td>
+<td>5154.0</td>
+<td>5045.0</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<th>Sex_δ13C[0]</th>
+<td>-0.316</td>
+<td>0.289</td>
+<td>-0.886</td>
+<td>0.223</td>
+<td>0.003</td>
+<td>0.003</td>
+<td>7205.0</td>
+<td>6926.0</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<th>Sex_δ13C[1]</th>
+<td>-0.079</td>
+<td>0.285</td>
+<td>-0.654</td>
+<td>0.482</td>
+<td>0.003</td>
+<td>0.003</td>
+<td>7275.0</td>
+<td>5831.0</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<th>Sex_δ13C[2]</th>
+<td>0.071</td>
+<td>0.183</td>
+<td>-0.313</td>
+<td>0.419</td>
+<td>0.002</td>
+<td>0.002</td>
+<td>6873.0</td>
+<td>5900.0</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<th>Sex_δ15N[0]</th>
+<td>-0.027</td>
+<td>0.208</td>
+<td>-0.432</td>
+<td>0.405</td>
+<td>0.003</td>
+<td>0.002</td>
+<td>6580.0</td>
+<td>6497.0</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<th>Sex_δ15N[1]</th>
+<td>-0.170</td>
+<td>0.231</td>
+<td>-0.640</td>
+<td>0.261</td>
+<td>0.003</td>
+<td>0.002</td>
+<td>7659.0</td>
+<td>6727.0</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<th>Sex_δ15N[2]</th>
+<td>-0.000</td>
+<td>0.151</td>
+<td>-0.310</td>
+<td>0.296</td>
+<td>0.002</td>
+<td>0.002</td>
+<td>6881.0</td>
+<td>6198.0</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<th>Temp_δ13C[0]</th>
+<td>0.758</td>
+<td>0.380</td>
+<td>0.028</td>
+<td>1.473</td>
+<td>0.004</td>
+<td>0.003</td>
+<td>7998.0</td>
+<td>6540.0</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<th>Temp_δ13C[1]</th>
+<td>0.228</td>
+<td>0.258</td>
+<td>-0.283</td>
+<td>0.736</td>
+<td>0.003</td>
+<td>0.002</td>
+<td>7772.0</td>
+<td>6617.0</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<th>Temp_δ13C[2]</th>
+<td>0.219</td>
+<td>0.436</td>
+<td>-0.620</td>
+<td>1.122</td>
+<td>0.004</td>
+<td>0.004</td>
+<td>9672.0</td>
+<td>6280.0</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<th>Temp_δ15N[0]</th>
+<td>-1.820</td>
+<td>0.300</td>
+<td>-2.394</td>
+<td>-1.230</td>
+<td>0.003</td>
+<td>0.002</td>
+<td>7352.0</td>
+<td>7238.0</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<th>Temp_δ15N[1]</th>
+<td>-0.435</td>
+<td>0.230</td>
+<td>-0.875</td>
+<td>0.024</td>
+<td>0.003</td>
+<td>0.002</td>
+<td>7949.0</td>
+<td>7201.0</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<th>Temp_δ15N[2]</th>
+<td>-0.460</td>
+<td>0.518</td>
+<td>-1.523</td>
+<td>0.416</td>
+<td>0.006</td>
+<td>0.005</td>
+<td>8875.0</td>
+<td>6967.0</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<th>Age_δ13C[0]</th>
+<td>1.114</td>
+<td>0.402</td>
+<td>0.309</td>
+<td>1.875</td>
+<td>0.006</td>
+<td>0.004</td>
+<td>5254.0</td>
+<td>6296.0</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<th>Age_δ13C[1]</th>
+<td>-0.189</td>
+<td>0.305</td>
+<td>-0.801</td>
+<td>0.396</td>
+<td>0.004</td>
+<td>0.003</td>
+<td>7558.0</td>
+<td>6725.0</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<th>Age_δ13C[2]</th>
+<td>-0.477</td>
+<td>0.230</td>
+<td>-0.935</td>
+<td>-0.040</td>
+<td>0.003</td>
+<td>0.002</td>
+<td>5771.0</td>
+<td>6108.0</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<th>Age_δ15N[0]</th>
+<td>-0.844</td>
+<td>0.283</td>
+<td>-1.387</td>
+<td>-0.279</td>
+<td>0.004</td>
+<td>0.003</td>
+<td>5462.0</td>
+<td>6179.0</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<th>Age_δ15N[1]</th>
+<td>-0.390</td>
+<td>0.253</td>
+<td>-0.893</td>
+<td>0.076</td>
+<td>0.003</td>
+<td>0.002</td>
+<td>7081.0</td>
+<td>6685.0</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<th>Age_δ15N[2]</th>
+<td>0.062</td>
+<td>0.166</td>
+<td>-0.274</td>
+<td>0.387</td>
+<td>0.002</td>
+<td>0.002</td>
+<td>5677.0</td>
+<td>6038.0</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<th>ν</th>
+<td>1.544</td>
+<td>0.338</td>
+<td>0.945</td>
+<td>2.230</td>
+<td>0.005</td>
+<td>0.003</td>
+<td>5106.0</td>
+<td>6689.0</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<th>sd_a</th>
+<td>1.749</td>
+<td>0.768</td>
+<td>0.674</td>
+<td>3.278</td>
+<td>0.009</td>
+<td>0.007</td>
+<td>8667.0</td>
+<td>6059.0</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<th>sd_b</th>
+<td>0.569</td>
+<td>0.177</td>
+<td>0.268</td>
+<td>0.919</td>
+<td>0.002</td>
+<td>0.002</td>
+<td>6341.0</td>
+<td>5746.0</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<th>nu_a</th>
+<td>32.985</td>
+<td>30.065</td>
+<td>0.161</td>
+<td>92.372</td>
+<td>0.280</td>
+<td>0.229</td>
+<td>9254.0</td>
+<td>4382.0</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<th>mu_b</th>
+<td>0.071</td>
+<td>0.065</td>
+<td>0.000</td>
+<td>0.201</td>
+<td>0.001</td>
+<td>0.000</td>
+<td>7047.0</td>
+<td>3664.0</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<th>sδ13C</th>
+<td>2.962</td>
+<td>2.409</td>
+<td>0.650</td>
+<td>6.976</td>
+<td>0.030</td>
+<td>0.021</td>
+<td>10537.0</td>
+<td>5478.0</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<th>sδ15N</th>
+<td>2.000</td>
+<td>1.787</td>
+<td>0.317</td>
+<td>4.960</td>
+<td>0.024</td>
+<td>0.017</td>
+<td>9473.0</td>
+<td>5450.0</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<th>pL[0]</th>
+<td>0.943</td>
+<td>0.058</td>
+<td>0.826</td>
+<td>1.055</td>
+<td>0.001</td>
+<td>0.001</td>
+<td>4484.0</td>
+<td>6123.0</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<th>pL[1]</th>
+<td>-0.470</td>
+<td>0.044</td>
+<td>-0.556</td>
+<td>-0.383</td>
+<td>0.001</td>
+<td>0.000</td>
+<td>5678.0</td>
+<td>7354.0</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<th>pL[2]</th>
+<td>0.558</td>
+<td>0.035</td>
+<td>0.491</td>
+<td>0.626</td>
+<td>0.001</td>
+<td>0.000</td>
+<td>4616.0</td>
+<td>5794.0</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<th>Σ[0,0]</th>
+<td>0.893</td>
+<td>0.111</td>
+<td>0.682</td>
+<td>1.112</td>
+<td>0.002</td>
+<td>0.001</td>
+<td>4484.0</td>
+<td>6123.0</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<th>Σ[0,1]</th>
+<td>-0.445</td>
+<td>0.064</td>
+<td>-0.572</td>
+<td>-0.325</td>
+<td>0.001</td>
+<td>0.001</td>
+<td>4609.0</td>
+<td>6237.0</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<th>Σ[1,0]</th>
+<td>-0.445</td>
+<td>0.064</td>
+<td>-0.572</td>
+<td>-0.325</td>
+<td>0.001</td>
+<td>0.001</td>
+<td>4609.0</td>
+<td>6237.0</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<th>Σ[1,1]</th>
+<td>0.536</td>
+<td>0.068</td>
+<td>0.404</td>
+<td>0.668</td>
+<td>0.001</td>
+<td>0.001</td>
+<td>4108.0</td>
+<td>5916.0</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>pps <span class="op">=</span> pm.sample_posterior_predictive(trace <span class="op">=</span> full_trace,</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>                                     model <span class="op">=</span> full_model,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                                     progressbar<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>                                     random_seed<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>posteriors <span class="op">=</span> az.from_pymc3(posterior_predictive <span class="op">=</span> pps,</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>                           model <span class="op">=</span> full_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save posterior predictive samples</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">#with open(output_dir+'/model/posteriors_mvt', 'wb') as post_mvt_file:</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">#    pickle.dump(posteriors, post_mvt_file)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load posterior predictive samples</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(output_dir<span class="op">+</span><span class="st">'/model/posteriors_mvt'</span>, <span class="st">'rb'</span>) <span class="im">as</span> post_mvt_file:</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    posteriors <span class="op">=</span> pickle.load(post_mvt_file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Posterior Predictive Checks for the likelihood model. The observed distribution (black) is between the posterior predictive samples (blue). Each posterior predictive sample consists on a set with the same number of observations as the original data, generated based on a parameter from the posterior samples.</p>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>az.plot_ppc(posteriors, mean <span class="op">=</span> <span class="va">False</span>, kind <span class="op">=</span> <span class="st">'cumulative'</span>, num_pp_samples <span class="op">=</span> <span class="dv">500</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="fig-ppccdf" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ES2_BHGLM_files/figure-html/fig-ppccdf-output-1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.3: Posterior Predictive Check using the CDF.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>az.plot_ppc(posteriors, kind <span class="op">=</span> <span class="st">'scatter'</span>, mean <span class="op">=</span> <span class="va">False</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="fig-ppcscatter" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ES2_BHGLM_files/figure-html/fig-ppcscatter-output-1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.4: Posterior Predictive Check using scatterplots.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Energy plot and Bayesian Fraction of Missing Information (BFMI). The energy plot shows similar densities between the marginal and transition energies from the Hamiltonian simulation, meaning that the sampler was not stuck in a particular area of the posterior distribution, which is validated through the BFMI values <span class="citation" data-cites="Betancourt_2017">(<a href="references.html#ref-Betancourt_2017" role="doc-biblioref">Betancourt 2017</a>)</span>.</p>
+<div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>az.plot_energy(full_mod, fill_color <span class="op">=</span> (<span class="st">'C0'</span>, <span class="st">'C3'</span>))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="fig-energy" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ES2_BHGLM_files/figure-html/fig-energy-output-1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.5: Energy plot and Bayesian Fraction of Missing Information.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="effective-sample-sizes-autocorrelations-and-no-thinning." class="level4" data-number="2.4.1.1">
+<h4 data-number="2.4.1.1" class="anchored" data-anchor-id="effective-sample-sizes-autocorrelations-and-no-thinning."><span class="header-section-number">2.4.1.1</span> Effective sample sizes, autocorrelations and no-thinning.</h4>
+<p>The autocorrelation (<em>i.e.</em>, the correlation between the sample<span class="math inline">\(_i\)</span> and the sample<span class="math inline">\(_{i-1}\)</span>) directly affects the effective sample size (ess) estimation (higher autocorrelations, lower ess). For this reason, a very common practice is to thin the posterior sample (<em>i.e.</em> keep only 1 out of every k-th iteration after convergence); however, this is unadvised since it leads to a reduction in the precision of the estimates<span class="citation" data-cites="LinkEaton_2012">(<a href="references.html#ref-LinkEaton_2012" role="doc-biblioref">Link &amp; Eaton 2012</a>)</span>, making it feasible only to reduce computational requirements <span class="citation" data-cites="Stan_2022">(<a href="references.html#ref-Stan_2022" role="doc-biblioref">Team 2022</a>)</span>. Moreover, one of the advantages of using NUTS is that the samples can be uncorrelated, since the new state of the chain depends more on the probability “surface” rather than the previous position of the particle. Shown in the following autocorrelation plot:</p>
+<div class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>rc <span class="op">=</span> {<span class="st">'plot.max_subplots'</span>: <span class="dv">120</span>}</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>az.rcParams.update(rc)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>az.plot_autocorr(full_mod, combined <span class="op">=</span> <span class="va">True</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="fig-autocor" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ES2_BHGLM_files/figure-html/fig-autocor-output-1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.6: Plots of autocorrelations of the posterior sample.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Parallel coordinates plots for each parameter of interest within the model. Shows that every sample of the posterior distribution was non-divergent. A) Mean values for each species and B) Slopes for each covariate for each species; where: 0: <em>H. dipterus</em>, 1: <em>N. entemedor</em>, 2: <em>R. steindachneri</em></p>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>az.plot_parallel(full_mod, var_names<span class="op">=</span>[<span class="st">'µ'</span>], filter_vars<span class="op">=</span><span class="st">'like'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="fig-divmeans" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ES2_BHGLM_files/figure-html/fig-divmeans-output-1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.7: Parallel coordinates plot for the means of the isotopic values.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> az.plot_parallel(full_mod, var_names <span class="op">=</span> [<span class="st">'Temp'</span>, <span class="st">'Sex'</span>, <span class="st">'Age'</span>], filter_vars <span class="op">=</span> <span class="st">'like'</span>)<span class="op">;</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels(ax.get_xticklabels(), rotation<span class="op">=</span><span class="dv">70</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="fig-divslopes" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ES2_BHGLM_files/figure-html/fig-divslopes-output-1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.8: Parallel coordinates plot for the slopes of the covariates.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="a-note-on-the-interpretation-of-results" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="a-note-on-the-interpretation-of-results"><span class="header-section-number">2.5</span> A note on the interpretation of results <a class="anchor" id="interp"></a></h2>
+<p>It is important to understand the interpretation of the slope of a categorical covariate before going to the description of the results. Consider a univariate model with a binary covariate (<span class="math inline">\(X\)</span>) such as the ones of this model:</p>
+<p><span class="math inline">\(Y = \beta_0 + \beta_1*X + \epsilon\)</span></p>
+<p><span class="math inline">\(\therefore\)</span></p>
+<p>If <span class="math inline">\(X = 0\)</span>: <span class="math inline">\(Y = \beta_0 + \beta_1*0 + \epsilon \implies Y = \beta_0 + \epsilon\)</span></p>
+<p>If <span class="math inline">\(X = 1\)</span>: <span class="math inline">\(Y = \beta_0 + \beta_1*1 + \epsilon \implies Y = \beta_0 + \beta_1 + \epsilon\)</span></p>
+<p><em>I.e.</em>, the slope represents the difference between the means of both classes. This is demonstrabe if we substract both equations (<span class="math inline">\(\Delta_Y\)</span>):</p>
+<p><span class="math inline">\(Y = \beta_0 + \epsilon = \beta_0 + \beta_1 + \epsilon \implies \Delta_Y = \beta_0 - \beta_0 - \beta_1 + \epsilon - \epsilon \therefore \Delta_Y = -\beta_1\)</span></p>
+<p>Taking this into account, the slopes in this work represent the difference (in ‰) between the two classes being analysed.</p>
+</section>
+<section id="results" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="results"><span class="header-section-number">2.6</span> Results <a class="anchor" id="resdes"></a></h2>
+<p>The blue trace corresponds to <em>H. dipterus</em>, the yellow to <em>N. entemedor</em> and the green to <em>R. steindachneri</em>.</p>
+<ol type="1">
+<li><p><span class="math inline">\(\mu\)</span>: Posterior distribution of the means of each species for each isotope. They are among the higher levels on the hierarchy, hence including the uncertainty in the other estimates:</p>
+<ul>
+<li><p><span class="math inline">\(\mu_{\delta^{13}C}\)</span>: Shows the separation between species in <span class="math inline">\(\delta^{13}C\)</span>. <em>N. entemedor</em> shows intermediate values among the other two species.</p></li>
+<li><p><span class="math inline">\(\mu_{\delta^{15}N}\)</span>: <em>Ídem</em>.</p></li>
+</ul></li>
+</ol>
+<div class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>az.plot_trace(full_mod, var_names <span class="op">=</span> <span class="st">'µδ'</span>, filter_vars <span class="op">=</span> <span class="st">'like'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="fig-tracemeans" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ES2_BHGLM_files/figure-html/fig-tracemeans-output-1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.9: Trace of the isotopic means for each species.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Sex_: Slope for the sexes of each species for each isotope.
+<ul>
+<li>Códigos: M = 1, H = 0.</li>
+<li>The difference between sexes is small (<span class="math inline">\(\approx 0\)</span>‰).</li>
+</ul></li>
+</ol>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>az.plot_trace(full_mod, var_names <span class="op">=</span> <span class="st">'Sex'</span>, filter_vars <span class="op">=</span> <span class="st">'like'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="fig-tracesex" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ES2_BHGLM_files/figure-html/fig-tracesex-output-1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.10: Trace for the slope for the sex.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="3" type="1">
+<li>Temp_: Slope for the season:
+<ul>
+<li>Códigos: F = 1, C = 0.</li>
+<li><em>H. dipterus</em>: Difference between seasons of <span class="math inline">\(\approx 1\)</span>‰ in <span class="math inline">\(\delta^{13}C\)</span> and <span class="math inline">\(\approx 2\)</span>‰ in <span class="math inline">\(\delta^{15}N\)</span>.</li>
+<li><em>N. entemedor</em>: <span class="math inline">\(\Delta^{15}N \in (-1,0)\)</span>‰</li>
+<li>The posterior distributions of <em>R. steindachneri</em> are very broad, possibly due to a sample size of three for the cold season.</li>
+</ul></li>
+</ol>
+<div class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>az.plot_trace(full_mod, var_names <span class="op">=</span> <span class="st">'Temp'</span>, filter_vars <span class="op">=</span> <span class="st">'like'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="fig-traceseason" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ES2_BHGLM_files/figure-html/fig-traceseason-output-1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.11: Trace for the slope for the seasons.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="4" type="1">
+<li>Age_: Slope value for the age category of each isotope for each species:
+<ul>
+<li>Códigos: J = 1, A = 0.</li>
+<li><em>H. dipterus</em> <span class="math inline">\(\Delta^{13}C \in (0,2)\)</span>, <span class="math inline">\(\Delta^{15}N \in (-1.5,0]\)</span></li>
+<li><em>N. entemedor</em> <span class="math inline">\(\Delta^{15}N \in [-1.5,0)\)</span></li>
+<li><em>R. steindachneri</em>: <span class="math inline">\(\Delta^{13}C \in (-1,0)\)</span></li>
+</ul></li>
+</ol>
+<div class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>az.plot_trace(full_mod, var_names <span class="op">=</span> <span class="st">'Age'</span>, filter_vars <span class="op">=</span> <span class="st">'like'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="fig-tracematurity" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ES2_BHGLM_files/figure-html/fig-tracematurity-output-1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.12: Trace for the slope for the maturity stages.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Reference: Labels are assigned alphabetically:</p>
+<div class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>orig_data <span class="op">=</span> pd.read_csv(<span class="st">'data/glm.csv'</span>).rename(columns <span class="op">=</span> col_names).dropna() <span class="co"># eliminamos los NAs</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>orig_data[<span class="st">'sp_codes'</span>] <span class="op">=</span> pd.Categorical(orig_data[<span class="st">'sp'</span>]).codes</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>orig_data[<span class="st">'temp_codes'</span>] <span class="op">=</span> pd.Categorical(orig_data[<span class="st">'temp'</span>]).codes</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>orig_data[<span class="st">'sex_codes'</span>] <span class="op">=</span> pd.Categorical(orig_data[<span class="st">'sex'</span>]).codes</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>orig_data[<span class="st">'est_codes'</span>] <span class="op">=</span> pd.Categorical(orig_data[<span class="st">'est'</span>]).codes</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>orig_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="32">
+<div>
+
+
+<table class="dataframe table table-sm table-striped" data-border="1">
+<thead>
+<tr class="header">
+<th></th>
+<th>sp</th>
+<th>year</th>
+<th>temp</th>
+<th>sex</th>
+<th>est</th>
+<th>d15n</th>
+<th>d13c</th>
+<th>sp_codes</th>
+<th>temp_codes</th>
+<th>sex_codes</th>
+<th>est_codes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th>0</th>
+<td>H.dipterurus</td>
+<td>2015</td>
+<td>Calida</td>
+<td>M</td>
+<td>Juvenil</td>
+<td>16.301217</td>
+<td>-14.506785</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<th>1</th>
+<td>H.dipterurus</td>
+<td>2015</td>
+<td>Calida</td>
+<td>H</td>
+<td>Juvenil</td>
+<td>16.832374</td>
+<td>-17.810405</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<th>2</th>
+<td>H.dipterurus</td>
+<td>2015</td>
+<td>Calida</td>
+<td>M</td>
+<td>Adulto</td>
+<td>17.135463</td>
+<td>-15.831434</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<th>3</th>
+<td>H.dipterurus</td>
+<td>2015</td>
+<td>Calida</td>
+<td>H</td>
+<td>Juvenil</td>
+<td>13.123093</td>
+<td>-15.965960</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<th>4</th>
+<td>H.dipterurus</td>
+<td>2015</td>
+<td>Calida</td>
+<td>M</td>
+<td>Adulto</td>
+<td>17.633117</td>
+<td>-16.719438</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<th>...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<th>219</th>
+<td>R.steindachneri</td>
+<td>2016</td>
+<td>Calida</td>
+<td>M</td>
+<td>Juvenil</td>
+<td>13.542301</td>
+<td>-13.348383</td>
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<th>220</th>
+<td>R.steindachneri</td>
+<td>2016</td>
+<td>Calida</td>
+<td>M</td>
+<td>Adulto</td>
+<td>16.204549</td>
+<td>-15.987939</td>
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<th>221</th>
+<td>R.steindachneri</td>
+<td>2016</td>
+<td>Calida</td>
+<td>M</td>
+<td>Adulto</td>
+<td>16.538663</td>
+<td>-17.063799</td>
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<th>222</th>
+<td>R.steindachneri</td>
+<td>2016</td>
+<td>Calida</td>
+<td>M</td>
+<td>Adulto</td>
+<td>17.195018</td>
+<td>-16.609368</td>
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<th>223</th>
+<td>R.steindachneri</td>
+<td>2016</td>
+<td>Calida</td>
+<td>H</td>
+<td>Adulto</td>
+<td>16.323223</td>
+<td>-14.537800</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+
+<p>224 rows × 11 columns</p>
+</div>
+</div>
+</div>
+<section id="inference" class="level3" data-number="2.6.1">
+<h3 data-number="2.6.1" class="anchored" data-anchor-id="inference"><span class="header-section-number">2.6.1</span> Inference <a class="anchor" id="inferences"></a></h3>
+<p>Figure X. Forest plot of the effects of the covariates on the <span class="math inline">\(\delta^{15}N\)</span> values. Horizontal lines represent the 95% Highest Density Intervals (HDI). Vertical reference line in 0.</p>
+<div class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>az.plot_forest(full_mod, hdi_prob <span class="op">=</span> <span class="fl">0.95</span>, var_names <span class="op">=</span> <span class="st">'_δ15N'</span>, filter_vars <span class="op">=</span> <span class="st">'like'</span>, combined <span class="op">=</span> <span class="va">True</span>)<span class="op">;</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.savefig(output_dir+'/figures/d15N_forestplot.pdf', format = 'pdf', bbox_inches = 'tight')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="fig-forestd15n" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ES2_BHGLM_files/figure-html/fig-forestd15n-output-1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.13: Forest plot summarising the effects of the covariates on the d15N values.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Figure X. Forest plot of the effects of the covariates on the <span class="math inline">\(\delta^{13}C\)</span> values. Horizontal lines represent the 95% Highest Density Intervals (HDI). Vertical reference line in 0.</p>
+<div class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>az.plot_forest(full_mod, hdi_prob <span class="op">=</span> <span class="fl">0.95</span>, var_names <span class="op">=</span> <span class="st">'_δ13C'</span>, filter_vars <span class="op">=</span> <span class="st">'like'</span>, combined <span class="op">=</span> <span class="va">True</span>)<span class="op">;</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.savefig(output_dir+'/figures/d13C_forestplot.pdf', format = 'pdf', bbox_inches = 'tight')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="fig-forestd13c" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ES2_BHGLM_files/figure-html/fig-forestd13c-output-1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.14: Forest plot summarising the effects of the covariates on the d13C values.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>az.plot_forest(full_mod, hdi_prob <span class="op">=</span> <span class="fl">0.95</span>, var_names <span class="op">=</span> <span class="st">'_δ'</span>, filter_vars <span class="op">=</span> <span class="st">'like'</span>, combined <span class="op">=</span> <span class="va">True</span>)<span class="op">;</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.savefig(output_dir+'/figures/d13C_forestplot.pdf', format = 'pdf', bbox_inches = 'tight')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="fig-forestboth" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ES2_BHGLM_files/figure-html/fig-forestboth-output-1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.15: Forest plot summarising the effects of the covariates on d15N and d13C values.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can also directly evaluate the <span class="math inline">\(P(\beta \neq 0)\)</span>, based on that if <span class="math inline">\(P(\beta &lt; 0)\)</span> or <span class="math inline">\(P(\beta &gt; 0) \approx 50\%\)</span> the <span class="math inline">\(P(\beta \neq 0)\)</span> is very low (50% of the distribution on either side of 0).</p>
+<section id="sexes" class="level4" data-number="2.6.1.1">
+<h4 data-number="2.6.1.1" class="anchored" data-anchor-id="sexes"><span class="header-section-number">2.6.1.1</span> Sexes <a class="anchor" id="Sex"></a></h4>
+<p>In general, the effect is small, with probabilities smaller than 75% in most cases. The only exception was in <span class="math inline">\(\delta^{13}C\)</span> for <em>H. dipterus</em> with <span class="math inline">\(P(\beta &lt; 0) \approx 90\%\)</span>, suggesting that females possibly had more coastal habits than males (<span class="math inline">\(\bar{\beta} = -0.32\)</span>‰).</p>
+<ul>
+<li>Interpretation:
+<ul>
+<li><span class="math inline">\(\delta^{13}C_h = \delta^{13}C + \beta*0 = \delta^{13}C\)</span></li>
+<li><span class="math inline">\(\delta^{13}C_m = \delta^{13}C + \beta*1 = \delta^{13}C - 0.32\)</span>‰; <em>i.e.</em>, males had more negative values.</li>
+</ul></li>
+</ul>
+<div class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>az.plot_posterior(full_mod, var_names <span class="op">=</span> <span class="st">'Sex'</span>, filter_vars <span class="op">=</span> <span class="st">'like'</span>, ref_val <span class="op">=</span> <span class="dv">0</span>, hdi_prob <span class="op">=</span> <span class="fl">0.95</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="fig-posteriorsex" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ES2_BHGLM_files/figure-html/fig-posteriorsex-output-1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.16: Posterior distributions of the effect of the sex.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="season" class="level4" data-number="2.6.1.2">
+<h4 data-number="2.6.1.2" class="anchored" data-anchor-id="season"><span class="header-section-number">2.6.1.2</span> Season <a class="anchor" id="Season"></a></h4>
+<p>The effect of the season was more evident, with <span class="math inline">\(P(\beta &lt; 0 \lor \beta &gt; 90)\%\)</span> in most comparisons:</p>
+<ul>
+<li><span class="math inline">\(\delta^{13}C\)</span>:
+<ul>
+<li><em>H. dipterus</em>: Cold season with less negative values than the warm season, suggesting more oceanic habits during the latter.
+<ul>
+<li><span class="math inline">\(\delta^{13}C_c = \delta^{13}C\)</span></li>
+<li><span class="math inline">\(\delta^{13}C_f = \delta^{13}C + \beta\)</span>; cold season with less negative values.</li>
+</ul></li>
+</ul></li>
+<li><span class="math inline">\(\delta^{15}N\)</span>: The three species showed less positive values during the cold season in relation to the warm season, which suggests that their prey had a higher trohpic position during the latter.
+<ul>
+<li><span class="math inline">\(\delta^{13}C_c = \delta^{13}C\)</span></li>
+<li><span class="math inline">\(\delta^{13}C_f = \delta^{13}C - \beta\)</span>; cold season with less positive values.</li>
+</ul></li>
+</ul>
+<p>The lowest <span class="math inline">\(P(\beta &lt; 0 \lor \beta &gt; 90)\%\)</span> were found for <em>N. entemedor</em> (<span class="math inline">\(P \approx 70\%\)</span>) and <em>R. steindachneri</em> (<span class="math inline">\(P \approx 60%\)</span>) in <span class="math inline">\(\delta^{13}C\)</span>.</p>
+<div class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>az.plot_posterior(full_mod, var_names <span class="op">=</span> <span class="st">'Temp'</span>, filter_vars <span class="op">=</span> <span class="st">'like'</span>, ref_val <span class="op">=</span> <span class="dv">0</span>, hdi_prob <span class="op">=</span> <span class="fl">0.95</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="fig-posteriorseason" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ES2_BHGLM_files/figure-html/fig-posteriorseason-output-1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.17: Posterior distributions of the effect of the season.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="maturity-stages" class="level4" data-number="2.6.1.3">
+<h4 data-number="2.6.1.3" class="anchored" data-anchor-id="maturity-stages"><span class="header-section-number">2.6.1.3</span> Maturity stages <a class="anchor" id="Age"></a></h4>
+<p>There were high probabilities of differences between age categories, with the exception of <em>R. steindachneri</em> en <span class="math inline">\(\delta^{15}N\)</span> (<span class="math inline">\(P(\beta&gt;0) \approx 56\%\)</span>). The rest of the comparisons had similar trends, in the sense that juveniles had lower values in both isotopes, suggesting more oceanic habitats and lower trophic positions. The only exception was <em>H. dipterus</em> in <span class="math inline">\(\delta^{13}C\)</span>, whose juveniles had more coastal habits (less negative values).</p>
+<ul>
+<li>Interpretation a):
+<ul>
+<li><span class="math inline">\(\delta^{13}C\)</span>:
+<ul>
+<li><span class="math inline">\(\delta^{13}C_a = \delta^{13}C\)</span></li>
+<li><span class="math inline">\(\delta^{13}C_j = \delta^{13}C - \beta\)</span>; juveniles had more negative values.</li>
+</ul></li>
+<li><span class="math inline">\(\delta^{15}N\)</span>:
+<ul>
+<li><span class="math inline">\(\delta^{13}C_a = \delta^{15}N\)</span></li>
+<li><span class="math inline">\(\delta^{13}C_j = \delta^{15}N - \beta\)</span>; juveniles had less positive values.</li>
+</ul></li>
+</ul></li>
+<li>Interpretation b):
+<ul>
+<li><span class="math inline">\(\delta^{13}C_a = \delta^{13}C\)</span></li>
+<li><span class="math inline">\(\delta^{13}C_j = \delta^{13}C + \beta\)</span>; juveniles had more positive values.</li>
+</ul></li>
+</ul>
+<div class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>az.plot_posterior(full_mod, var_names <span class="op">=</span> <span class="st">'Age'</span>, filter_vars <span class="op">=</span> <span class="st">'like'</span>, ref_val <span class="op">=</span> <span class="dv">0</span>, hdi_prob <span class="op">=</span> <span class="fl">0.95</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="fig-posteriormaturity" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ES2_BHGLM_files/figure-html/fig-posteriormaturity-output-1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.18: Posterior distributions of the effect of the maturity stage.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="isotopic-mean-comparison-between-species" class="level4" data-number="2.6.1.4">
+<h4 data-number="2.6.1.4" class="anchored" data-anchor-id="isotopic-mean-comparison-between-species"><span class="header-section-number">2.6.1.4</span> Isotopic mean comparison between species <a class="anchor" id="Comparisons"></a></h4>
+<p>Since in the process we also estimated the posterior distributions of the means for each species, we can also directly compare them by simply substracting them:</p>
+<div class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compare_posteriors(mod, labels, pars <span class="op">=</span> [<span class="st">'µδ13C'</span>, <span class="st">'µδ15N'</span>], isos <span class="op">=</span> [<span class="st">'$\delta^</span><span class="sc">{13}</span><span class="st">C$'</span>, <span class="st">'$\delta^</span><span class="sc">{15}</span><span class="st">N$'</span>], save <span class="op">=</span> <span class="va">False</span>):</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> itertools <span class="im">import</span> combinations</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get every comparison</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>    spp <span class="op">=</span> [i <span class="cf">for</span> i, sp <span class="kw">in</span> <span class="bu">enumerate</span>(labels)]</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>    comps <span class="op">=</span> <span class="bu">list</span>(combinations(spp, <span class="dv">2</span>))</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create a figure with two spaces for each combination</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, comp <span class="kw">in</span> <span class="bu">enumerate</span>(comps):</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>        _, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize <span class="op">=</span> (<span class="dv">10</span>,<span class="dv">6</span>), constrained_layout <span class="op">=</span> <span class="va">False</span>,</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>                             sharex <span class="op">=</span> <span class="va">False</span>, sharey <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># For each parameter (isotope):</span></span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j,par <span class="kw">in</span> <span class="bu">enumerate</span>(pars):</span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Calculate the difference between posterior distributions</span></span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>            Diff <span class="op">=</span> mod.posterior[par][:,:,comp[<span class="dv">0</span>]] <span class="op">-</span> mod.posterior[par][:,:,comp[<span class="dv">1</span>]]</span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Plot the difference, show the median of the distribution and P(Diff &lt; 0 or Diff &gt; 0)</span></span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>            az.plot_posterior(Diff, ref_val <span class="op">=</span> <span class="dv">0</span>, hdi_prob <span class="op">=</span> <span class="fl">0.95</span>, point_estimate <span class="op">=</span> <span class="st">'mean'</span>, ax <span class="op">=</span> ax[j])</span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Title for each panel is the isotope</span></span>
+<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a>            ax[j].set_title(<span class="ss">f'</span><span class="sc">{</span>isos[j]<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a>            <span class="co"># The title for each pair of comparisons is the pair of species</span></span>
+<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a>            plt.suptitle(<span class="ss">f'</span><span class="sc">{</span>labels[comp[<span class="dv">0</span>]]<span class="sc">}</span><span class="ss"> vs. </span><span class="sc">{</span>labels[comp[<span class="dv">1</span>]]<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> save <span class="kw">is</span> <span class="va">True</span>:</span>
+<span id="cb41-21"><a href="#cb41-21" aria-hidden="true" tabindex="-1"></a>                plt.savefig(output_dir<span class="op">+</span><span class="st">'/figures/'</span><span class="op">+</span><span class="ss">f'</span><span class="sc">{</span>labels[comp[<span class="dv">0</span>]]<span class="sc">}</span><span class="ss"> vs. </span><span class="sc">{</span>labels[comp[<span class="dv">1</span>]]<span class="sc">}</span><span class="ss">.pdf'</span>,</span>
+<span id="cb41-22"><a href="#cb41-22" aria-hidden="true" tabindex="-1"></a>                            <span class="bu">format</span> <span class="op">=</span> <span class="st">'pdf'</span>,</span>
+<span id="cb41-23"><a href="#cb41-23" aria-hidden="true" tabindex="-1"></a>                            bbox_inches <span class="op">=</span> <span class="st">'tight'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In the following figures we can observe that probabilities of mean differences were high in every comparison. Summarising:</p>
+<ul>
+<li><span class="math inline">\(\delta^{13}C\)</span>
+<ul>
+<li><em>N. entemedor</em> &gt; <em>H. dipterus</em> (<span class="math inline">\(P = 100\%\)</span>)</li>
+<li><em>H. dipterus</em> &gt; <em>R. steindachneri</em> (<span class="math inline">\(P \approx 99\%\)</span>)</li>
+<li><em>N. entemedor</em> &gt; <em>R. steindachneri</em> (<span class="math inline">\(P = 100\%\)</span>)</li>
+</ul></li>
+<li><span class="math inline">\(\delta^{15}N\)</span>
+<ul>
+<li><em>N. entemedor</em> &lt; <em>H. dipterus</em> (<span class="math inline">\(P = 100\%\)</span>)</li>
+<li><em>H. dipterus</em> &gt; <em>R. steindachneri</em> (<span class="math inline">\(P \approx 100\%\)</span>)</li>
+<li><em>N. entemedor</em> &gt; <em>R. steindachneri</em> (<span class="math inline">\(P = 100\%\)</span>)</li>
+</ul></li>
+</ul>
+<div id="fig-posteriordiffs" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>compare_posteriors(mod <span class="op">=</span> full_mod, labels <span class="op">=</span> [<span class="st">'H. dipterus'</span>, <span class="st">'N. entemedor'</span>, <span class="st">'R. steindachneri'</span>], save <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="fig-posteriordiffs-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ES2_BHGLM_files/figure-html/fig-posteriordiffs-output-1.png" class="img-fluid figure-img" data-ref-parent="fig-posteriordiffs"></p>
+<p></p><figcaption class="figure-caption">(a)</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div id="fig-posteriordiffs-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ES2_BHGLM_files/figure-html/fig-posteriordiffs-output-2.png" class="img-fluid figure-img" data-ref-parent="fig-posteriordiffs"></p>
+<p></p><figcaption class="figure-caption">(b)</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div id="fig-posteriordiffs-3" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ES2_BHGLM_files/figure-html/fig-posteriordiffs-output-3.png" class="img-fluid figure-img" data-ref-parent="fig-posteriordiffs"></p>
+<p></p><figcaption class="figure-caption">(c)</figcaption><p></p>
+</figure>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.19: Posterior distributions of the differences between mean isotopic values among species.</figcaption><p></p>
+</figure>
+</div>
+</section>
+</section>
+<section id="bivariate-posterior-distribution" class="level3" data-number="2.6.2">
+<h3 data-number="2.6.2" class="anchored" data-anchor-id="bivariate-posterior-distribution"><span class="header-section-number">2.6.2</span> Bivariate Posterior Distribution <a class="anchor" id="PosteriorJoint"></a></h3>
+<div class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_posteriors(data, mod, labels <span class="op">=</span> <span class="va">None</span>, group_col <span class="op">=</span> <span class="st">'sp'</span>, iso_cols <span class="op">=</span> [<span class="st">'d13c'</span>, <span class="st">'d15n'</span>],</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>                    palette <span class="op">=</span> <span class="st">'Paired'</span>, shade <span class="op">=</span> <span class="va">True</span>,</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>                    pars <span class="op">=</span> [<span class="st">'µδ13C'</span>, <span class="st">'µδ15N'</span>], isos <span class="op">=</span> [<span class="st">'$\delta^</span><span class="sc">{13}</span><span class="st">C$'</span>, <span class="st">'$\delta^</span><span class="sc">{15}</span><span class="st">N$'</span>]):</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> matplotlib.ticker <span class="im">import</span> MaxNLocator</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># To avoid re-indexing every time</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> iso_cols[<span class="dv">0</span>]</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> iso_cols[<span class="dv">1</span>]</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Empty Data Frame to store the posterior samples</span></span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>    samples <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Unique values of the group column to cicle through</span></span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>    groups <span class="op">=</span> data[group_col].unique()</span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Define limits of the plot</span></span>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a>    xlim <span class="op">=</span> (data[x].<span class="bu">min</span>() <span class="op">-</span> <span class="fl">0.5</span>, data[x].<span class="bu">max</span>() <span class="op">+</span> <span class="fl">0.5</span>)</span>
+<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a>    ylim <span class="op">=</span> (data[y].<span class="bu">min</span>() <span class="op">-</span> <span class="fl">0.5</span>, data[y].<span class="bu">max</span>() <span class="op">+</span> <span class="fl">0.5</span>)</span>
+<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb43-19"><a href="#cb43-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Form a Data Frame with the posterior samples for each isotope</span></span>
+<span id="cb43-20"><a href="#cb43-20" aria-hidden="true" tabindex="-1"></a>    shape <span class="op">=</span> mod.posterior[pars[<span class="dv">0</span>]].shape</span>
+<span id="cb43-21"><a href="#cb43-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> group <span class="kw">in</span> groups:</span>
+<span id="cb43-22"><a href="#cb43-22" aria-hidden="true" tabindex="-1"></a>            temp <span class="op">=</span> pd.DataFrame({<span class="st">'d13c'</span>:mod.posterior[pars[<span class="dv">0</span>]][:,:,group].values.reshape(shape[<span class="dv">0</span>]<span class="op">*</span>shape[<span class="dv">1</span>]),</span>
+<span id="cb43-23"><a href="#cb43-23" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">'d15n'</span>:mod.posterior[pars[<span class="dv">1</span>]][:,:,group].values.reshape(shape[<span class="dv">0</span>]<span class="op">*</span>shape[<span class="dv">1</span>]),</span>
+<span id="cb43-24"><a href="#cb43-24" aria-hidden="true" tabindex="-1"></a>                                 group_col: group})</span>
+<span id="cb43-25"><a href="#cb43-25" aria-hidden="true" tabindex="-1"></a>            samples <span class="op">=</span> samples.append(temp, ignore_index <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb43-26"><a href="#cb43-26" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb43-27"><a href="#cb43-27" aria-hidden="true" tabindex="-1"></a>    samples <span class="op">=</span> samples.reset_index(drop <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb43-28"><a href="#cb43-28" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb43-29"><a href="#cb43-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Map value labels to a new column (if provided)</span></span>
+<span id="cb43-30"><a href="#cb43-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">type</span>(labels) <span class="kw">is</span> <span class="bu">dict</span>:</span>
+<span id="cb43-31"><a href="#cb43-31" aria-hidden="true" tabindex="-1"></a>        data[<span class="st">'Group'</span>] <span class="op">=</span> data[group_col].<span class="bu">map</span>(labels)</span>
+<span id="cb43-32"><a href="#cb43-32" aria-hidden="true" tabindex="-1"></a>        samples[<span class="st">'Group'</span>] <span class="op">=</span> samples[group_col].<span class="bu">map</span>(labels)</span>
+<span id="cb43-33"><a href="#cb43-33" aria-hidden="true" tabindex="-1"></a>        group_col <span class="op">=</span> <span class="st">'Group'</span></span>
+<span id="cb43-34"><a href="#cb43-34" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb43-35"><a href="#cb43-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot the joint posterior distribution and its marginals</span></span>
+<span id="cb43-36"><a href="#cb43-36" aria-hidden="true" tabindex="-1"></a>    grid <span class="op">=</span> sns.JointGrid(x <span class="op">=</span> x, y <span class="op">=</span> y, data <span class="op">=</span> data, xlim <span class="op">=</span> xlim, ylim <span class="op">=</span> ylim)</span>
+<span id="cb43-37"><a href="#cb43-37" aria-hidden="true" tabindex="-1"></a>    g <span class="op">=</span> grid.plot_joint(sns.scatterplot, hue <span class="op">=</span> group_col, palette <span class="op">=</span> palette, data <span class="op">=</span> data)</span>
+<span id="cb43-38"><a href="#cb43-38" aria-hidden="true" tabindex="-1"></a>    sns.kdeplot(x <span class="op">=</span> samples[iso_cols[<span class="dv">0</span>]], shade <span class="op">=</span> <span class="va">True</span>, thresh <span class="op">=</span> <span class="fl">0.05</span>, hue <span class="op">=</span> samples[group_col], </span>
+<span id="cb43-39"><a href="#cb43-39" aria-hidden="true" tabindex="-1"></a>                ax <span class="op">=</span> g.ax_marg_x, palette <span class="op">=</span> palette, legend <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb43-40"><a href="#cb43-40" aria-hidden="true" tabindex="-1"></a>    sns.kdeplot(y <span class="op">=</span> samples[iso_cols[<span class="dv">1</span>]], shade <span class="op">=</span> <span class="va">True</span>, thresh <span class="op">=</span> <span class="fl">0.05</span>, hue <span class="op">=</span> samples[group_col], </span>
+<span id="cb43-41"><a href="#cb43-41" aria-hidden="true" tabindex="-1"></a>                ax <span class="op">=</span> g.ax_marg_y, palette <span class="op">=</span> palette, legend <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb43-42"><a href="#cb43-42" aria-hidden="true" tabindex="-1"></a>    sns.kdeplot(x <span class="op">=</span> samples[iso_cols[<span class="dv">0</span>]], y <span class="op">=</span> samples[iso_cols[<span class="dv">1</span>]], shade <span class="op">=</span> shade, thresh <span class="op">=</span> <span class="fl">0.05</span>, </span>
+<span id="cb43-43"><a href="#cb43-43" aria-hidden="true" tabindex="-1"></a>                hue <span class="op">=</span> samples[group_col], palette <span class="op">=</span> palette, legend <span class="op">=</span> <span class="va">True</span>, cbar<span class="op">=</span> <span class="va">False</span>, </span>
+<span id="cb43-44"><a href="#cb43-44" aria-hidden="true" tabindex="-1"></a>                alpha <span class="op">=</span> <span class="fl">0.7</span>, ax <span class="op">=</span> g.ax_joint)</span>
+<span id="cb43-45"><a href="#cb43-45" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb43-46"><a href="#cb43-46" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Change the appearance of the plot</span></span>
+<span id="cb43-47"><a href="#cb43-47" aria-hidden="true" tabindex="-1"></a>    g.ax_joint.set_xlabel(isos[<span class="dv">0</span>])</span>
+<span id="cb43-48"><a href="#cb43-48" aria-hidden="true" tabindex="-1"></a>    g.ax_joint.set_ylabel(isos[<span class="dv">1</span>])</span>
+<span id="cb43-49"><a href="#cb43-49" aria-hidden="true" tabindex="-1"></a>    g.ax_joint.xaxis.set_major_locator(MaxNLocator(<span class="dv">5</span>))</span>
+<span id="cb43-50"><a href="#cb43-50" aria-hidden="true" tabindex="-1"></a>    g.ax_joint.yaxis.set_major_locator(MaxNLocator(<span class="dv">5</span>))   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Given that both isotopes were modeled at the same time, we can plot the joint posterior mean distribution, which is non-orhtogonal as if both isotopes were independent from one another (separate Generalized Linear Models or independent null hypothesis testing). It is important to remark that the means are not in the centroid of each group. This is a favorable consequence of having used Student-T distributions for the parameters and likelihood instead of normal distributions. By stablishing that extreme values have a higher probability than in a normal distribution, the effect of the more extreme values is disregarded or, in another words, in a normal distribution they have low probabilities and, hence, each point is given a heavier weight.</p>
+<p>This consequence is why using heavy-tailed distributions is called robust regression. In <a href="https://twiecki.io/blog/2013/08/27/bayesian-glms-2/">this example</a> the effect is shown in a linear regression with a continuous covariate, in which the robust estimation of the parameters is not “deceived” by the more extreme values on the y variable and posterior predictive lines are closer to the real line than those of the “normal” regression.</p>
+<div class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>plot_posteriors(data <span class="op">=</span> glm_data, mod <span class="op">=</span> full_mod,</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>                labels <span class="op">=</span> {<span class="dv">0</span>: <span class="st">'H. dipterus'</span>, <span class="dv">1</span>: <span class="st">'N. entemedor'</span>, <span class="dv">2</span>: <span class="st">'R. steindachneri'</span>},</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>                palette <span class="op">=</span> colors[<span class="dv">0</span>:<span class="dv">3</span>])</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.savefigoutput_dir+'/figures/posterior_means.pdf", format = 'pdf', bbox_inches = 'tight')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="fig-posteriorbiv" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ES2_BHGLM_files/figure-html/fig-posteriorbiv-output-1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2.20: Bivariate posterior distributions of the mean isotopic values.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'elapsed = </span><span class="sc">{</span>datetime<span class="sc">.</span>now()<span class="op">-</span>start<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>elapsed = 0:20:08.620410</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext watermark</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>watermark <span class="op">-</span>n <span class="op">-</span>u <span class="op">-</span>v <span class="op">-</span>iv <span class="op">-</span>w</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Last updated: Sun Feb 12 2023
+
+Python implementation: CPython
+Python version       : 3.8.6
+IPython version      : 7.19.0
+
+theano    : 1.1.2
+numpy     : 1.19.4
+seaborn   : 0.11.0
+arviz     : 0.11.2
+pandas    : 1.1.5
+pymc3     : 3.11.2
+matplotlib: 3.3.3
+
+Watermark: 2.1.0
+</code></pre>
+</div>
+</div>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-Armheinetal_2019" class="csl-entry" role="doc-biblioentry">
+Armhein V, Greenland S, McShane B (2019) <a href="https://doi.org/10.1038/d41586-019-00857-9.">Scientists Rise up Against Statistical Significance</a>. Nature 567:305–307.
+</div>
+<div id="ref-Betancourt_2017" class="csl-entry" role="doc-biblioentry">
+Betancourt M (2017) <span class="nocase">A conceptual introduction to Hamiltonian Monte Carlo</span>. arXiv preprint 1701.02434.
+</div>
+<div id="ref-Bolstad_2004" class="csl-entry" role="doc-biblioentry">
+Bolstad WM (2004) Introduction to bayesian statistics. Wiley-Interscience, New Jersey, USA.
+</div>
+<div id="ref-Ellison_2004" class="csl-entry" role="doc-biblioentry">
+Ellison AM (2004) <a href="https://doi.org/10.1111/j.1461-0248.2004.00603.x">Bayesian Inference in Ecology</a>. Ecology Letters 7:509–520.
+</div>
+<div id="ref-Gabryetal_2017" class="csl-entry" role="doc-biblioentry">
+Gabry J, Simpson D, Vehtari A, Betancourt M, Gelman A (2017) <a href="https://doi.org/10.1111/rssa.12378"><span class="nocase">Visualization in Bayesian workflow</span></a>. arXiv preprint 1709.01449.
+</div>
+<div id="ref-Gerrodette_2011" class="csl-entry" role="doc-biblioentry">
+Gerrodette T (2011) <a href="https://doi.org/10.1111/j.1439-0485.2011.00466.x">Inference Without Significance: Measuring Support for Hypotheses Rather Than Rejecting Them</a>. Marine Ecology 32:404–418.
+</div>
+<div id="ref-HobbsHilborn_2006" class="csl-entry" role="doc-biblioentry">
+Hobbs NT, Hilborn R (2006) <a href="">Alternatives to Statistical Hypothesis Testing in Ecology: A Guide to Self Teaching</a>. Ecological Applications 16:5–19.
+</div>
+<div id="ref-Kruschke_2012" class="csl-entry" role="doc-biblioentry">
+Kruschke JK (2012) <a href="https://doi.org/10.1037/a0029146">Bayesian Estimation Supersedes the t Test</a>. Journal of Experimental Psychology: General 142:573–603.
+</div>
+<div id="ref-Kruschke_2015" class="csl-entry" role="doc-biblioentry">
+Kruschke JK (2015) Doing bayesian data analysis: A tutorial with r, JAGS, and stan, 2nd ed. Academic Press, London, UK.
+</div>
+<div id="ref-Lewandowskietal_2009" class="csl-entry" role="doc-biblioentry">
+Lewandowski D, Kurowicka D, Joe H (2009) <a href="https://doi.org/10.1016/j.jmva.2009.04.008">Generating Random Correlation Matrices Based on Vines and Extended Onion Method</a>. Journal of Multivariate Analysis 100:1989–2001.
+</div>
+<div id="ref-LinkEaton_2012" class="csl-entry" role="doc-biblioentry">
+Link WA, Eaton MJ (2012) <a href="https://doi.org/10.1111/j.2041-210X.2011.00131.x">On Thinning of Chains in MCMC</a>. Methods in Ecology and Evolution 3:112–115.
+</div>
+<div id="ref-Martin_2018" class="csl-entry" role="doc-biblioentry">
+Martin O (2018) Bayesian analysis with python: Introduction to statistical modeling and probabilistic programming using PyMC3 and ArviZ, 2nd ed. Pakt Publishing.
+</div>
+<div id="ref-ParkCasella_2012" class="csl-entry" role="doc-biblioentry">
+Park T, Casella G (2012) <a href="https://doi.org/10.1198/016214508000000337"><span>The Bayesian Lasso</span></a>. Journal of the American Statistical Association 103:681–686.
+</div>
+<div id="ref-Salvatieretal_2016" class="csl-entry" role="doc-biblioentry">
+Salvatier J, Wiecki TV, Fonnesbeck C (2016) <a href="https://doi.org/10.7717/peerj-cs.55."><span class="nocase">Probabilistic programming in Python using PyMC3</span></a>. PeerJ Computer Science 2:e55.
+</div>
+<div id="ref-Stan_2022" class="csl-entry" role="doc-biblioentry">
+Team SD (2022) Stan modeling language user’s guide and reference manual. <a href="https://mc-stan.org/docs/reference-manual/effective-sample-size.html">https://mc-stan.org/docs/reference-manual/effective-sample-size.html</a>
+</div>
+<div id="ref-VanRossumetal_2009" class="csl-entry" role="doc-biblioentry">
+Van Rossum G, Drake FL (2009) Python 3 reference manual. CreateSpace, Scotts Valley, CA.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./ES1_ML_counts.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">ML approach to classify species based on prey counts</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./ES3_SIBER.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Amplitudes and comparisons of the isotopic niches</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

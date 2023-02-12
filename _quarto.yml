@@ -1,0 +1,39 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "ES: Enríquez-García"
+  repo-url: https://github.com/ArturoBell/01072022
+  repo-actions: [issue]
+  page-navigation: true
+  author:
+  - name: "Arturo Bell Enríquez-García"
+    affiliations:
+      name: Instituto Politécnico Nacional, Centro Interdisciplinario de Ciencias Marinas
+      address: Av. Instituto Politécnico Nacional s/n
+      city: La Paz
+      state: Baja California Sur
+      country: Mexico
+  date: "11/02/2023"
+  chapters:
+    - index.qmd
+    - ES1_ML_counts.ipynb
+    - ES2_BHGLM.ipynb
+    - ES3_SIBER.Rmd
+    - ES4_nicheROVER.Rmd
+    - references.qmd
+
+bibliography: refs.bib
+
+format:
+  html:
+    theme: cosmo
+    code-fold: false
+    df-print: paged
+
+  #pdf:
+    #documentclass: scrreprt
+
+
+

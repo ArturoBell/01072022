@@ -1,0 +1,917 @@
+# Amplitudes and comparisons of the isotopic niches
+
+## Libraries
+
+```{r}
+#| message: false
+library(SIBER)
+library(ggplot2)
+library(ggExtra)
+library(ggConvexHull)
+library(HDInterval)
+library(mcmcplots)
+library(ggmcmc)
+library(coda)
+library(lattice)
+library(MCMCvis)
+library(bayesplot)
+```
+
+## Data loading
+
+```{r}
+data <- read.table("data/glm.csv", sep = ",", header = T)
+colnames(data)[6:7] <- c("iso1", "iso2")
+head(data)
+```
+
+## "Global" SIBER:
+
+### Dataset arrangement
+
+```{r}
+global <- subset(data, select = c(sp, iso1, iso2))
+global$group <- factor(global$sp, labels = c(1:3))
+global$community <- 1
+global
+```
+
+### Basic plot
+
+Parameters and basic information
+
+```{r}
+global_colors <- c('#1f77b4', '#ff7f0e', '#2ca02c')
+xlims <- c(min(global$iso2)-0.5, max(global$iso2)+0.5)
+ylims <- c(min(global$iso1)-0.5, max(global$iso1)+0.5)
+species <- unique(global$sp)
+```
+
+Plot
+
+```{r}
+glob_ellipses <- ggplot(data = global, aes(x = iso2, y = iso1, color = as.factor(group))) +
+                 geom_point(alpha = 0.7) +
+                 stat_ellipse(level = 0.4) +
+                 geom_convexhull(fill = NA, linetype = "dashed", alpha = 0.05) +
+                 scale_color_manual(values = global_colors, name = "Species", labels = species) +
+                 scale_x_continuous(limits = xlims, breaks = c(seq(-18, -8, 2))) +
+                 scale_y_continuous(limits = ylims, breaks = c(seq(10, 20, 2))) +
+                 labs(title = element_blank(),
+                      x = expression({delta}^13*C~'(\u2030)'),
+                      y = expression({delta}^15*N~'(\u2030)')) +
+                 theme_bw() +
+                 theme(aspect.ratio = 1,
+                       panel.grid.major = element_blank(),
+                       panel.grid.minor = element_blank(),
+                       legend.position = c(0.18, 0.15),
+                       legend.background = element_blank())
+
+# cairo_pdf("output/SIBER/global/global_ellipses.pdf",
+#           family = "Times", height = 4, width = 4)
+glob_ellipses
+# dev.off()
+```
+
+### Fitting the Bayesian Bi-variate Normal models:
+
+Creation of the SIBER object:
+
+```{r}
+siber_glob <- createSiberObject(global[,2:5])
+```
+
+
+Parameters of the MCMC:
+
+```{r}
+parms <- list()
+parms$n.iter   <- 2000    
+parms$n.burnin <- 25000   
+parms$n.thin   <- 1          
+parms$n.chains <- 3
+parms$save.output <- TRUE
+parms$save.dir <- paste(getwd(),"/output/SIBER/global", sep = "")
+```
+
+Prior distributions:
+
+```{r}
+priors <- list()
+priors$R <- 1 * diag(2)
+priors$k <- 2
+priors$tau.mu <- 1.0E-3
+```
+
+Sampling of the posterior distributions:
+
+```{r}
+ellipses.posterior <- siberMVN(siber_glob, parms, priors)
+```
+
+#### Diagnostics:
+
+Cycling through every model to extract information:
+
+```{r}
+all_files <- dir(parms$save.dir, full.names = T)
+model_files <- all_files[grep("jags_output", all_files)]
+
+model_summary <- list()
+
+for (i in seq_along(model_files)) {
+  load(model_files[i])
+  
+  mcmc_list <- coda::as.mcmc(do.call("cbind", output))
+  
+  model_summary[[i]] <- MCMCsummary(output,
+                                    params = "all",
+                                    probs = c(0.025, 0.975),
+                                    round = 3)
+  MCMCtrace(output,
+            params = "all",
+            iter = parms$n.iter,
+            Rhat = T,
+            n.eff = T,
+            ind = T,
+            type = "density",
+            open_pdf = F,
+            filename = sprintf("output/SIBER/global/MCMCtrace_%d", i))
+}
+```
+
+Autocorrelation plots:
+
+```{r, fig.height = 10, fig.width=12}
+# cairo_pdf("output/SIBER/global_autocorr.pdf",
+#           family = "Times", height = 10, width = 12)
+gridExtra::grid.arrange(mcmc_acf(ellipses.posterior[1]) + labs(title = species[1]),
+                        mcmc_acf(ellipses.posterior[2]) + labs(title = species[2]),
+                        mcmc_acf(ellipses.posterior[3]) + labs(title = species[3]),
+                        nrow = 3)
+dev.off()
+```
+
+```{r, fig.height = 10, fig.width=12}
+gridExtra::grid.arrange(mcmc_acf(ellipses.posterior[1]) + labs(title = species[1]),
+                        mcmc_acf(ellipses.posterior[2]) + labs(title = species[2]),
+                        mcmc_acf(ellipses.posterior[3]) + labs(title = species[3]),
+                        nrow = 3)
+
+```
+
+Summaries. Gelman-Rubick Statistics (Rhat) exactly equal to 1 and effective sample sizes > 2000 for every parameter:
+
+```{r}
+for (i in seq_along(model_files)) {
+  load(model_files[i])
+  print(species[i])
+  print(model_summary[[i]])
+}
+```
+
+#### Inferences
+
+Generation of the ellipses:
+
+```{r}
+sea_b <- siberEllipses(ellipses.posterior)
+summary(sea_b)
+```
+
+Graphical comparisons. First, transform the object to a data.frame and melt it to long format:
+
+```{r}
+sea_bt <- reshape2::melt(as.data.frame(sea_b))
+colnames(sea_bt) <- c("sp", "SEAb")
+head(sea_bt)
+```
+
+Get the HDI for each species:
+
+```{r}
+hdi <- as.data.frame(t(apply(sea_b, 2, FUN = HDInterval::hdi)))
+hdi <- cbind(hdi, means = t(as.data.frame(t(apply(sea_b, 2, FUN = mean)))))
+hdi["sp"] <- row.names(hdi)
+hdi
+```
+
+Violin plot with the posterior distributions of the SEAb:
+
+```{r}
+seab_global <- ggplot() +
+               geom_violin(data = sea_bt, aes(x = sp, y = SEAb, fill = sp, color = sp),
+                           show.legend = F, alpha = 0.3) +
+               geom_boxplot(data = sea_bt,
+                            aes(x = sp, y = SEAb, fill = sp, color = sp),
+                            alpha = 0.5, width = 0.05, notch = T, show.legend = F,
+                            outlier.shape = NA, coef = 0) +
+               scale_fill_manual(values = global_colors) +
+               scale_color_manual(values = global_colors) +
+               geom_linerange(data = hdi,
+                              aes(x = sp, ymin = lower, ymax = upper, color = sp),
+                              show.legend = F) +
+               theme_bw()+
+               theme(aspect.ratio = 1,
+                     panel.grid.major = element_blank(),
+                     panel.grid.minor = element_blank(),
+                     legend.position = c(0.2, 0.15),
+                     legend.background = element_blank()) +
+               labs(x = "Species",
+                    y = expression("SEAb " ('\u2030' ^2) )) +
+               scale_x_discrete(labels = species)
+# cairo_pdf("output/SIBER/global/global_seab.pdf",
+#           family = "Times", height = 5, width = 5)
+seab_global
+#dev.off()
+```
+
+Posterior Differences:
+
+```{r}
+# Define the comparisons
+comps <- expand.grid(a = unique(as.integer(global$group)),
+                     b = unique(as.integer(global$group)))
+comps <- comps[(comps$a != comps$b & comps$b > comps$a), ]
+comps <- comps[order(comps$a),]
+
+# Put the results in different objects:
+diffs <- data.frame()
+diff_glob <- data.frame()
+p_sup <- data.frame()
+for (i in seq_along(comps$a)) {
+  a <- comps$a[i]
+  b <- comps$b[i]
+  comp <- paste(species[a], "-", species[b])
+  diff <- sea_b[, a] - sea_b[, b]
+  sup <- subset(diff, diff>0, select = diff)
+  
+  diffs <- rbind(diffs,
+                 data.frame(comp = comp,
+                            diff = diff))
+  diff_glob <- rbind(diff_glob,
+                     data.frame(comp = comp,
+                                mean = mean(diff),
+                                IQr = t(HDInterval::hdi(diff, credMass = 0.5)),
+                                hdi = t(HDInterval::hdi(diff, credMass = 0.95))
+                                )
+                     )
+  p_sup <- rbind(p_sup,
+                 data.frame(comp = comp,
+                            p_sup = (length(sup)/length(diff))*100))
+}
+
+diff_glob$comp <- factor(diff_glob$comp, ordered = T)
+```
+
+HDIs of differences
+```{r}
+diff_glob
+```
+
+
+Probabilities of differences:
+```{r}
+p_sup
+```
+
+Forestplot of the $HDI_{95\%}$ of the differences
+
+```{r}
+global_forest <- ggplot(data = diff_glob) +
+                 geom_vline(xintercept = 0, linetype = "dashed", color = "#C9C8C8", size = 1.2) +
+                 geom_linerange(aes(y = comp, xmin = IQr.lower, xmax = IQr.upper),
+                                color = global_colors[1], size = 1) +
+                 geom_linerange(aes(y = comp, xmin = hdi.lower, xmax = hdi.upper),
+                                color = global_colors[1]) +
+                 geom_point(aes(x = mean, y = comp), color = global_colors[1], fill = "white", size = 1.5, shape = 21) +
+                 theme_bw() +
+                 theme(aspect.ratio = 1,
+                       panel.grid.major = element_blank(),
+                       panel.grid.minor = element_blank(),
+                       legend.position = c(0.2, 0.15),
+                       legend.background = element_blank()) +
+                 labs(title = element_blank(),
+                      x = element_blank(),
+                      y = element_blank())
+# cairo_pdf("output/SIBER/global/global_forest.pdf",
+#           family = "Times", height = 4, width = 4)
+global_forest
+#dev.off()
+```
+
+#### Eccentricity and theta
+
+Eccentricities represent the elongation of the ellipse, that is, how far they are from a perfect circle (0 eccentricity). Lower values indicate a rounder ellipse, while higher values indicate a more elongated ellipse. 
+
+```{r}
+mat_ecc <- function(x) {
+  mat <- matrix(x, 2, 2)
+  ecc <- sigmaSEA(mat)$ecc
+  return(ecc)
+}
+
+mat_theta <- function(x){
+  mat <- matrix(x, 2, 2)
+  theta <- sigmaSEA(mat)$theta
+  return(theta)
+}
+
+ecc <- data.frame()
+for (sp in seq_along(ellipses.posterior)) {
+  ecc <- rbind(ecc,
+               data.frame(sp = species[sp],
+                          ecc = apply(ellipses.posterior[[sp]][,1:4], 1, mat_ecc),
+                          theta = apply(ellipses.posterior[[sp]][,1:4], 1, mat_theta)))
+}
+```
+
+```{r}
+ec <- ecc %>% group_by(sp) %>% summarise(IQR.lower = hdi(ecc, credMass = 0.5)[1],
+                                         IQR.upper = hdi(ecc, credMass = 0.5)[2],
+                                         hdi.lower = hdi(ecc)[1],
+                                         hdi.upper = hdi(ecc)[2],
+                                         mean = mean(ecc))
+ec
+```
+
+```{r}
+ggplot(data = ecc, aes(x = sp, y = ecc, group = sp, color = factor(sp))) +
+  geom_violin(fill = NA, show.legend = F) +
+  geom_point(aes(x = sp, y = mean), data = ec, show.legend = F) +
+  #geom_errorbar(aes(x = sp, ymin = IQ.lower, ymax = IQ.upper, group = sp), data = ag) +
+  geom_boxplot(width = 0.1, show.legend = F) +
+  theme_bw() +
+  labs(title = "SEAB Eccentricity",
+       x = element_blank(),
+       y = element_blank()) +
+  scale_color_manual(values = global_colors) +
+  theme(aspect.ratio = 1,
+                       panel.grid.major = element_blank(),
+                       panel.grid.minor = element_blank(),
+                       legend.position = c(0.15, 0.1),
+                       legend.background = element_blank())
+```
+
+Theta, on the other hand, is the angle of the semi-major axis of the SEA and the x axis; *i.e.*, the angle of the deformation. Values close to 0 show a higher dispersion in $\delta^{13}C$, while values close to 90 show a higher dispersion in $\delta^{15}N$:
+
+```{r}
+th <- ecc %>% group_by(sp) %>% summarise(IQR.lower = hdi(theta, credMass = 0.5)[1],
+                                         IQR.upper = hdi(theta, credMass = 0.5)[2],
+                                         hdi.lower = hdi(theta)[1],
+                                         hdi.upper = hdi(theta)[2],
+                                         mean = mean(theta))
+th
+```
+
+
+```{r}
+ggplot(data = ecc, aes(x = sp, y = theta, group = sp, color = factor(sp))) +
+  geom_violin(fill = NA, show.legend = F) +
+  geom_point(aes(x = sp, y = mean), data = ec, show.legend = F) +
+  #geom_errorbar(aes(x = sp, ymin = IQ.lower, ymax = IQ.upper, group = sp), data = ag) +
+  geom_boxplot(width = 0.1, show.legend = F) +
+  theme_bw() +
+  labs(title = "SEAB theta",
+       x = element_blank(),
+       y = element_blank()) +
+  scale_color_manual(values = global_colors) +
+  theme(aspect.ratio = 1,
+                       panel.grid.major = element_blank(),
+                       panel.grid.minor = element_blank(),
+                       legend.position = c(0.15, 0.1),
+                       legend.background = element_blank())
+```
+
+## Intra-specific analyses
+
+Basic dataset to extract every case:
+
+
+```{r}
+full_set <- subset(data,
+                   select = c(sp, temporada, sexo, estadio, iso1, iso2))
+head(full_set)
+```
+
+### Custom wrapper around SIBER:
+
+```{r}
+custom_siber <- function(data, var_col, lbls, sp_col, colors, gp_label,
+                         n.burnin = 30000, n.iter = 2000){
+  
+  subdata <- data[,c(sp_col, var_col, "iso1", "iso2")]
+  subdata$group <- factor(subdata[,var_col], labels = seq_along(lbls))
+  subdata$community <- 1
+  
+  species <- unique(data[, sp_col])
+  
+  # Global directory for the variable
+  wd <- paste(getwd(), "/output/SIBER/", var_col, sep = "")
+  
+  # If the directory does not exist, create it:
+  if (dir.exists(wd) == F) {dir.create(wd)}
+  
+  # Empty lists to store the results:
+  siber_objs <- list()
+  ellipses <- list()
+
+  summaries <- list()
+  autocorr_plots <- list()
+  
+  sea_b <- list()
+  sea_bt <- data.frame()
+  hdis <- data.frame()
+  ecc <- data.frame()
+  
+  # Posterior differences
+  # Define the comparisons
+  comps <- expand.grid(a = unique(as.integer(subdata$group)),
+                       b = unique(as.integer(subdata$group)))
+  
+  comps <- comps[(comps$a != comps$b & comps$b > comps$a), ]
+  comps <- comps[order(comps$a),]
+  
+  # Put the results in different objects:
+  diffs <- data.frame()
+  diff_glob <- data.frame()
+  p_sup <- data.frame()
+  
+  # List with MCMC parameters:
+  parms <- list()
+    parms <- list()
+    parms$n.iter   <- n.iter    
+    parms$n.burnin <- n.burnin   
+    parms$n.thin   <- 1          
+    parms$n.chains <- 3
+    parms$save.output <- TRUE
+    
+  # List with prior parameters:
+  priors <- list()
+    priors$R <- 1 * diag(2)
+    priors$k <- 2
+    priors$tau.mu <- 1.0E-3
+    
+    
+  # Basic ellipses plot
+  ellipses <- ggplot(data = subdata, aes(x = iso2, y = iso1, color = as.factor(group))) +
+                     geom_point(alpha = 0.7) +
+                     stat_ellipse(level = 0.4) +
+                     geom_convexhull(fill = NA, linetype = "dashed", alpha = 0.05) +
+                     scale_color_manual(values = global_colors, name = gp_label, labels = lbls) +
+                     scale_x_continuous(limits = xlims, breaks = c(seq(-18, -8, 2))) +
+                     scale_y_continuous(limits = ylims, breaks = c(seq(10, 20, 2))) +
+                     labs(title = element_blank(),
+                          x = expression({delta}^13*C~'(\u2030)'),
+                          y = expression({delta}^15*N~'(\u2030)')) +
+                     theme_bw() +
+                     theme(aspect.ratio = 1,
+                           panel.grid.major = element_blank(),
+                           panel.grid.minor = element_blank(),
+                           #legend.position = c(0.2, 0.15),
+                           legend.background = element_blank()) +
+                     facet_wrap(paste("~", sp_col, sep = ""))
+  
+  cairo_pdf(paste(wd, "ellipses.pdf", sep = "/"), family = "Times", height = 4, width = 8)
+    print(ellipses)
+  dev.off()
+    
+  # Loop through species:
+    for (i in seq_along(species)) {
+      
+      # Output directory:
+      gpwd <- paste(wd, "/", species[i], sep = "")
+      if (dir.exists(gpwd) == F) {dir.create(gpwd)}
+      parms$save.dir <- gpwd
+      
+      # SIBER objects
+      siber_objs[[species[i]]] <- createSiberObject(subdata[subdata[, sp_col] == species[i],3:6])
+      
+      # Fitting the Bayesian models:
+      ellipses[[species[i]]] <- siberMVN(siber_objs[[i]], parms, priors)
+      
+      # Diagnostics
+      ## Get all the files in the directory
+      all_files <- dir(parms$save.dir, full.names = T)
+      model_files <- all_files[grep("jags_output", all_files)]
+      
+      # Empty lists to store the results
+      summaries[[species[i]]] <- list()
+      autocorr_plots[[species[i]]] <- list()
+      
+      # For each model:
+      for (j in seq_along(model_files)) {
+        # Load the model output
+        load(model_files[j])
+        # Create a list with the output
+        mcmc_list <- coda::as.mcmc(do.call("cbind", output))
+        
+        # Store the summary for each model
+        summaries[[species[i]]][[j]]<- MCMCsummary(output,
+                                                   params = "all",
+                                                   probs = c(0.025, 0.975),
+                                                   round = 3)
+        # Write the summary to a csv file
+        write.csv(summaries[[species[i]]][[j]],
+                  paste(gpwd, sprintf("summary_%s.csv",
+                                      lbls[j]), sep = "/"),
+                  row.names = T)
+        
+        # Plot the trace in a pdf
+        MCMCtrace(output,
+                  params = "all",
+                  iter = parms$n.iter,
+                  Rhat = T,
+                  n.eff = T,
+                  ind = T,
+                  type = "density",
+                  open_pdf = F,
+                  #filename = paste(gpwd, sprintf("/MCMCtrace_%d", j), sep = ""))
+                  filename = sprintf("MCMCtrace_%s", lbls[j]),
+                  wd = gpwd)
+        
+        # Store the autocorrelation plots
+        autocorr_plots[[species[i]]][[j]] <- mcmc_acf(ellipses[[species[i]]][j]) + labs(title = lbls[j])
+        
+        
+      } # End of models loop
+      
+      # Autocorrelation plots for every model for every species
+      cairo_pdf(paste(gpwd, "/autocorr.pdf", sep = ""), family = "Times")
+        gridExtra::grid.arrange(grobs = autocorr_plots[[species[i]]], nrow = 2)
+      dev.off()
+      
+      # Generation of the ellipses
+      sea_b[[species[i]]] <- siberEllipses(ellipses[[species[i]]])
+      
+      # Fill the data.frame with the SEAb data
+      sea_bt <- rbind(sea_bt,
+                      cbind(reshape2::melt(as.data.frame(sea_b[[species[i]]])),
+                            sp_col = species[i]))
+      if (i == max(seq_along(species))) {colnames(sea_bt) <- c(var_col, "SEAb", sp_col)}
+      
+      
+      # Create a data.frame to store the hdis
+      # Calculate posterior means
+      means <- t(as.data.frame(t(apply(sea_b[[species[i]]], 2, FUN = mean))))
+      # Calculate hdis
+      hdi <- rbind(as.data.frame(t(apply(sea_b[[species[i]]], 2, FUN = HDInterval::hdi))))
+      # Put the results in a data.frame
+      temp <- data.frame(hdi, means, sp = species[i])
+      
+      # Fill the data.frame with the results
+      hdis <- rbind(hdis, temp)
+      
+      if (i == max(seq_along(species))) {hdis[var_col] <- paste("V", rep(seq_along(model_files)), sep = "")}
+      
+      # Compute the posterior SEAb differences
+      for (k in seq_along(comps$a)) {
+        a <- comps$a[k]
+        b <- comps$b[k]
+        comp <- paste(lbls[a], "-", lbls[b])
+        diff <- sea_b[[species[i]]][, a] - sea_b[[species[i]]][, b]
+        sup <- subset(diff, diff>0, select = diff)
+  
+        diffs <- rbind(diffs,
+                       data.frame(comp = comp,
+                                  diff = diff,
+                                  sp = species[i]))
+        diff_glob <- rbind(diff_glob,
+                           data.frame(comp = comp,
+                                      mean = mean(diff),
+                                      IQr = t(HDInterval::hdi(diff, credMass = 0.5)),
+                                      hdi = t(HDInterval::hdi(diff, credMass = 0.95)),
+                                      sp = species[i]
+                                      )
+                           )
+        p_sup <- rbind(p_sup,
+                       data.frame(comp = comp,
+                                  p_sup = (length(sup)/length(diff))*100,
+                                  sp = species[i]))
+    }
+    
+    diff_glob$comp <- factor(diff_glob$comp, ordered = T)
+      
+    }# End of species loop
+    
+    # Violin plot of SEAb
+    seab <- ggplot() +
+              geom_violin(data = sea_bt, aes_string(x = var_col, y = "SEAb", fill = var_col, color = var_col),
+                          show.legend = F, alpha = 0.3) +
+              geom_boxplot(data = sea_bt,
+                           aes_string(x = var_col, y = "SEAb", fill = var_col, color = var_col),
+                           alpha = 0.5, width = 0.05, notch = T, show.legend = F,
+                           outlier.shape = NA, coef = 0) +
+              scale_fill_manual(values = global_colors) +
+              scale_color_manual(values = global_colors) +
+              # geom_linerange(data = hdi,
+              #                aes_string(x = var_col, ymin = "lower", ymax = "upper", color = var_col),
+              #                show.legend = F) + # Fix needed
+              theme_bw() +
+              theme(aspect.ratio = 1,
+                    panel.grid.major = element_blank(),
+                    panel.grid.minor = element_blank(),
+                    legend.position = c(0.2, 0.15),
+                    legend.background = element_blank()) +
+              labs(x = gp_label,
+                   y = expression("SEAb " ('\u2030' ^2) )) +
+              scale_x_discrete(labels = lbls) +
+              facet_wrap(paste(".~", sp_col, sep = ""), ncol = 3, scales = "free_y")
+
+      cairo_pdf(paste(wd, "SEAb.pdf", sep = "/"), family = "Times", height = 4, width = 8)
+        print(seab)
+      dev.off()
+      
+    print("All models have been run. Check your working directory for the results")
+    return(list(summaries = summaries,
+                sea_b = sea_b,
+                sea_bt = sea_bt,
+                hdis = hdis,
+                diffs = diffs,
+                diff_glob = diff_glob,
+                p_sup = p_sup,
+                ellips = ellipses))
+}
+```
+
+### Sex
+
+```{r}
+lbls <- c("Female", "Male")
+sex_siber <- custom_siber(full_set, var_col = "sexo", lbls, sp_col = "sp", n.burnin = 7000,
+                          colors = global_colors, gp_label = "Sex")
+```
+
+Eccentricities:
+
+```{r}
+ecc <- data.frame()
+for (sp in seq_along(species)) {
+  for (j in seq_along(lbls)) {
+    ecc <- rbind(ecc,
+               data.frame(sp = species[sp],
+                          j = lbls[j],
+                          ecc = apply(sex_siber$ellips[[species[sp]]][[j]][,1:4], 1, mat_ecc),
+                          theta = apply(sex_siber$ellips[[species[sp]]][[j]][,1:4], 1, mat_theta)))
+    
+  }
+}
+```
+
+```{r}
+ec <- ecc %>% group_by(sp, j) %>% summarise(IQR.lower = hdi(ecc, credMass = 0.5)[1],
+                                            IQR.upper = hdi(ecc, credMass = 0.5)[2],
+                                            hdi.lower = hdi(ecc)[1],
+                                            hdi.upper = hdi(ecc)[2],
+                                            mean = mean(ecc))
+ec
+```
+
+```{r}
+ggplot(data = ecc, aes(x = j, y = ecc, group = j, color = factor(j))) +
+  geom_violin(fill = NA, show.legend = F) +
+  #geom_point(aes(x = sp, y = mean), data = ag, show.legend = F) +
+  #geom_errorbar(aes(x = sp, ymin = IQ.lower, ymax = IQ.upper, group = sp), data = ag) +
+  geom_boxplot(width = 0.1, show.legend = F) +
+  theme_bw() +
+  labs(title = "SEAB Eccentricity",
+       x = element_blank(),
+       y = element_blank()) +
+  scale_color_manual(values = global_colors) +
+  theme(aspect.ratio = 1,
+                       panel.grid.major = element_blank(),
+                       panel.grid.minor = element_blank(),
+                       legend.position = c(0.15, 0.1),
+                       legend.background = element_blank()) +
+  facet_wrap(~sp)
+```
+
+Theta:
+
+```{r}
+th <- ecc %>% group_by(sp, j) %>% summarise(IQR.lower = hdi(theta, credMass = 0.5)[1],
+                                            IQR.upper = hdi(theta, credMass = 0.5)[2],
+                                            hdi.lower = hdi(theta)[1],
+                                            hdi.upper = hdi(theta)[2],
+                                            mean = mean(theta))
+th
+```
+
+```{r}
+ggplot(data = ecc, aes(x = j, y = theta, group = j, color = factor(j))) +
+  geom_violin(fill = NA, show.legend = F) +
+  #geom_point(aes(x = sp, y = mean), data = ag, show.legend = F) +
+  #geom_errorbar(aes(x = sp, ymin = IQ.lower, ymax = IQ.upper, group = sp), data = ag) +
+  geom_boxplot(width = 0.1, show.legend = F) +
+  theme_bw() +
+  labs(title = "SEAB theta",
+       x = element_blank(),
+       y = element_blank()) +
+  scale_color_manual(values = global_colors) + 
+  theme(aspect.ratio = 1,
+                       panel.grid.major = element_blank(),
+                       panel.grid.minor = element_blank(),
+                       legend.position = c(0.15, 0.1),
+                       legend.background = element_blank()) +
+  facet_wrap(~sp)
+```
+
+### Age
+```{r}
+lbls <- c("Adult", "Juvenile")
+age_siber <- custom_siber(full_set, var_col = "estadio", lbls, sp_col = "sp", n.burnin = 7000,
+                          colors = global_colors, gp_label = "Age")
+```
+
+Eccenctricities:
+
+```{r}
+ecc <- data.frame()
+for (sp in seq_along(species)) {
+  for (j in seq_along(lbls)) {
+    ecc <- rbind(ecc,
+               data.frame(sp = species[sp],
+                          j = lbls[j],
+                          ecc = apply(age_siber$ellips[[species[sp]]][[j]][,1:4], 1, mat_ecc),
+                          theta = apply(age_siber$ellips[[species[sp]]][[j]][,1:4], 1, mat_theta)))
+  }
+}
+```
+
+```{r}
+ec <- ecc %>% group_by(sp, j) %>% summarise(IQR.lower = hdi(ecc, credMass = 0.5)[1],
+                                            IQR.upper = hdi(ecc, credMass = 0.5)[2],
+                                            hdi.lower = hdi(ecc)[1],
+                                            hdi.upper = hdi(ecc)[2],
+                                            mean = mean(ecc))
+ec
+```
+
+```{r}
+ggplot(data = ecc, aes(x = j, y = ecc, group = j, color = factor(j))) +
+  geom_violin(fill = NA, show.legend = F) +
+  #geom_point(aes(x = sp, y = mean), data = ag, show.legend = F) +
+  #geom_errorbar(aes(x = sp, ymin = IQ.lower, ymax = IQ.upper, group = sp), data = ag) +
+  geom_boxplot(width = 0.1, show.legend = F) +
+  theme_bw() +
+  labs(title = "SEAB Eccentricity",
+       x = element_blank(),
+       y = element_blank()) +
+  scale_color_manual(values = global_colors) +
+  theme(aspect.ratio = 1,
+                       panel.grid.major = element_blank(),
+                       panel.grid.minor = element_blank(),
+                       legend.position = c(0.15, 0.1),
+                       legend.background = element_blank()) +
+  facet_wrap(~sp)
+```
+
+Theta:
+
+```{r}
+th <- ecc %>% group_by(sp, j) %>% summarise(IQR.lower = hdi(theta, credMass = 0.5)[1],
+                                            IQR.upper = hdi(theta, credMass = 0.5)[2],
+                                            hdi.lower = hdi(theta)[1],
+                                            hdi.upper = hdi(theta)[2],
+                                            mean = mean(theta))
+th
+```
+
+```{r}
+ggplot(data = ecc, aes(x = j, y = theta, group = j, color = factor(j))) +
+  geom_violin(fill = NA, show.legend = F) +
+  #geom_point(aes(x = sp, y = mean), data = ag, show.legend = F) +
+  #geom_errorbar(aes(x = sp, ymin = IQ.lower, ymax = IQ.upper, group = sp), data = ag) +
+  geom_boxplot(width = 0.1, show.legend = F) +
+  theme_bw() +
+  labs(title = "SEAB theta",
+       x = element_blank(),
+       y = element_blank()) +
+  scale_color_manual(values = global_colors) + 
+  theme(aspect.ratio = 1,
+                       panel.grid.major = element_blank(),
+                       panel.grid.minor = element_blank(),
+                       legend.position = c(0.15, 0.1),
+                       legend.background = element_blank()) +
+  facet_wrap(~sp)
+```
+
+### Season
+
+```{r}
+lbls <- c("Warm", "Cold")
+season_siber <- custom_siber(full_set, var_col = "temporada", lbls, sp_col = "sp",
+                             colors = global_colors, gp_label = "Season",
+                             n.burnin = 750000, n.iter = 10000) 
+```
+
+```{r}
+ecc <- data.frame()
+for (sp in seq_along(species)) {
+  for (j in seq_along(lbls)) {
+    ecc <- rbind(ecc,
+               data.frame(sp = species[sp],
+                          j = lbls[j],
+                          ecc = apply(season_siber$ellips[[species[sp]]][[j]][,1:4], 1, mat_ecc),
+                          theta = apply(season_siber$ellips[[species[sp]]][[j]][,1:4], 1, mat_theta)))
+  }
+}
+```
+
+```{r}
+ec <- ecc %>% group_by(sp, j) %>% summarise(IQR.lower = hdi(ecc, credMass = 0.5)[1],
+                                            IQR.upper = hdi(ecc, credMass = 0.5)[2],
+                                            hdi.lower = hdi(ecc)[1],
+                                            hdi.upper = hdi(ecc)[2],
+                                            mean = mean(ecc))
+ec
+```
+
+```{r}
+ggplot(data = ecc, aes(x = j, y = ecc, group = j, color = factor(j))) +
+  geom_violin(fill = NA, show.legend = F) +
+  #geom_point(aes(x = sp, y = mean), data = ag, show.legend = F) +
+  #geom_errorbar(aes(x = sp, ymin = IQ.lower, ymax = IQ.upper, group = sp), data = ag) +
+  geom_boxplot(width = 0.1, show.legend = F) +
+  theme_bw() +
+  labs(title = "SEAB Eccentricity",
+       x = element_blank(),
+       y = element_blank()) +
+  scale_color_manual(values = global_colors) +
+  theme(aspect.ratio = 1,
+                       panel.grid.major = element_blank(),
+                       panel.grid.minor = element_blank(),
+                       legend.position = c(0.15, 0.1),
+                       legend.background = element_blank()) +
+  facet_wrap(~sp)
+```
+
+Theta:
+
+```{r}
+th <- ecc %>% group_by(sp, j) %>% summarise(IQR.lower = hdi(theta, credMass = 0.5)[1],
+                                            IQR.upper = hdi(theta, credMass = 0.5)[2],
+                                            hdi.lower = hdi(theta)[1],
+                                            hdi.upper = hdi(theta)[2],
+                                            mean = mean(theta))
+th
+```
+
+```{r}
+ggplot(data = ecc, aes(x = j, y = theta, group = j, color = factor(j))) +
+  geom_violin(fill = NA, show.legend = F) +
+  #geom_point(aes(x = sp, y = mean), data = ag, show.legend = F) +
+  #geom_errorbar(aes(x = sp, ymin = IQ.lower, ymax = IQ.upper, group = sp), data = ag) +
+  geom_boxplot(width = 0.1, show.legend = F) +
+  theme_bw() +
+  labs(title = "SEAB theta",
+       x = element_blank(),
+       y = element_blank()) +
+  scale_color_manual(values = global_colors) + 
+  theme(aspect.ratio = 1,
+                       panel.grid.major = element_blank(),
+                       panel.grid.minor = element_blank(),
+                       legend.position = c(0.15, 0.1),
+                       legend.background = element_blank()) +
+  facet_wrap(~sp)
+```
+
+### Final forestplot:
+
+```{r}
+forest_data <- rbind(age_siber[[6]], season_siber[[6]], sex_siber[[6]])
+
+forest <- ggplot(data = forest_data) +
+               geom_vline(xintercept = 0, linetype = "dashed", color = "#C9C8C8", size = 1.2) +
+               geom_linerange(aes(y = comp, xmin = IQr.lower, xmax = IQr.upper),
+                              color = global_colors[1], size = 1) +
+               geom_linerange(aes(y = comp, xmin = hdi.lower, xmax = hdi.upper),
+                              color = global_colors[1]) +
+               geom_point(aes(x = mean, y = comp), color = global_colors[1], fill = "white", size = 1.5, shape = 21) +
+               theme_bw() +
+               theme(aspect.ratio = 1,
+                     panel.grid.major = element_blank(),
+                     panel.grid.minor = element_blank(),
+                     legend.position = c(0.2, 0.15),
+                     legend.background = element_blank()) +
+               labs(title = element_blank(),
+                    x = element_blank(),
+                    y = element_blank()) + facet_wrap(~sp)
+
+cairo_pdf("output/SIBER/forest_cats.pdf", family = "Times", width = 4, height = 2)
+forest
+dev.off()
+```
+
+```{r}
+season_siber$p_sup
+```
+
+```{r}
+sex_siber$p_sup
+```
+
+```{r}
+age_siber$p_sup
+```
+

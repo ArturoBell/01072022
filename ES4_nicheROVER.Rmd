@@ -1,0 +1,95 @@
+# Isotopic niche overlaps
+
+## Libraries
+
+```{r}
+#| message: false
+library(nicheROVER)
+library(ggplot2)
+library(dplyr)
+```
+
+## Data
+
+```{r}
+data <- read.csv("data/glm.csv", header = T)
+colnames(data)[6:7] <- c("iso1", "iso2")
+global <- subset(data, select = c(sp, iso1, iso2))
+global$group <- factor(global$sp, labels = c(1:3))
+global$community <- 1
+head(global)
+```
+## Projections of niche regions
+
+Basic parameters for plotting:
+
+```{r}
+global_colors <- c('#1f77b4', '#ff7f0e', '#2ca02c')
+xlims <- c(min(global$iso2)-0.5, max(global$iso2)+0.5)
+ylims <- c(min(global$iso1)-0.5, max(global$iso1)+0.5)
+species <- unique(global$sp)
+```
+
+`nicheROVER` performs a Bayesian estimation of the isotopic niche and then calculates the probability of its overlap with the isotopic niche of another.
+```{r}
+# Number of posterior samples
+nsamples <- 1000
+
+# Estimates of the isotopic niche
+bpar <- tapply(1:nrow(global), global$sp,
+               function(ii) niw.post(nsamples = nsamples,
+                                     X = global[ii, 2:3]))
+
+bdata <- tapply(1:nrow(global),
+                global$sp,
+                function(ii) X = global[ii, 2:3])
+```
+
+Plot of the isotopic niches:
+
+```{r}
+niche.plot(niche.par = bpar,
+           niche.data = bdata,
+           pfrac = 0.05,
+           iso.names = expression(delta^{15}*N, delta^{13}*C),
+           col = global_colors,
+           xlab = expression ("Isotope ratio (‰)"))
+```
+
+Mean overlaps with the means for 95% and 99% ellipses:
+
+```{r}
+over.stat <- overlap(bpar,
+                     nreps = nsamples,
+                     nprob = 1e3,
+                     alpha = c(0.95, 0.99))
+over.mean <- apply(over.stat,
+                   c(1:2, 4),
+                   mean)*100
+round(over.mean)
+```
+
+95% Highest density intervals for the overlaps
+
+```{r}
+over.cred <- apply(over.stat*100,
+                   c(1:2, 4),
+                   quantile,
+                   prob = c(.025, .975),
+                   na.rm = TRUE)
+round(over.cred[,,,1]) # display alpha = .95 niche region
+```
+
+Plot with the posterior distributions of the niche overlaps:
+
+```{r}
+over.stat <- overlap(bpar, nreps = nsamples, nprob = 1e3, alpha = .95)
+#cairo_pdf("nicheROVER.pdf", width = 7, height = 7/1.61, family = "Times")
+overlap.plot(over.stat, col = global_colors,
+             mean.cred.col = "firebrick",
+             equal.axis = TRUE,
+             xlab = "Overlap Probability (%)")
+#dev.off()
+```
+
+
