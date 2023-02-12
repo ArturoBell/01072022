@@ -8,13 +8,76 @@ book:
   repo-actions: [issue]
   page-navigation: true
   author:
-  - name: "Arturo Bell Enríquez-García"
-    affiliations:
-      name: Instituto Politécnico Nacional, Centro Interdisciplinario de Ciencias Marinas
-      address: Av. Instituto Politécnico Nacional s/n
-      city: La Paz
-      state: Baja California Sur
-      country: Mexico
+    - name: Arturo Bell Enríquez-García
+      affiliations:
+        - id: CICIMAR
+          name: Instituto Politécnico Nacional, Centro Interdisciplinario de Ciencias Marinas
+          address: Av. Instituto Politécnico Nacional s/n
+          city: La Paz
+          state: Baja California Sur
+          country: Mexico
+          postal-code: 23094
+    - name: Víctor H. Cruz-Escalona
+      affiliations:
+        - ref: CICIMAR
+    - name: José Carriquiry
+      affiliations:
+        - id: UABC
+          name: Universidad Autónoma de Baja California, Instituto de Investigaciones Oceanológicas
+          address: Carretera Transpeninsular Ensenada-Tijuana No. 3917, Fraccionamiento Playitas
+          city: Ensenada
+          state: Baja California
+          country: Mexico
+          postal-code: 22860
+    - name: Nicolás Roberto Ehemann
+      affiliations:
+        - ref: CICIMAR
+        - id: Konstanz
+          name: Zoology and Evolutionary Biology, Department of Biology, University of Konstanz
+          city: Konstanz
+          country: Germany
+    - name: Paola Mejía-Falla
+      affiliations:
+        - id: WCS
+          name: Wildlife Conservation Society
+          address: Av. 5N No. 22N-11
+          city: Cali
+          country: Colombia
+        - id: SQUALUS
+          name: Fundación Colombiana para la Investigación y Conservación de Tiburones y Rayas, SQUALUS
+          address: Calle 10A, No. 72-35, Apto. 310 E
+          city: Cali
+          country: Colombia
+    - name: Emigdio Marín-Enríquez
+      affiliations:
+        - id: UAS
+          name: Facultad de Ciencias del Mar, CONACyT, Universidad Autónoma de Sinaloa
+          address: Paseo Claussen s/n
+          city: Mazatlán
+          state: Sinaloa
+          country: Mexico
+          postal-code: 82000
+    - name: Christina Verónica Treinen-Crespo
+      affiliations:
+        - ref: UABC
+    - name: José Roberto Vélez-Tacuri
+      affiliations:
+        - id: RACSE
+          name: Fundación RACSE, Red de Agentes por la Conservación y Sostenibilidad de los Ecosistemas
+          address: Av. Florencia y Calle Oliva Miranda
+          city: Manabí
+          country: Ecuador
+        - id: ULEAM
+          name: Facultad Ciencias del Mar, Universidad Laica Eloy Alfaro de Manabí
+          address: Ciudadela Universitaria V\'ia a San Mateo
+          city: Manta
+          state: Manabí
+          country: Ecuador
+    - name: Andrés F. Navia
+      affiliations:
+        - ref: SQUALUS
+    
+
   date: "11/02/2023"
   chapters:
     - index.qmd
