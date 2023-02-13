@@ -452,28 +452,28 @@ Initializing model</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "H.dipterurus"
               mean    sd   2.5%  97.5% Rhat n.eff
-Sigma2[1,1]  1.030 0.166  0.759  1.404    1  6231
-Sigma2[2,1] -0.559 0.131 -0.839 -0.332    1  6000
-Sigma2[1,2] -0.559 0.131 -0.839 -0.332    1  6000
-Sigma2[2,2]  1.028 0.165  0.754  1.397    1  5865
-mu[1]       -0.003 0.114 -0.232  0.218    1  3229
-mu[2]        0.003 0.112 -0.218  0.223    1  3149
+Sigma2[1,1]  1.028 0.165  0.754  1.408    1  5957
+Sigma2[2,1] -0.557 0.134 -0.852 -0.325    1  5178
+Sigma2[1,2] -0.557 0.134 -0.852 -0.325    1  5178
+Sigma2[2,2]  1.025 0.165  0.757  1.398    1  5398
+mu[1]       -0.001 0.113 -0.221  0.221    1  3257
+mu[2]        0.000 0.114 -0.223  0.226    1  3082
 [1] "N.entemedor"
               mean    sd   2.5%  97.5% Rhat n.eff
-Sigma2[1,1]  1.031 0.179  0.737  1.434    1  5663
-Sigma2[2,1] -0.682 0.153 -1.022 -0.424    1  6000
-Sigma2[1,2] -0.682 0.153 -1.022 -0.424    1  6000
-Sigma2[2,2]  1.029 0.182  0.735  1.444    1  6000
-mu[1]       -0.005 0.122 -0.242  0.229    1  2254
-mu[2]        0.005 0.121 -0.233  0.241    1  2368
+Sigma2[1,1]  1.030 0.184  0.736  1.444    1  6353
+Sigma2[2,1] -0.682 0.155 -1.037 -0.427    1  5830
+Sigma2[1,2] -0.682 0.155 -1.037 -0.427    1  5830
+Sigma2[2,2]  1.027 0.179  0.735  1.433    1  6244
+mu[1]       -0.002 0.124 -0.242  0.240    1  2232
+mu[2]        0.003 0.122 -0.238  0.241    1  2302
 [1] "R.steindachneri"
               mean    sd   2.5%  97.5% Rhat n.eff
-Sigma2[1,1]  1.031 0.175  0.744  1.422    1  6000
-Sigma2[2,1] -0.774 0.154 -1.114 -0.521    1  5999
-Sigma2[1,2] -0.774 0.154 -1.114 -0.521    1  5999
-Sigma2[2,2]  1.028 0.173  0.738  1.410    1  5909
-mu[1]       -0.003 0.116 -0.235  0.224    1  1883
-mu[2]        0.003 0.116 -0.225  0.238    1  1754</code></pre>
+Sigma2[1,1]  1.025 0.172  0.742  1.415    1  6000
+Sigma2[2,1] -0.770 0.153 -1.121 -0.519    1  5829
+Sigma2[1,2] -0.770 0.153 -1.121 -0.519    1  5829
+Sigma2[2,2]  1.026 0.173  0.751  1.417    1  5797
+mu[1]        0.000 0.117 -0.229  0.238    1  1729
+mu[2]        0.001 0.117 -0.231  0.227    1  1813</code></pre>
 </div>
 </div>
 </section>
@@ -485,12 +485,12 @@ mu[2]        0.003 0.116 -0.225  0.238    1  1754</code></pre>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sea_b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       V1               V2              V3       
- Min.   : 6.156   Min.   :1.384   Min.   :1.134  
- 1st Qu.: 8.890   1st Qu.:1.969   1st Qu.:1.541  
- Median : 9.587   Median :2.133   Median :1.664  
- Mean   : 9.673   Mean   :2.158   Mean   :1.680  
- 3rd Qu.:10.379   3rd Qu.:2.324   3rd Qu.:1.803  
- Max.   :16.025   Max.   :3.365   Max.   :2.712  </code></pre>
+ Min.   : 6.439   Min.   :1.437   Min.   :1.150  
+ 1st Qu.: 8.880   1st Qu.:1.973   1st Qu.:1.542  
+ Median : 9.571   Median :2.137   Median :1.664  
+ Mean   : 9.647   Mean   :2.156   Mean   :1.679  
+ 3rd Qu.:10.332   3rd Qu.:2.316   3rd Qu.:1.799  
+ Max.   :15.842   Max.   :3.740   Max.   :2.513  </code></pre>
 </div>
 </div>
 <p>Graphical comparisons. First, transform the object to a data.frame and melt it to long format:</p>
@@ -505,7 +505,7 @@ mu[2]        0.003 0.116 -0.225  0.238    1  1754</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["sp"],"name":[1],"type":["fct"],"align":["left"]},{"label":["SEAb"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"V1","2":"12.468920","_rn_":"1"},{"1":"V1","2":"10.197063","_rn_":"2"},{"1":"V1","2":"9.871233","_rn_":"3"},{"1":"V1","2":"9.389870","_rn_":"4"},{"1":"V1","2":"7.895965","_rn_":"5"},{"1":"V1","2":"9.403861","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["sp"],"name":[1],"type":["fct"],"align":["left"]},{"label":["SEAb"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"V1","2":"8.914941","_rn_":"1"},{"1":"V1","2":"10.624414","_rn_":"2"},{"1":"V1","2":"9.179136","_rn_":"3"},{"1":"V1","2":"10.585837","_rn_":"4"},{"1":"V1","2":"10.067971","_rn_":"5"},{"1":"V1","2":"9.806880","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -520,7 +520,7 @@ mu[2]        0.003 0.116 -0.225  0.238    1  1754</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["lower"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["upper"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["means"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["sp"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"7.727926","2":"11.950495","3":"9.672661","4":"V1","_rn_":"V1"},{"1":"1.661010","2":"2.672785","3":"2.157860","4":"V2","_rn_":"V2"},{"1":"1.311612","2":"2.073098","3":"1.679747","4":"V3","_rn_":"V3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["lower"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["upper"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["means"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["sp"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"7.667721","2":"11.895765","3":"9.646621","4":"V1","_rn_":"V1"},{"1":"1.675022","2":"2.702570","3":"2.156105","4":"V2","_rn_":"V2"},{"1":"1.315385","2":"2.064106","3":"1.678576","4":"V3","_rn_":"V3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -599,7 +599,7 @@ mu[2]        0.003 0.116 -0.225  0.238    1  1754</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["comp"],"name":[1],"type":["ord"],"align":["right"]},{"label":["mean"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["IQr.lower"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["IQr.upper"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus - N.entemedor","2":"7.5148010","3":"6.5131248","4":"8.014851","5":"5.526329","6":"9.874361"},{"1":"H.dipterurus - R.steindachneri","2":"7.9929134","3":"6.9908910","4":"8.463418","5":"5.969507","6":"10.264099"},{"1":"N.entemedor - R.steindachneri","2":"0.4781124","3":"0.2262497","4":"0.654790","5":"-0.151207","6":"1.144040"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["comp"],"name":[1],"type":["ord"],"align":["right"]},{"label":["mean"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["IQr.lower"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["IQr.upper"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus - N.entemedor","2":"7.490516","3":"6.6852352","4":"8.1572218","5":"5.3568494","6":"9.735957"},{"1":"H.dipterurus - R.steindachneri","2":"7.968045","3":"7.1366182","4":"8.5754000","5":"5.8217446","6":"10.128512"},{"1":"N.entemedor - R.steindachneri","2":"0.477529","3":"0.2354472","4":"0.6605348","5":"-0.1707442","6":"1.107988"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -611,7 +611,7 @@ mu[2]        0.003 0.116 -0.225  0.238    1  1754</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["comp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["p_sup"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus - N.entemedor","2":"100.00"},{"1":"H.dipterurus - R.steindachneri","2":"100.00"},{"1":"N.entemedor - R.steindachneri","2":"93.05"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["comp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["p_sup"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus - N.entemedor","2":"100.00"},{"1":"H.dipterurus - R.steindachneri","2":"100.00"},{"1":"N.entemedor - R.steindachneri","2":"93.15"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -682,7 +682,7 @@ mu[2]        0.003 0.116 -0.225  0.238    1  1754</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["sp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["IQR.lower"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["IQR.upper"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus","2":"0.8346842","3":"0.8801318","4":"0.7715221","5":"0.9144708","6":"0.8459817"},{"1":"N.entemedor","2":"0.9012803","3":"0.9315867","4":"0.8583415","5":"0.9504339","6":"0.9062171"},{"1":"R.steindachneri","2":"0.9216115","3":"0.9438784","4":"0.8938850","5":"0.9598106","6":"0.9288832"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["sp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["IQR.lower"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["IQR.upper"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus","2":"0.8350407","3":"0.8830619","4":"0.7695525","5":"0.9134557","6":"0.8454553"},{"1":"N.entemedor","2":"0.8985210","3":"0.9282145","4":"0.8568975","5":"0.9486836","6":"0.9062506"},{"1":"R.steindachneri","2":"0.9248932","3":"0.9467566","4":"0.8950346","5":"0.9603381","6":"0.9284888"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -719,7 +719,7 @@ mu[2]        0.003 0.116 -0.225  0.238    1  1754</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["sp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["IQR.lower"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["IQR.upper"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus","2":"-0.9872372","3":"-0.8772714","4":"-1.0967750","5":"-0.7666861","6":"-0.9303628"},{"1":"N.entemedor","2":"-1.0410067","3":"-0.9585062","4":"-1.1288270","5":"-0.8878476","6":"-1.0071422"},{"1":"R.steindachneri","2":"-0.9322356","3":"-0.8653043","4":"-0.9977183","5":"-0.7977631","6":"-0.9018879"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["sp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["IQR.lower"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["IQR.upper"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus","2":"-0.9794702","3":"-0.8702427","4":"-1.0960869","5":"-0.7684914","6":"-0.9301416"},{"1":"N.entemedor","2":"-1.0495115","3":"-0.9681399","4":"-1.1260333","5":"-0.8854141","6":"-1.0073494"},{"1":"R.steindachneri","2":"-0.9420843","3":"-0.8756778","4":"-0.9988481","5":"-0.8040063","6":"-0.9032535"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -1118,7 +1118,7 @@ argument.</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["sp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["j"],"name":[2],"type":["chr"],"align":["left"]},{"label":["IQR.lower"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["IQR.upper"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus","2":"Female","3":"0.7981008","4":"0.8785703","5":"0.6741250","6":"0.9318639","7":"0.8097942"},{"1":"H.dipterurus","2":"Male","3":"0.8438639","4":"0.8993429","5":"0.7600353","6":"0.9383273","7":"0.8536675"},{"1":"N.entemedor","2":"Female","3":"0.8875702","4":"0.9258379","5":"0.8295416","6":"0.9457254","7":"0.8920490"},{"1":"N.entemedor","2":"Male","3":"0.9297653","4":"0.9699169","5":"0.8445864","6":"0.9880197","7":"0.9287455"},{"1":"R.steindachneri","2":"Female","3":"0.9082005","4":"0.9469910","5":"0.8421948","6":"0.9676221","7":"0.9116917"},{"1":"R.steindachneri","2":"Male","3":"0.9347283","4":"0.9587855","5":"0.8960665","6":"0.9719422","7":"0.9372233"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["sp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["j"],"name":[2],"type":["chr"],"align":["left"]},{"label":["IQR.lower"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["IQR.upper"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus","2":"Female","3":"0.7989622","4":"0.8796527","5":"0.6697640","6":"0.9267412","7":"0.8113378"},{"1":"H.dipterurus","2":"Male","3":"0.8503502","4":"0.9062498","5":"0.7535318","6":"0.9331936","7":"0.8541996"},{"1":"N.entemedor","2":"Female","3":"0.8839915","4":"0.9224607","5":"0.8278115","6":"0.9456068","7":"0.8922746"},{"1":"N.entemedor","2":"Male","3":"0.9294742","4":"0.9694140","5":"0.8442406","6":"0.9887320","7":"0.9282221"},{"1":"R.steindachneri","2":"Female","3":"0.9060012","4":"0.9452177","5":"0.8375285","6":"0.9646688","7":"0.9098561"},{"1":"R.steindachneri","2":"Male","3":"0.9319512","4":"0.9560614","5":"0.8969883","6":"0.9719787","7":"0.9377626"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -1160,7 +1160,7 @@ argument.</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["sp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["j"],"name":[2],"type":["chr"],"align":["left"]},{"label":["IQR.lower"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["IQR.upper"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus","2":"Female","3":"-1.0737030","4":"-0.8779693","5":"-1.2708424","6":"-0.6686348","7":"-0.9752125"},{"1":"H.dipterurus","2":"Male","3":"-0.9745119","4":"-0.8331927","5":"-1.1202165","6":"-0.6871848","7":"-0.9045531"},{"1":"N.entemedor","2":"Female","3":"-1.0249990","4":"-0.9245580","5":"-1.1261026","6":"-0.8235411","7":"-0.9760777"},{"1":"N.entemedor","2":"Male","3":"-1.1659753","4":"-1.0194693","5":"-1.3097937","6":"-0.8431512","7":"-1.0819395"},{"1":"R.steindachneri","2":"Female","3":"-1.0858272","4":"-0.9696068","5":"-1.2126977","6":"-0.8635115","7":"-1.0400560"},{"1":"R.steindachneri","2":"Male","3":"-0.8803669","4":"-0.7997494","5":"-0.9578647","6":"-0.7181523","7":"-0.8391234"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["sp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["j"],"name":[2],"type":["chr"],"align":["left"]},{"label":["IQR.lower"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["IQR.upper"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus","2":"Female","3":"-1.0854478","4":"-0.8921510","5":"-1.2729399","6":"-0.6630885","7":"-0.9736850"},{"1":"H.dipterurus","2":"Male","3":"-0.9745740","4":"-0.8285622","5":"-1.1188469","6":"-0.6727801","7":"-0.9051321"},{"1":"N.entemedor","2":"Female","3":"-1.0328352","4":"-0.9289631","5":"-1.1262113","6":"-0.8279581","7":"-0.9779910"},{"1":"N.entemedor","2":"Male","3":"-1.1646525","4":"-1.0185342","5":"-1.3244651","6":"-0.8527372","7":"-1.0836683"},{"1":"R.steindachneri","2":"Female","3":"-1.1037859","4":"-0.9856144","5":"-1.2208745","6":"-0.8520272","7":"-1.0393926"},{"1":"R.steindachneri","2":"Male","3":"-0.8756791","4":"-0.7948503","5":"-0.9550714","6":"-0.7177309","7":"-0.8393721"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -1297,7 +1297,7 @@ argument.</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["sp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["j"],"name":[2],"type":["chr"],"align":["left"]},{"label":["IQR.lower"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["IQR.upper"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus","2":"Adult","3":"0.8282330","4":"0.8903924","5":"0.7306730","6":"0.9266455","7":"0.8394063"},{"1":"H.dipterurus","2":"Juvenile","3":"0.8126812","4":"0.8865360","5":"0.7032032","6":"0.9383311","7":"0.8285905"},{"1":"N.entemedor","2":"Adult","3":"0.8983801","4":"0.9324849","5":"0.8453612","6":"0.9499058","7":"0.9039146"},{"1":"N.entemedor","2":"Juvenile","3":"0.9361243","4":"0.9726691","5":"0.8557131","6":"0.9881099","7":"0.9342118"},{"1":"R.steindachneri","2":"Adult","3":"0.9321173","4":"0.9555019","5":"0.8971301","6":"0.9699314","7":"0.9372071"},{"1":"R.steindachneri","2":"Juvenile","3":"0.9202986","4":"0.9551101","5":"0.8579518","6":"0.9747386","7":"0.9243786"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["sp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["j"],"name":[2],"type":["chr"],"align":["left"]},{"label":["IQR.lower"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["IQR.upper"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus","2":"Adult","3":"0.8260843","4":"0.8883249","5":"0.7366522","6":"0.9289215","7":"0.8406300"},{"1":"H.dipterurus","2":"Juvenile","3":"0.8203378","4":"0.8915989","5":"0.6995226","6":"0.9339296","7":"0.8289838"},{"1":"N.entemedor","2":"Adult","3":"0.8994741","4":"0.9336588","5":"0.8490420","6":"0.9541888","7":"0.9047884"},{"1":"N.entemedor","2":"Juvenile","3":"0.9333681","4":"0.9699899","5":"0.8582381","6":"0.9876083","7":"0.9346489"},{"1":"R.steindachneri","2":"Adult","3":"0.9308651","4":"0.9537724","5":"0.8978105","6":"0.9689841","7":"0.9367649"},{"1":"R.steindachneri","2":"Juvenile","3":"0.9195041","4":"0.9559000","5":"0.8551811","6":"0.9725698","7":"0.9234391"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -1339,7 +1339,7 @@ argument.</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["sp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["j"],"name":[2],"type":["chr"],"align":["left"]},{"label":["IQR.lower"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["IQR.upper"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus","2":"Adult","3":"-1.0192700","4":"-0.8686909","5":"-1.194756","6":"-0.7268166","7":"-0.9560982"},{"1":"H.dipterurus","2":"Juvenile","3":"-1.0655883","4":"-0.8894062","5":"-1.257221","6":"-0.6913680","7":"-0.9764266"},{"1":"N.entemedor","2":"Adult","3":"-1.1548803","4":"-1.0610917","5":"-1.247524","6":"-0.9653405","7":"-1.1012906"},{"1":"N.entemedor","2":"Juvenile","3":"-1.0084247","4":"-0.8696474","5":"-1.164044","6":"-0.7085446","7":"-0.9364953"},{"1":"R.steindachneri","2":"Adult","3":"-0.9425947","4":"-0.8679709","5":"-1.021178","6":"-0.7977628","7":"-0.9072229"},{"1":"R.steindachneri","2":"Juvenile","3":"-0.8940390","4":"-0.7780347","5":"-1.015314","6":"-0.6664753","7":"-0.8356520"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["sp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["j"],"name":[2],"type":["chr"],"align":["left"]},{"label":["IQR.lower"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["IQR.upper"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus","2":"Adult","3":"-1.0398902","4":"-0.8875955","5":"-1.186585","6":"-0.7293320","7":"-0.9569450"},{"1":"H.dipterurus","2":"Juvenile","3":"-1.0585405","4":"-0.8818580","5":"-1.266019","6":"-0.6983168","7":"-0.9776207"},{"1":"N.entemedor","2":"Adult","3":"-1.1441362","4":"-1.0520468","5":"-1.238603","6":"-0.9627903","7":"-1.1010217"},{"1":"N.entemedor","2":"Juvenile","3":"-1.0025483","4":"-0.8595645","5":"-1.150895","6":"-0.7066114","7":"-0.9345378"},{"1":"R.steindachneri","2":"Adult","3":"-0.9419217","4":"-0.8674110","5":"-1.016439","6":"-0.7908149","7":"-0.9082599"},{"1":"R.steindachneri","2":"Juvenile","3":"-0.8834244","4":"-0.7701387","5":"-1.010117","6":"-0.6598778","7":"-0.8352047"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -1495,7 +1495,7 @@ argument.</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["sp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["j"],"name":[2],"type":["chr"],"align":["left"]},{"label":["IQR.lower"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["IQR.upper"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus","2":"Cold","3":"0.7672607","4":"0.8890343","5":"0.5374750","6":"0.9452227","7":"0.7731511"},{"1":"H.dipterurus","2":"Warm","3":"0.8312957","4":"0.8840295","5":"0.7597759","6":"0.9221160","7":"0.8453638"},{"1":"N.entemedor","2":"Cold","3":"0.9124129","4":"0.9408814","5":"0.8721079","6":"0.9595591","7":"0.9188736"},{"1":"N.entemedor","2":"Warm","3":"0.7954826","4":"0.9140186","5":"0.5489820","6":"0.9569996","7":"0.7883909"},{"1":"R.steindachneri","2":"Cold","3":"0.9510251","4":"0.9988411","5":"0.7319088","6":"0.9999586","7":"0.9199425"},{"1":"R.steindachneri","2":"Warm","3":"0.9230063","4":"0.9453711","5":"0.8923858","6":"0.9605133","7":"0.9283419"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["sp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["j"],"name":[2],"type":["chr"],"align":["left"]},{"label":["IQR.lower"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["IQR.upper"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus","2":"Cold","3":"0.7684460","4":"0.8901602","5":"0.5373076","6":"0.9462423","7":"0.7736592"},{"1":"H.dipterurus","2":"Warm","3":"0.8335884","4":"0.8861258","5":"0.7578385","6":"0.9204338","7":"0.8451661"},{"1":"N.entemedor","2":"Cold","3":"0.9119565","4":"0.9404773","5":"0.8706103","6":"0.9585148","7":"0.9186337"},{"1":"N.entemedor","2":"Warm","3":"0.7949214","4":"0.9134723","5":"0.5456988","6":"0.9546549","7":"0.7883783"},{"1":"R.steindachneri","2":"Cold","3":"0.9492268","4":"0.9975411","5":"0.7335973","6":"0.9998414","7":"0.9198243"},{"1":"R.steindachneri","2":"Warm","3":"0.9235390","4":"0.9457097","5":"0.8917718","6":"0.9600753","7":"0.9284487"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -1537,7 +1537,7 @@ argument.</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["sp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["j"],"name":[2],"type":["chr"],"align":["left"]},{"label":["IQR.lower"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["IQR.upper"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus","2":"Cold","3":"-1.2063716","4":"-0.8556392","5":"-1.570786","6":"-0.06947414","7":"-0.8996869"},{"1":"H.dipterurus","2":"Warm","3":"-1.0668039","4":"-0.9419327","5":"-1.186858","6":"-0.80972307","7":"-1.0011292"},{"1":"N.entemedor","2":"Cold","3":"-1.0792584","4":"-0.9943631","5":"-1.159050","6":"-0.90782531","7":"-1.0333869"},{"1":"N.entemedor","2":"Warm","3":"-1.1703329","4":"-0.8125900","5":"-1.568475","6":"-0.18758443","7":"-0.8655901"},{"1":"R.steindachneri","2":"Cold","3":"-0.6564433","4":"-0.3116919","5":"-1.262628","6":"0.29245750","7":"-0.4495855"},{"1":"R.steindachneri","2":"Warm","3":"-0.9590560","4":"-0.8910181","5":"-1.027382","6":"-0.82701556","7":"-0.9269349"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["sp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["j"],"name":[2],"type":["chr"],"align":["left"]},{"label":["IQR.lower"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["IQR.upper"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus","2":"Cold","3":"-1.1995009","4":"-0.8493990","5":"-1.570594","6":"-0.01046981","7":"-0.8940045"},{"1":"H.dipterurus","2":"Warm","3":"-1.0675266","4":"-0.9415085","5":"-1.185449","6":"-0.80814031","7":"-1.0008730"},{"1":"N.entemedor","2":"Cold","3":"-1.0806725","4":"-0.9955407","5":"-1.160515","6":"-0.90845447","7":"-1.0338610"},{"1":"N.entemedor","2":"Warm","3":"-1.1446524","4":"-0.7876141","5":"-1.570623","6":"-0.14325850","7":"-0.8579044"},{"1":"R.steindachneri","2":"Cold","3":"-0.6661639","4":"-0.3193341","5":"-1.306516","6":"0.23312213","7":"-0.4535253"},{"1":"R.steindachneri","2":"Warm","3":"-0.9598176","4":"-0.8920397","5":"-1.027583","6":"-0.82578641","7":"-0.9264236"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -1600,7 +1600,7 @@ argument.</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["comp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["p_sup"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sp"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Warm - Cold","2":"59.44667","3":"H.dipterurus"},{"1":"Warm - Cold","2":"24.25667","3":"N.entemedor"},{"1":"Warm - Cold","2":"18.58000","3":"R.steindachneri"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["comp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["p_sup"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sp"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Warm - Cold","2":"59.58000","3":"H.dipterurus"},{"1":"Warm - Cold","2":"24.52000","3":"N.entemedor"},{"1":"Warm - Cold","2":"18.59667","3":"R.steindachneri"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -1611,7 +1611,7 @@ argument.</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["comp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["p_sup"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sp"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Female - Male","2":"31.11667","3":"H.dipterurus"},{"1":"Female - Male","2":"11.91667","3":"N.entemedor"},{"1":"Female - Male","2":"21.98333","3":"R.steindachneri"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["comp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["p_sup"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sp"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Female - Male","2":"29.85000","3":"H.dipterurus"},{"1":"Female - Male","2":"12.18333","3":"N.entemedor"},{"1":"Female - Male","2":"21.48333","3":"R.steindachneri"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -1622,7 +1622,7 @@ argument.</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["comp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["p_sup"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sp"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Adult - Juvenile","2":"19.1166667","3":"H.dipterurus"},{"1":"Adult - Juvenile","2":"0.3833333","3":"N.entemedor"},{"1":"Adult - Juvenile","2":"78.5166667","3":"R.steindachneri"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["comp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["p_sup"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sp"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Adult - Juvenile","2":"18.4333333","3":"H.dipterurus"},{"1":"Adult - Juvenile","2":"0.3333333","3":"N.entemedor"},{"1":"Adult - Juvenile","2":"78.5000000","3":"R.steindachneri"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
