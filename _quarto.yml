@@ -78,7 +78,7 @@ book:
         - ref: SQUALUS
     
 
-  date: "11/02/2023"
+  date: "02/11/2023"
   chapters:
     - index.qmd
     - ES1_ML_counts.ipynb
