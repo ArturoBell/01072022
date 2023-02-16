@@ -1,6 +1,8 @@
 # Enríquez-García et al.: Trophic assessment of three sympatric batoid species in the Southern Gulf of California: It is all about sharing and coexistence
 
-## Supplementary Information:
+[![DOI](https://zenodo.org/badge/509621642.svg)](https://zenodo.org/badge/latestdoi/509621642)
+
+## Supplementary Information
 
 ### Code
 
