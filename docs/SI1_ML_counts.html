@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Electronic Supplements: Sharing and coexistence in Batoids - 1&nbsp; ML approach to classify species based on prey counts</title>
+<title>Electronic Supplements: Sharing and coexistence in Batoids - 1&nbsp; SI1: ML approach to classify species based on prey counts</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -112,7 +112,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./ES2_BHGLM.html" rel="next">
+<link href="./SI2_BHGLM.html" rel="next">
 <link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -155,7 +155,7 @@ div.csl-indent {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">ML approach to classify species based on prey counts</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">SI1: ML approach to classify species based on prey counts</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -183,27 +183,27 @@ div.csl-indent {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Index</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Code and data</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ES1_ML_counts.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">ML approach to classify species based on prey counts</span></a>
+  <a href="./SI1_ML_counts.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">SI1: ML approach to classify species based on prey counts</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ES2_BHGLM.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Hierarchical Bayesian Models to describe differences in isotopic values between and within species</span></a>
+  <a href="./SI2_BHGLM.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Hierarchical Bayesian Models to describe differences in isotopic values between and within species</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ES3_SIBER.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Amplitudes and comparisons of the isotopic niches</span></a>
+  <a href="./SI3_SIBER.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Amplitudes and comparisons of the isotopic niches</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ES4_nicheROVER.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Isotopic niche overlaps</span></a>
+  <a href="./SI4_nicheROVER.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Isotopic niche overlaps</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -239,7 +239,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">ML approach to classify species based on prey counts</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">SI1: ML approach to classify species based on prey counts</span></h1>
 </div>
 
 
@@ -412,7 +412,7 @@ Test AUC: 0.99</code></pre>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                       fnames <span class="op">=</span> feature_names)</span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.savefig(f'figures/{classification}/beeswarm_plot.pdf', bbox_inches = 'tight')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="ES1_ML_counts_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
+<p><img src="SI1_ML_counts_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>An easy way to corroborate those results is showing the total counts of sipunculids and bivalves for each species:</p>
@@ -472,7 +472,7 @@ Test AUC: 0.99</code></pre>
 <span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f'Test ind. # </span><span class="sc">{</span>random_row<span class="sc">}</span><span class="ss">; observed: </span><span class="sc">{</span>renamer(y_test[random_row])<span class="sc">}</span><span class="ss">'</span>)<span class="op">;</span></span>
 <span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co">#f.savefig(f'figures/{classification}/forceplot_{random_row}.pdf', bbox_inches = 'tight')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="ES1_ML_counts_files/figure-html/cell-16-output-1.png" class="img-fluid"></p>
+<p><img src="SI1_ML_counts_files/figure-html/cell-16-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell" data-execution_count="16">
@@ -488,7 +488,7 @@ Test AUC: 0.99</code></pre>
 <span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f'Test ind. #  </span><span class="sc">{</span>random_row<span class="sc">}</span><span class="ss">; observed class: </span><span class="sc">{</span>renamer(y_test[random_row])<span class="sc">}</span><span class="ss">'</span>)<span class="op">;</span></span>
 <span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co">#f.savefig(f'figures/{classification}/forceplot_{random_row}.pdf', bbox_inches = 'tight')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="ES1_ML_counts_files/figure-html/cell-17-output-1.png" class="img-fluid"></p>
+<p><img src="SI1_ML_counts_files/figure-html/cell-17-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell" data-execution_count="17">
@@ -503,7 +503,7 @@ Test AUC: 0.99</code></pre>
 <span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f'Test ind. #  </span><span class="sc">{</span>random_row<span class="sc">}</span><span class="ss">; observed class: </span><span class="sc">{</span>renamer(y_test[random_row])<span class="sc">}</span><span class="ss">'</span>)<span class="op">;</span></span>
 <span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co">#f.savefig(f'figures/{classification}/forceplot_{random_row}.pdf', bbox_inches = 'tight')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="ES1_ML_counts_files/figure-html/cell-18-output-1.png" class="img-fluid"></p>
+<p><img src="SI1_ML_counts_files/figure-html/cell-18-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
@@ -628,7 +628,7 @@ Test AUC: 0.6</code></pre>
 <span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>                       fnames <span class="op">=</span> feature_names)</span>
 <span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="ss">f'figures/Hd/</span><span class="sc">{</span>classification<span class="sc">}</span><span class="ss">/beeswarm_plot.pdf'</span>, bbox_inches <span class="op">=</span> <span class="st">'tight'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="ES1_ML_counts_files/figure-html/cell-34-output-1.png" class="img-fluid"></p>
+<p><img src="SI1_ML_counts_files/figure-html/cell-34-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
@@ -747,7 +747,7 @@ Test AUC: 0.6</code></pre>
 <span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>                       fnames <span class="op">=</span> feature_names)</span>
 <span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="ss">f'figures/Hd/</span><span class="sc">{</span>classification<span class="sc">}</span><span class="ss">/beeswarm_plot.pdf'</span>, bbox_inches <span class="op">=</span> <span class="st">'tight'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="ES1_ML_counts_files/figure-html/cell-46-output-1.png" class="img-fluid"></p>
+<p><img src="SI1_ML_counts_files/figure-html/cell-46-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
@@ -852,7 +852,7 @@ Test AUC: 0.55</code></pre>
 <span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>                       fnames <span class="op">=</span> feature_names)</span>
 <span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="ss">f'figures/Hd/</span><span class="sc">{</span>classification<span class="sc">}</span><span class="ss">/beeswarm_plot.pdf'</span>, bbox_inches <span class="op">=</span> <span class="st">'tight'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="ES1_ML_counts_files/figure-html/cell-56-output-1.png" class="img-fluid"></p>
+<p><img src="SI1_ML_counts_files/figure-html/cell-56-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
@@ -1000,7 +1000,7 @@ Test AUC: 0.87</code></pre>
 <span id="cb97-4"><a href="#cb97-4" aria-hidden="true" tabindex="-1"></a>                       fnames <span class="op">=</span> feature_names)</span>
 <span id="cb97-5"><a href="#cb97-5" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="ss">f'figures/Ne/</span><span class="sc">{</span>classification<span class="sc">}</span><span class="ss">/beeswarm_plot.pdf'</span>, bbox_inches <span class="op">=</span> <span class="st">'tight'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="ES1_ML_counts_files/figure-html/cell-72-output-1.png" class="img-fluid"></p>
+<p><img src="SI1_ML_counts_files/figure-html/cell-72-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
@@ -1116,7 +1116,7 @@ Test AUC: 0.83</code></pre>
 <span id="cb113-4"><a href="#cb113-4" aria-hidden="true" tabindex="-1"></a>                       fnames <span class="op">=</span> feature_names)</span>
 <span id="cb113-5"><a href="#cb113-5" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="ss">f'figures/Ne/</span><span class="sc">{</span>classification<span class="sc">}</span><span class="ss">/beeswarm_plot.pdf'</span>, bbox_inches <span class="op">=</span> <span class="st">'tight'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="ES1_ML_counts_files/figure-html/cell-84-output-1.png" class="img-fluid"></p>
+<p><img src="SI1_ML_counts_files/figure-html/cell-84-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
@@ -1221,7 +1221,7 @@ Test AUC: 0.6</code></pre>
 <span id="cb127-4"><a href="#cb127-4" aria-hidden="true" tabindex="-1"></a>                       fnames <span class="op">=</span> feature_names)</span>
 <span id="cb127-5"><a href="#cb127-5" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="ss">f'figures/Ne/</span><span class="sc">{</span>classification<span class="sc">}</span><span class="ss">/beeswarm_plot.pdf'</span>, bbox_inches <span class="op">=</span> <span class="st">'tight'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="ES1_ML_counts_files/figure-html/cell-94-output-1.png" class="img-fluid"></p>
+<p><img src="SI1_ML_counts_files/figure-html/cell-94-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="alert alert-block alert-info">
@@ -1470,11 +1470,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./index.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Index</span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Code and data</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./ES2_BHGLM.html" class="pagination-link">
+      <a href="./SI2_BHGLM.html" class="pagination-link">
         <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Hierarchical Bayesian Models to describe differences in isotopic values between and within species</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

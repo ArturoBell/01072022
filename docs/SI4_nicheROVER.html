@@ -94,7 +94,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./references.html" rel="next">
-<link href="./ES3_SIBER.html" rel="prev">
+<link href="./SI3_SIBER.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -164,27 +164,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Index</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Code and data</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ES1_ML_counts.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">ML approach to classify species based on prey counts</span></a>
+  <a href="./SI1_ML_counts.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">SI1: ML approach to classify species based on prey counts</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ES2_BHGLM.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Hierarchical Bayesian Models to describe differences in isotopic values between and within species</span></a>
+  <a href="./SI2_BHGLM.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Hierarchical Bayesian Models to describe differences in isotopic values between and within species</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ES3_SIBER.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Amplitudes and comparisons of the isotopic niches</span></a>
+  <a href="./SI3_SIBER.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Amplitudes and comparisons of the isotopic niches</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ES4_nicheROVER.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Isotopic niche overlaps</span></a>
+  <a href="./SI4_nicheROVER.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Isotopic niche overlaps</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -286,7 +286,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">col =</span> global_colors,</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">xlab =</span> <span class="fu">expression</span> (<span class="st">"Isotope ratio (‰)"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ES4_nicheROVER_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<p><img src="SI4_nicheROVER_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Mean overlaps with the means for 95% and 99% ellipses:</p>
@@ -304,15 +304,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
                  Species B
 Species A         H.dipterurus N.entemedor R.steindachneri
-  H.dipterurus              NA           9              25
-  N.entemedor               70          NA               0
+  H.dipterurus              NA           9              24
+  N.entemedor               73          NA               0
   R.steindachneri          100           0              NA
 
 , , alpha = 99%
 
                  Species B
 Species A         H.dipterurus N.entemedor R.steindachneri
-  H.dipterurus              NA          14              35
+  H.dipterurus              NA          15              35
   N.entemedor               96          NA               0
   R.steindachneri          100           0              NA</code></pre>
 </div>
@@ -330,22 +330,22 @@ Species A         H.dipterurus N.entemedor R.steindachneri
 
        Species A
         H.dipterurus N.entemedor R.steindachneri
-  2.5%            NA          39              98
-  97.5%           NA          95             100
+  2.5%            NA          41              98
+  97.5%           NA          96             100
 
 , , Species B = N.entemedor
 
        Species A
         H.dipterurus N.entemedor R.steindachneri
   2.5%             4          NA               0
-  97.5%           15          NA               0
+  97.5%           16          NA               0
 
 , , Species B = R.steindachneri
 
        Species A
         H.dipterurus N.entemedor R.steindachneri
-  2.5%            18           0              NA
-  97.5%           33           0              NA</code></pre>
+  2.5%            17           0              NA
+  97.5%           32           0              NA</code></pre>
 </div>
 </div>
 <p>Plot with the posterior distributions of the niche overlaps:</p>
@@ -357,7 +357,7 @@ Species A         H.dipterurus N.entemedor R.steindachneri
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">equal.axis =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">xlab =</span> <span class="st">"Overlap Probability (%)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ES4_nicheROVER_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<p><img src="SI4_nicheROVER_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#dev.off()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -587,7 +587,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./ES3_SIBER.html" class="pagination-link">
+      <a href="./SI3_SIBER.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Amplitudes and comparisons of the isotopic niches</span></span>
       </a>          
   </div>

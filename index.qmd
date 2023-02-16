@@ -1,13 +1,13 @@
-# Index {.unnumbered}
+# Code and data {.unnumbered}
 
 ## Code
 
 The code is presented as annotated notebooks, rendered in html files that are in the table of contents of this page.
 
-- Electronic Supplement 1: ML approach to classify species based on prey counts (Random Forest)
-- Electronic Supplement 2: Hierarchical Bayesian Model to describe differences in isotopic values between and within species.
-- Electronic Supplement 3: Amplitudes and comparisons of the isotopic niches (SIBER)
-- Electronic Supplement 4: Isotopic niche overlaps (nicheROVER)
+- Supplementary Information 1: ML approach to classify species based on prey counts (Random Forest)
+- Supplementary Information 2: Hierarchical Bayesian Model to describe differences in isotopic values between and within species.
+- Supplementary Information 3: Amplitudes and comparisons of the isotopic niches (SIBER)
+- Supplementary Information 4: Isotopic niche overlaps (nicheROVER)
 
 ## Data
 

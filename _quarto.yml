@@ -81,10 +81,10 @@ book:
   date: "02/11/2023"
   chapters:
     - index.qmd
-    - ES1_ML_counts.ipynb
-    - ES2_BHGLM.ipynb
-    - ES3_SIBER.Rmd
-    - ES4_nicheROVER.Rmd
+    - SI1_ML_counts.ipynb
+    - SI2_BHGLM.ipynb
+    - SI3_SIBER.Rmd
+    - SI4_nicheROVER.Rmd
     - references.qmd
 
 bibliography: refs.bib

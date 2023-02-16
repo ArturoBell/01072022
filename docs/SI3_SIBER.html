@@ -93,8 +93,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./ES4_nicheROVER.html" rel="next">
-<link href="./ES2_BHGLM.html" rel="prev">
+<link href="./SI4_nicheROVER.html" rel="next">
+<link href="./SI2_BHGLM.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -165,27 +165,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Index</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Code and data</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ES1_ML_counts.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">ML approach to classify species based on prey counts</span></a>
+  <a href="./SI1_ML_counts.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">SI1: ML approach to classify species based on prey counts</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ES2_BHGLM.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Hierarchical Bayesian Models to describe differences in isotopic values between and within species</span></a>
+  <a href="./SI2_BHGLM.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Hierarchical Bayesian Models to describe differences in isotopic values between and within species</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ES3_SIBER.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Amplitudes and comparisons of the isotopic niches</span></a>
+  <a href="./SI3_SIBER.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Amplitudes and comparisons of the isotopic niches</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ES4_nicheROVER.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Isotopic niche overlaps</span></a>
+  <a href="./SI4_nicheROVER.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Isotopic niche overlaps</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -324,7 +324,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co">#           family = "Times", height = 4, width = 4)</span></span>
 <span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>glob_ellipses</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ES3_SIBER_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<p><img src="SI3_SIBER_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dev.off()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -425,7 +425,7 @@ Initializing model</code></pre>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">mcmc_acf</span>(ellipses.posterior[<span class="dv">3</span>]) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> species[<span class="dv">3</span>]),</span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">nrow =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ES3_SIBER_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="1152"></p>
+<p><img src="SI3_SIBER_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="1152"></p>
 </div>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -439,7 +439,7 @@ Initializing model</code></pre>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">mcmc_acf</span>(ellipses.posterior[<span class="dv">3</span>]) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> species[<span class="dv">3</span>]),</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">nrow =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ES3_SIBER_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="1152"></p>
+<p><img src="SI3_SIBER_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="1152"></p>
 </div>
 </div>
 <p>Summaries. Gelman-Rubick Statistics (Rhat) exactly equal to 1 and effective sample sizes &gt; 2000 for every parameter:</p>
@@ -452,28 +452,28 @@ Initializing model</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "H.dipterurus"
               mean    sd   2.5%  97.5% Rhat n.eff
-Sigma2[1,1]  1.028 0.165  0.754  1.408    1  5957
-Sigma2[2,1] -0.557 0.134 -0.852 -0.325    1  5178
-Sigma2[1,2] -0.557 0.134 -0.852 -0.325    1  5178
-Sigma2[2,2]  1.025 0.165  0.757  1.398    1  5398
-mu[1]       -0.001 0.113 -0.221  0.221    1  3257
-mu[2]        0.000 0.114 -0.223  0.226    1  3082
+Sigma2[1,1]  1.021 0.166  0.749  1.394    1  5606
+Sigma2[2,1] -0.554 0.132 -0.848 -0.330    1  5669
+Sigma2[1,2] -0.554 0.132 -0.848 -0.330    1  5669
+Sigma2[2,2]  1.023 0.164  0.754  1.387    1  5797
+mu[1]        0.001 0.112 -0.221  0.220    1  3179
+mu[2]        0.000 0.113 -0.224  0.214    1  3364
 [1] "N.entemedor"
               mean    sd   2.5%  97.5% Rhat n.eff
-Sigma2[1,1]  1.030 0.184  0.736  1.444    1  6353
-Sigma2[2,1] -0.682 0.155 -1.037 -0.427    1  5830
-Sigma2[1,2] -0.682 0.155 -1.037 -0.427    1  5830
-Sigma2[2,2]  1.027 0.179  0.735  1.433    1  6244
-mu[1]       -0.002 0.124 -0.242  0.240    1  2232
-mu[2]        0.003 0.122 -0.238  0.241    1  2302
+Sigma2[1,1]  1.028 0.182  0.731  1.431    1  5851
+Sigma2[2,1] -0.680 0.153 -1.017 -0.426    1  5867
+Sigma2[1,2] -0.680 0.153 -1.017 -0.426    1  5867
+Sigma2[2,2]  1.028 0.183  0.727  1.442    1  5856
+mu[1]       -0.001 0.125 -0.246  0.243    1  1920
+mu[2]        0.001 0.125 -0.247  0.249    1  2312
 [1] "R.steindachneri"
               mean    sd   2.5%  97.5% Rhat n.eff
-Sigma2[1,1]  1.025 0.172  0.742  1.415    1  6000
-Sigma2[2,1] -0.770 0.153 -1.121 -0.519    1  5829
-Sigma2[1,2] -0.770 0.153 -1.121 -0.519    1  5829
-Sigma2[2,2]  1.026 0.173  0.751  1.417    1  5797
-mu[1]        0.000 0.117 -0.229  0.238    1  1729
-mu[2]        0.001 0.117 -0.231  0.227    1  1813</code></pre>
+Sigma2[1,1]  1.029 0.172  0.746  1.418    1  5426
+Sigma2[2,1] -0.773 0.151 -1.111 -0.517    1  5553
+Sigma2[1,2] -0.773 0.151 -1.111 -0.517    1  5553
+Sigma2[2,2]  1.027 0.171  0.744  1.407    1  5585
+mu[1]        0.000 0.117 -0.236  0.222    1  1575
+mu[2]       -0.001 0.118 -0.228  0.232    1  1634</code></pre>
 </div>
 </div>
 </section>
@@ -485,12 +485,12 @@ mu[2]        0.001 0.117 -0.231  0.227    1  1813</code></pre>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sea_b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       V1               V2              V3       
- Min.   : 6.439   Min.   :1.437   Min.   :1.150  
- 1st Qu.: 8.880   1st Qu.:1.973   1st Qu.:1.542  
- Median : 9.571   Median :2.137   Median :1.664  
- Mean   : 9.647   Mean   :2.156   Mean   :1.679  
- 3rd Qu.:10.332   3rd Qu.:2.316   3rd Qu.:1.799  
- Max.   :15.842   Max.   :3.740   Max.   :2.513  </code></pre>
+ Min.   : 6.548   Min.   :1.404   Min.   :1.093  
+ 1st Qu.: 8.849   1st Qu.:1.969   1st Qu.:1.538  
+ Median : 9.525   Median :2.133   Median :1.666  
+ Mean   : 9.618   Mean   :2.157   Mean   :1.680  
+ 3rd Qu.:10.299   3rd Qu.:2.323   3rd Qu.:1.804  
+ Max.   :14.369   Max.   :3.236   Max.   :2.489  </code></pre>
 </div>
 </div>
 <p>Graphical comparisons. First, transform the object to a data.frame and melt it to long format:</p>
@@ -505,7 +505,7 @@ mu[2]        0.001 0.117 -0.231  0.227    1  1813</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["sp"],"name":[1],"type":["fct"],"align":["left"]},{"label":["SEAb"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"V1","2":"8.914941","_rn_":"1"},{"1":"V1","2":"10.624414","_rn_":"2"},{"1":"V1","2":"9.179136","_rn_":"3"},{"1":"V1","2":"10.585837","_rn_":"4"},{"1":"V1","2":"10.067971","_rn_":"5"},{"1":"V1","2":"9.806880","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["sp"],"name":[1],"type":["fct"],"align":["left"]},{"label":["SEAb"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"V1","2":"8.467479","_rn_":"1"},{"1":"V1","2":"8.799538","_rn_":"2"},{"1":"V1","2":"9.373534","_rn_":"3"},{"1":"V1","2":"9.721201","_rn_":"4"},{"1":"V1","2":"10.399506","_rn_":"5"},{"1":"V1","2":"9.871343","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -520,7 +520,7 @@ mu[2]        0.001 0.117 -0.231  0.227    1  1813</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["lower"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["upper"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["means"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["sp"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"7.667721","2":"11.895765","3":"9.646621","4":"V1","_rn_":"V1"},{"1":"1.675022","2":"2.702570","3":"2.156105","4":"V2","_rn_":"V2"},{"1":"1.315385","2":"2.064106","3":"1.678576","4":"V3","_rn_":"V3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["lower"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["upper"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["means"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["sp"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"7.663928","2":"11.867088","3":"9.618155","4":"V1","_rn_":"V1"},{"1":"1.667851","2":"2.683991","3":"2.156593","4":"V2","_rn_":"V2"},{"1":"1.303361","2":"2.069545","3":"1.680222","4":"V3","_rn_":"V3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -552,7 +552,7 @@ mu[2]        0.001 0.117 -0.231  0.227    1  1813</code></pre>
 <span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a><span class="co">#           family = "Times", height = 5, width = 5)</span></span>
 <span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>seab_global</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ES3_SIBER_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+<p><img src="SI3_SIBER_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#dev.off()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -599,7 +599,7 @@ mu[2]        0.001 0.117 -0.231  0.227    1  1813</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["comp"],"name":[1],"type":["ord"],"align":["right"]},{"label":["mean"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["IQr.lower"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["IQr.upper"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus - N.entemedor","2":"7.490516","3":"6.6852352","4":"8.1572218","5":"5.3568494","6":"9.735957"},{"1":"H.dipterurus - R.steindachneri","2":"7.968045","3":"7.1366182","4":"8.5754000","5":"5.8217446","6":"10.128512"},{"1":"N.entemedor - R.steindachneri","2":"0.477529","3":"0.2354472","4":"0.6605348","5":"-0.1707442","6":"1.107988"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["comp"],"name":[1],"type":["ord"],"align":["right"]},{"label":["mean"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["IQr.lower"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["IQr.upper"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus - N.entemedor","2":"7.4615616","3":"6.4672325","4":"7.9266473","5":"5.3745514","6":"9.711452"},{"1":"H.dipterurus - R.steindachneri","2":"7.9379325","3":"7.0119466","4":"8.4404233","5":"5.9277757","6":"10.183277"},{"1":"N.entemedor - R.steindachneri","2":"0.4763709","3":"0.2479824","4":"0.6925512","5":"-0.1300254","6":"1.178639"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -611,7 +611,7 @@ mu[2]        0.001 0.117 -0.231  0.227    1  1813</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["comp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["p_sup"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus - N.entemedor","2":"100.00"},{"1":"H.dipterurus - R.steindachneri","2":"100.00"},{"1":"N.entemedor - R.steindachneri","2":"93.15"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["comp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["p_sup"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus - N.entemedor","2":"100.00000"},{"1":"H.dipterurus - R.steindachneri","2":"100.00000"},{"1":"N.entemedor - R.steindachneri","2":"92.98333"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -642,7 +642,7 @@ mu[2]        0.001 0.117 -0.231  0.227    1  1813</code></pre>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co">#           family = "Times", height = 4, width = 4)</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>global_forest</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ES3_SIBER_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
+<p><img src="SI3_SIBER_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#dev.off()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -682,7 +682,7 @@ mu[2]        0.001 0.117 -0.231  0.227    1  1813</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["sp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["IQR.lower"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["IQR.upper"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus","2":"0.8350407","3":"0.8830619","4":"0.7695525","5":"0.9134557","6":"0.8454553"},{"1":"N.entemedor","2":"0.8985210","3":"0.9282145","4":"0.8568975","5":"0.9486836","6":"0.9062506"},{"1":"R.steindachneri","2":"0.9248932","3":"0.9467566","4":"0.8950346","5":"0.9603381","6":"0.9284888"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["sp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["IQR.lower"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["IQR.upper"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus","2":"0.8345316","3":"0.8812382","4":"0.7697025","5":"0.9116859","6":"0.8454985"},{"1":"N.entemedor","2":"0.9008736","3":"0.9305673","4":"0.8558807","5":"0.9479090","6":"0.9060639"},{"1":"R.steindachneri","2":"0.9219092","3":"0.9435634","4":"0.8950609","5":"0.9606069","6":"0.9287700"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -704,7 +704,7 @@ mu[2]        0.001 0.117 -0.231  0.227    1  1813</code></pre>
 <span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>                       <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.15</span>, <span class="fl">0.1</span>),</span>
 <span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>                       <span class="at">legend.background =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ES3_SIBER_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+<p><img src="SI3_SIBER_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Theta, on the other hand, is the angle of the semi-major axis of the SEA and the x axis; <em>i.e.</em>, the angle of the deformation. Values close to 0 show a higher dispersion in <span class="math inline">\(\delta^{13}C\)</span>, while values close to 90 show a higher dispersion in <span class="math inline">\(\delta^{15}N\)</span>:</p>
@@ -719,7 +719,7 @@ mu[2]        0.001 0.117 -0.231  0.227    1  1813</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["sp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["IQR.lower"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["IQR.upper"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus","2":"-0.9794702","3":"-0.8702427","4":"-1.0960869","5":"-0.7684914","6":"-0.9301416"},{"1":"N.entemedor","2":"-1.0495115","3":"-0.9681399","4":"-1.1260333","5":"-0.8854141","6":"-1.0073494"},{"1":"R.steindachneri","2":"-0.9420843","3":"-0.8756778","4":"-0.9988481","5":"-0.8040063","6":"-0.9032535"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["sp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["IQR.lower"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["IQR.upper"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus","2":"-0.9907978","3":"-0.8818909","4":"-1.095814","5":"-0.7686408","6":"-0.9321136"},{"1":"N.entemedor","2":"-1.0515225","3":"-0.9669347","4":"-1.125052","5":"-0.8806979","6":"-1.0082383"},{"1":"R.steindachneri","2":"-0.9358934","3":"-0.8695499","4":"-1.001483","5":"-0.8051174","6":"-0.9024824"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -741,7 +741,7 @@ mu[2]        0.001 0.117 -0.231  0.227    1  1813</code></pre>
 <span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>                       <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.15</span>, <span class="fl">0.1</span>),</span>
 <span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>                       <span class="at">legend.background =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ES3_SIBER_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
+<p><img src="SI3_SIBER_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -1118,7 +1118,7 @@ argument.</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["sp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["j"],"name":[2],"type":["chr"],"align":["left"]},{"label":["IQR.lower"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["IQR.upper"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus","2":"Female","3":"0.7989622","4":"0.8796527","5":"0.6697640","6":"0.9267412","7":"0.8113378"},{"1":"H.dipterurus","2":"Male","3":"0.8503502","4":"0.9062498","5":"0.7535318","6":"0.9331936","7":"0.8541996"},{"1":"N.entemedor","2":"Female","3":"0.8839915","4":"0.9224607","5":"0.8278115","6":"0.9456068","7":"0.8922746"},{"1":"N.entemedor","2":"Male","3":"0.9294742","4":"0.9694140","5":"0.8442406","6":"0.9887320","7":"0.9282221"},{"1":"R.steindachneri","2":"Female","3":"0.9060012","4":"0.9452177","5":"0.8375285","6":"0.9646688","7":"0.9098561"},{"1":"R.steindachneri","2":"Male","3":"0.9319512","4":"0.9560614","5":"0.8969883","6":"0.9719787","7":"0.9377626"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["sp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["j"],"name":[2],"type":["chr"],"align":["left"]},{"label":["IQR.lower"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["IQR.upper"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus","2":"Female","3":"0.8043962","4":"0.8853037","5":"0.6631845","6":"0.9271561","7":"0.8095269"},{"1":"H.dipterurus","2":"Male","3":"0.8421889","4":"0.8978570","5":"0.7552310","6":"0.9337504","7":"0.8540394"},{"1":"N.entemedor","2":"Female","3":"0.8821689","4":"0.9195792","5":"0.8302843","6":"0.9465499","7":"0.8930644"},{"1":"N.entemedor","2":"Male","3":"0.9319776","4":"0.9713922","5":"0.8482412","6":"0.9868919","7":"0.9289294"},{"1":"R.steindachneri","2":"Female","3":"0.9036742","4":"0.9425554","5":"0.8422796","6":"0.9674050","7":"0.9110461"},{"1":"R.steindachneri","2":"Male","3":"0.9352554","4":"0.9592772","5":"0.8971452","6":"0.9718923","7":"0.9373365"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -1141,7 +1141,7 @@ argument.</code></pre>
 <span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a>                       <span class="at">legend.background =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
 <span id="cb54-16"><a href="#cb54-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>sp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ES3_SIBER_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="672"></p>
+<p><img src="SI3_SIBER_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Theta:</p>
@@ -1160,7 +1160,7 @@ argument.</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["sp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["j"],"name":[2],"type":["chr"],"align":["left"]},{"label":["IQR.lower"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["IQR.upper"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus","2":"Female","3":"-1.0854478","4":"-0.8921510","5":"-1.2729399","6":"-0.6630885","7":"-0.9736850"},{"1":"H.dipterurus","2":"Male","3":"-0.9745740","4":"-0.8285622","5":"-1.1188469","6":"-0.6727801","7":"-0.9051321"},{"1":"N.entemedor","2":"Female","3":"-1.0328352","4":"-0.9289631","5":"-1.1262113","6":"-0.8279581","7":"-0.9779910"},{"1":"N.entemedor","2":"Male","3":"-1.1646525","4":"-1.0185342","5":"-1.3244651","6":"-0.8527372","7":"-1.0836683"},{"1":"R.steindachneri","2":"Female","3":"-1.1037859","4":"-0.9856144","5":"-1.2208745","6":"-0.8520272","7":"-1.0393926"},{"1":"R.steindachneri","2":"Male","3":"-0.8756791","4":"-0.7948503","5":"-0.9550714","6":"-0.7177309","7":"-0.8393721"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["sp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["j"],"name":[2],"type":["chr"],"align":["left"]},{"label":["IQR.lower"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["IQR.upper"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus","2":"Female","3":"-1.0841275","4":"-0.8897418","5":"-1.289709","6":"-0.6768488","7":"-0.9788103"},{"1":"H.dipterurus","2":"Male","3":"-0.9864926","4":"-0.8459261","5":"-1.123396","6":"-0.6876274","7":"-0.9059275"},{"1":"N.entemedor","2":"Female","3":"-1.0248402","4":"-0.9209517","5":"-1.136060","6":"-0.8317498","7":"-0.9774396"},{"1":"N.entemedor","2":"Male","3":"-1.1532378","4":"-1.0059368","5":"-1.311095","6":"-0.8448739","7":"-1.0837477"},{"1":"R.steindachneri","2":"Female","3":"-1.0943241","4":"-0.9785474","5":"-1.220102","6":"-0.8657215","7":"-1.0399411"},{"1":"R.steindachneri","2":"Male","3":"-0.8804027","4":"-0.8013028","5":"-0.958237","6":"-0.7223937","7":"-0.8399058"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -1183,7 +1183,7 @@ argument.</code></pre>
 <span id="cb58-15"><a href="#cb58-15" aria-hidden="true" tabindex="-1"></a>                       <span class="at">legend.background =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
 <span id="cb58-16"><a href="#cb58-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>sp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ES3_SIBER_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid" width="672"></p>
+<p><img src="SI3_SIBER_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -1297,7 +1297,7 @@ argument.</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["sp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["j"],"name":[2],"type":["chr"],"align":["left"]},{"label":["IQR.lower"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["IQR.upper"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus","2":"Adult","3":"0.8260843","4":"0.8883249","5":"0.7366522","6":"0.9289215","7":"0.8406300"},{"1":"H.dipterurus","2":"Juvenile","3":"0.8203378","4":"0.8915989","5":"0.6995226","6":"0.9339296","7":"0.8289838"},{"1":"N.entemedor","2":"Adult","3":"0.8994741","4":"0.9336588","5":"0.8490420","6":"0.9541888","7":"0.9047884"},{"1":"N.entemedor","2":"Juvenile","3":"0.9333681","4":"0.9699899","5":"0.8582381","6":"0.9876083","7":"0.9346489"},{"1":"R.steindachneri","2":"Adult","3":"0.9308651","4":"0.9537724","5":"0.8978105","6":"0.9689841","7":"0.9367649"},{"1":"R.steindachneri","2":"Juvenile","3":"0.9195041","4":"0.9559000","5":"0.8551811","6":"0.9725698","7":"0.9234391"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["sp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["j"],"name":[2],"type":["chr"],"align":["left"]},{"label":["IQR.lower"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["IQR.upper"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus","2":"Adult","3":"0.8290220","4":"0.8910642","5":"0.7368041","6":"0.9350160","7":"0.8404075"},{"1":"H.dipterurus","2":"Juvenile","3":"0.8216574","4":"0.8940665","5":"0.6991298","6":"0.9327858","7":"0.8298627"},{"1":"N.entemedor","2":"Adult","3":"0.8973114","4":"0.9316667","5":"0.8465441","6":"0.9516976","7":"0.9040105"},{"1":"N.entemedor","2":"Juvenile","3":"0.9382378","4":"0.9737134","5":"0.8599488","6":"0.9873281","7":"0.9351812"},{"1":"R.steindachneri","2":"Adult","3":"0.9325786","4":"0.9553580","5":"0.8996003","6":"0.9715621","7":"0.9370617"},{"1":"R.steindachneri","2":"Juvenile","3":"0.9209908","4":"0.9564016","5":"0.8576385","6":"0.9758439","7":"0.9231454"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -1320,7 +1320,7 @@ argument.</code></pre>
 <span id="cb71-15"><a href="#cb71-15" aria-hidden="true" tabindex="-1"></a>                       <span class="at">legend.background =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
 <span id="cb71-16"><a href="#cb71-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>sp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ES3_SIBER_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid" width="672"></p>
+<p><img src="SI3_SIBER_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Theta:</p>
@@ -1339,7 +1339,7 @@ argument.</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["sp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["j"],"name":[2],"type":["chr"],"align":["left"]},{"label":["IQR.lower"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["IQR.upper"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus","2":"Adult","3":"-1.0398902","4":"-0.8875955","5":"-1.186585","6":"-0.7293320","7":"-0.9569450"},{"1":"H.dipterurus","2":"Juvenile","3":"-1.0585405","4":"-0.8818580","5":"-1.266019","6":"-0.6983168","7":"-0.9776207"},{"1":"N.entemedor","2":"Adult","3":"-1.1441362","4":"-1.0520468","5":"-1.238603","6":"-0.9627903","7":"-1.1010217"},{"1":"N.entemedor","2":"Juvenile","3":"-1.0025483","4":"-0.8595645","5":"-1.150895","6":"-0.7066114","7":"-0.9345378"},{"1":"R.steindachneri","2":"Adult","3":"-0.9419217","4":"-0.8674110","5":"-1.016439","6":"-0.7908149","7":"-0.9082599"},{"1":"R.steindachneri","2":"Juvenile","3":"-0.8834244","4":"-0.7701387","5":"-1.010117","6":"-0.6598778","7":"-0.8352047"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["sp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["j"],"name":[2],"type":["chr"],"align":["left"]},{"label":["IQR.lower"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["IQR.upper"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus","2":"Adult","3":"-1.0405643","4":"-0.8823982","5":"-1.188654","6":"-0.7155115","7":"-0.9557213"},{"1":"H.dipterurus","2":"Juvenile","3":"-1.0561017","4":"-0.8717037","5":"-1.273887","6":"-0.7092847","7":"-0.9755637"},{"1":"N.entemedor","2":"Adult","3":"-1.1531721","4":"-1.0608529","5":"-1.245476","6":"-0.9619372","7":"-1.0994361"},{"1":"N.entemedor","2":"Juvenile","3":"-1.0014341","4":"-0.8622354","5":"-1.137576","6":"-0.7060988","7":"-0.9356578"},{"1":"R.steindachneri","2":"Adult","3":"-0.9500820","4":"-0.8737828","5":"-1.022221","6":"-0.7995198","7":"-0.9095871"},{"1":"R.steindachneri","2":"Juvenile","3":"-0.8937117","4":"-0.7787441","5":"-1.003473","6":"-0.6504429","7":"-0.8326387"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -1362,7 +1362,7 @@ argument.</code></pre>
 <span id="cb75-15"><a href="#cb75-15" aria-hidden="true" tabindex="-1"></a>                       <span class="at">legend.background =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
 <span id="cb75-16"><a href="#cb75-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>sp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ES3_SIBER_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid" width="672"></p>
+<p><img src="SI3_SIBER_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -1495,7 +1495,7 @@ argument.</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["sp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["j"],"name":[2],"type":["chr"],"align":["left"]},{"label":["IQR.lower"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["IQR.upper"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus","2":"Cold","3":"0.7684460","4":"0.8901602","5":"0.5373076","6":"0.9462423","7":"0.7736592"},{"1":"H.dipterurus","2":"Warm","3":"0.8335884","4":"0.8861258","5":"0.7578385","6":"0.9204338","7":"0.8451661"},{"1":"N.entemedor","2":"Cold","3":"0.9119565","4":"0.9404773","5":"0.8706103","6":"0.9585148","7":"0.9186337"},{"1":"N.entemedor","2":"Warm","3":"0.7949214","4":"0.9134723","5":"0.5456988","6":"0.9546549","7":"0.7883783"},{"1":"R.steindachneri","2":"Cold","3":"0.9492268","4":"0.9975411","5":"0.7335973","6":"0.9998414","7":"0.9198243"},{"1":"R.steindachneri","2":"Warm","3":"0.9235390","4":"0.9457097","5":"0.8917718","6":"0.9600753","7":"0.9284487"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["sp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["j"],"name":[2],"type":["chr"],"align":["left"]},{"label":["IQR.lower"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["IQR.upper"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus","2":"Cold","3":"0.7669219","4":"0.8896305","5":"0.5341771","6":"0.9450382","7":"0.7731801"},{"1":"H.dipterurus","2":"Warm","3":"0.8337640","4":"0.8862058","5":"0.7573709","6":"0.9207790","7":"0.8451967"},{"1":"N.entemedor","2":"Cold","3":"0.9111502","4":"0.9398405","5":"0.8721789","6":"0.9596234","7":"0.9190147"},{"1":"N.entemedor","2":"Warm","3":"0.7817463","4":"0.9012215","5":"0.5461491","6":"0.9543139","7":"0.7875877"},{"1":"R.steindachneri","2":"Cold","3":"0.9504146","4":"0.9990255","5":"0.7327233","6":"0.9999378","7":"0.9191570"},{"1":"R.steindachneri","2":"Warm","3":"0.9231670","4":"0.9456606","5":"0.8927494","6":"0.9604918","7":"0.9283253"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -1518,7 +1518,7 @@ argument.</code></pre>
 <span id="cb91-15"><a href="#cb91-15" aria-hidden="true" tabindex="-1"></a>                       <span class="at">legend.background =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
 <span id="cb91-16"><a href="#cb91-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>sp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ES3_SIBER_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid" width="672"></p>
+<p><img src="SI3_SIBER_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Theta:</p>
@@ -1537,7 +1537,7 @@ argument.</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["sp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["j"],"name":[2],"type":["chr"],"align":["left"]},{"label":["IQR.lower"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["IQR.upper"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus","2":"Cold","3":"-1.1995009","4":"-0.8493990","5":"-1.570594","6":"-0.01046981","7":"-0.8940045"},{"1":"H.dipterurus","2":"Warm","3":"-1.0675266","4":"-0.9415085","5":"-1.185449","6":"-0.80814031","7":"-1.0008730"},{"1":"N.entemedor","2":"Cold","3":"-1.0806725","4":"-0.9955407","5":"-1.160515","6":"-0.90845447","7":"-1.0338610"},{"1":"N.entemedor","2":"Warm","3":"-1.1446524","4":"-0.7876141","5":"-1.570623","6":"-0.14325850","7":"-0.8579044"},{"1":"R.steindachneri","2":"Cold","3":"-0.6661639","4":"-0.3193341","5":"-1.306516","6":"0.23312213","7":"-0.4535253"},{"1":"R.steindachneri","2":"Warm","3":"-0.9598176","4":"-0.8920397","5":"-1.027583","6":"-0.82578641","7":"-0.9264236"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["sp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["j"],"name":[2],"type":["chr"],"align":["left"]},{"label":["IQR.lower"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["IQR.upper"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["hdi.lower"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["hdi.upper"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"H.dipterurus","2":"Cold","3":"-1.1961869","4":"-0.8473799","5":"-1.570723","6":"-0.09329952","7":"-0.9033289"},{"1":"H.dipterurus","2":"Warm","3":"-1.0617248","4":"-0.9345833","5":"-1.191214","6":"-0.80971050","7":"-1.0017343"},{"1":"N.entemedor","2":"Cold","3":"-1.0787166","4":"-0.9942985","5":"-1.160402","6":"-0.90871957","7":"-1.0332424"},{"1":"N.entemedor","2":"Warm","3":"-1.1403403","4":"-0.7838463","5":"-1.569076","6":"-0.15720137","7":"-0.8624129"},{"1":"R.steindachneri","2":"Cold","3":"-0.6637082","4":"-0.3188450","5":"-1.241801","6":"0.31297765","7":"-0.4525641"},{"1":"R.steindachneri","2":"Warm","3":"-0.9586145","4":"-0.8907425","5":"-1.025909","6":"-0.82320994","7":"-0.9264626"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -1560,7 +1560,7 @@ argument.</code></pre>
 <span id="cb95-15"><a href="#cb95-15" aria-hidden="true" tabindex="-1"></a>                       <span class="at">legend.background =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
 <span id="cb95-16"><a href="#cb95-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>sp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ES3_SIBER_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid" width="672"></p>
+<p><img src="SI3_SIBER_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -1600,7 +1600,7 @@ argument.</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["comp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["p_sup"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sp"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Warm - Cold","2":"59.58000","3":"H.dipterurus"},{"1":"Warm - Cold","2":"24.52000","3":"N.entemedor"},{"1":"Warm - Cold","2":"18.59667","3":"R.steindachneri"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["comp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["p_sup"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sp"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Warm - Cold","2":"59.91333","3":"H.dipterurus"},{"1":"Warm - Cold","2":"24.35667","3":"N.entemedor"},{"1":"Warm - Cold","2":"18.54333","3":"R.steindachneri"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -1611,7 +1611,7 @@ argument.</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["comp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["p_sup"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sp"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Female - Male","2":"29.85000","3":"H.dipterurus"},{"1":"Female - Male","2":"12.18333","3":"N.entemedor"},{"1":"Female - Male","2":"21.48333","3":"R.steindachneri"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["comp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["p_sup"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sp"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Female - Male","2":"31.05000","3":"H.dipterurus"},{"1":"Female - Male","2":"11.96667","3":"N.entemedor"},{"1":"Female - Male","2":"20.21667","3":"R.steindachneri"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -1622,7 +1622,7 @@ argument.</code></pre>
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["comp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["p_sup"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sp"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Adult - Juvenile","2":"18.4333333","3":"H.dipterurus"},{"1":"Adult - Juvenile","2":"0.3333333","3":"N.entemedor"},{"1":"Adult - Juvenile","2":"78.5000000","3":"R.steindachneri"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["comp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["p_sup"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sp"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Adult - Juvenile","2":"19.1833333","3":"H.dipterurus"},{"1":"Adult - Juvenile","2":"0.3833333","3":"N.entemedor"},{"1":"Adult - Juvenile","2":"78.3333333","3":"R.steindachneri"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -1854,12 +1854,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./ES2_BHGLM.html" class="pagination-link">
+      <a href="./SI2_BHGLM.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Hierarchical Bayesian Models to describe differences in isotopic values between and within species</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./ES4_nicheROVER.html" class="pagination-link">
+      <a href="./SI4_nicheROVER.html" class="pagination-link">
         <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Isotopic niche overlaps</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
