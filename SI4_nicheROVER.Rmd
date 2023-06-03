@@ -30,7 +30,8 @@ ylims <- c(min(global$iso1)-0.5, max(global$iso1)+0.5)
 species <- unique(global$sp)
 ```
 
-`nicheROVER` performs a Bayesian estimation of the isotopic niche and then calculates the probability of its overlap with the isotopic niche of another.
+`nicheROVER` performs a Bayesian estimation of the isotopic niche and then calculates the probability of its overlap with the isotopic niche of another; i.e., how probable is to find an individual of one species in the isotopic space of another. Thus, this overlap is directional and more informative than the traditional, non-directional, geometric approximation [@Swansonetal_2015].
+
 ```{r}
 # Number of posterior samples
 nsamples <- 1000
