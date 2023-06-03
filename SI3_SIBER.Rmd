@@ -22,7 +22,6 @@ library(bayesplot)
 ```{r}
 data <- read.table("data/glm.csv", sep = ",", header = T)
 colnames(data)[6:7] <- c("iso1", "iso2")
-head(data)
 ```
 
 ## "Global" SIBER:
@@ -64,11 +63,11 @@ glob_ellipses <- ggplot(data = global, aes(x = iso2, y = iso1, color = as.factor
                  theme(aspect.ratio = 1,
                        panel.grid.major = element_blank(),
                        panel.grid.minor = element_blank(),
-                       legend.position = c(0.18, 0.15),
+                       legend.position = c(0.20, 0.17),
                        legend.background = element_blank())
 
 # cairo_pdf("output/SIBER/global/global_ellipses.pdf",
-#           family = "Times", height = 4, width = 4)
+#           family = "Times", height = 3.5, width = 3.5)
 glob_ellipses
 # dev.off()
 ```
@@ -86,7 +85,7 @@ Parameters of the MCMC:
 
 ```{r}
 parms <- list()
-parms$n.iter   <- 2000    
+parms$n.iter   <- 20000    
 parms$n.burnin <- 25000   
 parms$n.thin   <- 1          
 parms$n.chains <- 3
@@ -149,15 +148,7 @@ gridExtra::grid.arrange(mcmc_acf(ellipses.posterior[1]) + labs(title = species[1
                         mcmc_acf(ellipses.posterior[2]) + labs(title = species[2]),
                         mcmc_acf(ellipses.posterior[3]) + labs(title = species[3]),
                         nrow = 3)
-dev.off()
-```
-
-```{r, fig.height = 10, fig.width=12}
-gridExtra::grid.arrange(mcmc_acf(ellipses.posterior[1]) + labs(title = species[1]),
-                        mcmc_acf(ellipses.posterior[2]) + labs(title = species[2]),
-                        mcmc_acf(ellipses.posterior[3]) + labs(title = species[3]),
-                        nrow = 3)
-
+#dev.off()
 ```
 
 Summaries. Gelman-Rubick Statistics (Rhat) exactly equal to 1 and effective sample sizes > 2000 for every parameter:
@@ -221,7 +212,7 @@ seab_global <- ggplot() +
                     y = expression("SEAb " ('\u2030' ^2) )) +
                scale_x_discrete(labels = species)
 # cairo_pdf("output/SIBER/global/global_seab.pdf",
-#           family = "Times", height = 5, width = 5)
+#           family = "Times", height = 3.5, width = 3.5)
 seab_global
 #dev.off()
 ```
@@ -265,12 +256,15 @@ diff_glob$comp <- factor(diff_glob$comp, ordered = T)
 ```
 
 HDIs of differences
+
 ```{r}
+diff_glob["keys"] <- factor(c("HD-NE", "HD-RS", "NE-RS"), ordered = T)
 diff_glob
 ```
 
 
 Probabilities of differences:
+
 ```{r}
 p_sup
 ```
@@ -278,26 +272,32 @@ p_sup
 Forestplot of the $HDI_{95\%}$ of the differences
 
 ```{r}
+#| warning: false
 global_forest <- ggplot(data = diff_glob) +
                  geom_vline(xintercept = 0, linetype = "dashed", color = "#C9C8C8", size = 1.2) +
-                 geom_linerange(aes(y = comp, xmin = IQr.lower, xmax = IQr.upper),
+                 geom_linerange(aes(y = factor(comp, ordered = T),
+                                    xmin = IQr.lower, xmax = IQr.upper),
                                 color = global_colors[1], size = 1) +
-                 geom_linerange(aes(y = comp, xmin = hdi.lower, xmax = hdi.upper),
+                 geom_linerange(aes(y = factor(comp, ordered = T),
+                                    xmin = hdi.lower, xmax = hdi.upper),
                                 color = global_colors[1]) +
-                 geom_point(aes(x = mean, y = comp), color = global_colors[1], fill = "white", size = 1.5, shape = 21) +
+                 geom_point(aes(x = mean, y = factor(comp, ordered = T)),
+                            color = global_colors[1],
+                            fill = "white", size = 1.5, shape = 21) +
                  theme_bw() +
                  theme(aspect.ratio = 1,
                        panel.grid.major = element_blank(),
                        panel.grid.minor = element_blank(),
                        legend.position = c(0.2, 0.15),
                        legend.background = element_blank()) +
-                 labs(title = element_blank(),
+                 labs(title = expression("Differences in SEAB " ('\u2030' ^2)),
                       x = element_blank(),
                       y = element_blank())
+
 # cairo_pdf("output/SIBER/global/global_forest.pdf",
 #           family = "Times", height = 4, width = 4)
 global_forest
-#dev.off()
+# dev.off()
 ```
 
 #### Eccentricity and theta
@@ -391,6 +391,9 @@ Basic dataset to extract every case:
 ```{r}
 full_set <- subset(data,
                    select = c(sp, temporada, sexo, estadio, iso1, iso2))
+
+colnames(full_set) <- c("Species", "Season", "Sex", "Maturity", "iso1", "iso2")
+
 head(full_set)
 ```
 
@@ -455,12 +458,12 @@ custom_siber <- function(data, var_col, lbls, sp_col, colors, gp_label,
     
   # Basic ellipses plot
   ellipses <- ggplot(data = subdata, aes(x = iso2, y = iso1, color = as.factor(group))) +
-                     geom_point(alpha = 0.7) +
+                     geom_point(alpha = 0.5) +
                      stat_ellipse(level = 0.4) +
                      geom_convexhull(fill = NA, linetype = "dashed", alpha = 0.05) +
                      scale_color_manual(values = global_colors, name = gp_label, labels = lbls) +
-                     scale_x_continuous(limits = xlims, breaks = c(seq(-18, -8, 2))) +
-                     scale_y_continuous(limits = ylims, breaks = c(seq(10, 20, 2))) +
+                     scale_x_continuous(limits = xlims, breaks = c(-18, -14, -10)) +
+                     scale_y_continuous(limits = ylims, breaks = c(12, 16, 20)) +
                      labs(title = element_blank(),
                           x = expression({delta}^13*C~'(\u2030)'),
                           y = expression({delta}^15*N~'(\u2030)')) +
@@ -472,10 +475,10 @@ custom_siber <- function(data, var_col, lbls, sp_col, colors, gp_label,
                            legend.background = element_blank()) +
                      facet_wrap(paste("~", sp_col, sep = ""))
   
-  cairo_pdf(paste(wd, "ellipses.pdf", sep = "/"), family = "Times", height = 4, width = 8)
+  cairo_pdf(paste(wd, "ellipses.pdf", sep = "/"), family = "Times", height = 2.7, width = 5.4)
     print(ellipses)
   dev.off()
-    
+  
   # Loop through species:
     for (i in seq_along(species)) {
       
@@ -638,9 +641,18 @@ custom_siber <- function(data, var_col, lbls, sp_col, colors, gp_label,
 
 ```{r}
 lbls <- c("Female", "Male")
-sex_siber <- custom_siber(full_set, var_col = "sexo", lbls, sp_col = "sp", n.burnin = 7000,
+sex_siber <- custom_siber(full_set, var_col = "Sex", lbls, sp_col = "Species", n.burnin = 7000,
                           colors = global_colors, gp_label = "Sex")
 ```
+Plots of ellipses:
+
+```{r}
+#| warning: false
+#| message: false
+
+sex_siber$ellips
+```
+
 
 Eccentricities:
 
@@ -716,11 +728,21 @@ ggplot(data = ecc, aes(x = j, y = theta, group = j, color = factor(j))) +
   facet_wrap(~sp)
 ```
 
-### Age
+### Maturity stages
+
 ```{r}
 lbls <- c("Adult", "Juvenile")
-age_siber <- custom_siber(full_set, var_col = "estadio", lbls, sp_col = "sp", n.burnin = 7000,
+age_siber <- custom_siber(full_set, var_col = "Maturity", lbls, sp_col = "Species", n.burnin = 7000,
                           colors = global_colors, gp_label = "Age")
+```
+
+Plots of ellipses:
+
+```{r}
+#| warning: false
+#| message: false
+
+age_siber$ellips
 ```
 
 Eccenctricities:
@@ -800,9 +822,18 @@ ggplot(data = ecc, aes(x = j, y = theta, group = j, color = factor(j))) +
 
 ```{r}
 lbls <- c("Warm", "Cold")
-season_siber <- custom_siber(full_set, var_col = "temporada", lbls, sp_col = "sp",
+season_siber <- custom_siber(full_set, var_col = "Season", lbls, sp_col = "Species",
                              colors = global_colors, gp_label = "Season",
                              n.burnin = 750000, n.iter = 10000) 
+```
+
+Plots of ellipses:
+
+```{r}
+#| warning: false
+#| message: false
+
+season_siber$ellips
 ```
 
 ```{r}
@@ -882,36 +913,48 @@ ggplot(data = ecc, aes(x = j, y = theta, group = j, color = factor(j))) +
 forest_data <- rbind(age_siber[[6]], season_siber[[6]], sex_siber[[6]])
 
 forest <- ggplot(data = forest_data) +
-               geom_vline(xintercept = 0, linetype = "dashed", color = "#C9C8C8", size = 1.2) +
+               geom_vline(xintercept = 0, linetype = "dashed", color = "#C9C8C8", size = 0.5) +
                geom_linerange(aes(y = comp, xmin = IQr.lower, xmax = IQr.upper),
                               color = global_colors[1], size = 1) +
                geom_linerange(aes(y = comp, xmin = hdi.lower, xmax = hdi.upper),
                               color = global_colors[1]) +
-               geom_point(aes(x = mean, y = comp), color = global_colors[1], fill = "white", size = 1.5, shape = 21) +
+               geom_point(aes(x = mean, y = comp),
+                          color = global_colors[1], fill = "white", size = 1.5, shape = 21) +
                theme_bw() +
                theme(aspect.ratio = 1,
                      panel.grid.major = element_blank(),
                      panel.grid.minor = element_blank(),
                      legend.position = c(0.2, 0.15),
                      legend.background = element_blank()) +
+               scale_x_continuous(breaks = scales::pretty_breaks(n = 3)) +
                labs(title = element_blank(),
                     x = element_blank(),
                     y = element_blank()) + facet_wrap(~sp)
 
-cairo_pdf("output/SIBER/forest_cats.pdf", family = "Times", width = 4, height = 2)
+# cairo_pdf("output/SIBER/forest_cats.pdf", family = "Times", width = 4, height = 2)
 forest
-dev.off()
+# dev.off()
 ```
 
+Tabular results:
+
+Seasons:
+
 ```{r}
+season_siber$diff_glob[,c("comp", "sp", "mean")]
 season_siber$p_sup
 ```
+Sexes:
 
 ```{r}
+sex_siber$diff_glob[,c("comp", "sp", "mean")]
 sex_siber$p_sup
 ```
 
+Maturity stages:
+
 ```{r}
+age_siber$diff_glob[,c("comp", "sp", "mean")]
 age_siber$p_sup
 ```
 
