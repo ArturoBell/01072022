@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 book:
-  title: "Electronic Supplements: Sharing and coexistence in Batoids"
+  title: "Supplementary Information: Trophic assessment of three sympatric batoid species in the GC"
   repo-url: https://github.com/ArturoBell/01072022
   repo-actions: [issue]
   page-navigation: true
